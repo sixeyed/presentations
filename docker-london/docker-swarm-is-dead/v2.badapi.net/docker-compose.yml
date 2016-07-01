@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+
+    elasticsearch:
+        image: elasticsearch
+        ports: 
+            - "9200:9200"
+            - "9300:9300"
+        hostname: elasticsearch
+        container_name: elasticsearch
+
+    redis:
+        image: redis
+        ports:
+            - "6379:6379"
+        hostname: redis
+        container_name: redis
+
+    kibana:
+        image: kibana
+        ports:
+            - "5601:5601"
+        links:
+            - elasticsearch:elasticsearch
+        hostname: kibana
+        container_name: kibana
+
+    indexer:
+        image: sixeyed/badapi-indexer
+        links:
+            - redis:redis
+            - elasticsearch:elasticsearch
+        container_name: badapi-indexer
+
+    api:
+        image: sixeyed/badapi-api
+        ports:
+            - "5000:5000"
+        links:
+            - redis:redis
+        container_name: badapi-api
