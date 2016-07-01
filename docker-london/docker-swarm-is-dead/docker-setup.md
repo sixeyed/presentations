@@ -24,7 +24,7 @@ sudo usermod -aG docker elton
 To save time running the demos, you can pull the images in advance. Not required, as Docker will pull them as necessary:
 
 ```
-docker pull ubuntu && docker pull redis && docker pull elasticsearch && docker pull kibana && docker pull microsoft/dotnet && docker pull sixeyed/badapi-api && docker pull sixeyed/badapi-indexer
+docker pull ubuntu && docker pull redis && docker pull elasticsearch && docker pull kibana && docker pull sixeyed/badapi-api && docker pull sixeyed/badapi-indexer && docker pull sixeyed/ubuntu-with-utils
 ```
 
 
