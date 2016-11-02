@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PiWebApp.Math;
@@ -20,7 +21,8 @@ namespace PiWebApp.Controllers
             {
                 DecimalPlaces = dp.Value,
                 Value = pi.ToString(),
-                ComputeMilliseconds = stopwatch.ElapsedMilliseconds
+                ComputeMilliseconds = stopwatch.ElapsedMilliseconds,
+                ComputeHost = Environment.MachineName
             };
 
             return View(model);
