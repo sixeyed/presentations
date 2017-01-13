@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageHandlers", "MessageH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductLaunch.MessageHandlers.IndexProspect", "ProductLaunch.MessageHandlers.IndexProspect\ProductLaunch.MessageHandlers.IndexProspect.csproj", "{1354B5AB-C990-41EA-9F68-5F9933D83700}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductLaunch.EndToEndTests", "ProductLaunch.EndToEndTests\ProductLaunch.EndToEndTests.csproj", "{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1354B5AB-C990-41EA-9F68-5F9933D83700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1354B5AB-C990-41EA-9F68-5F9933D83700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1354B5AB-C990-41EA-9F68-5F9933D83700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +69,6 @@ Global
 		{49FD06C3-CD52-425A-866D-831D09268CD0} = {4AAE4C5C-129D-46D3-9B08-19F32FB8C60D}
 		{65089C80-27F1-4744-979B-4C5A33B0CFF6} = {C7DDB104-252C-499C-A144-242DCC2CF946}
 		{1354B5AB-C990-41EA-9F68-5F9933D83700} = {C7DDB104-252C-499C-A144-242DCC2CF946}
+		{D47CF813-DE0E-4CC4-B9ED-8EE4B6F14869} = {4AAE4C5C-129D-46D3-9B08-19F32FB8C60D}
 	EndGlobalSection
 EndGlobal

@@ -7,6 +7,7 @@ namespace ProductLaunch.Model.Initializers
     {
         protected override void Seed(ProductLaunchContext context)
         {
+            AddRole(context, "DA", "Developer Advocate");
             AddRole(context, "DM", "Decision Maker");
             AddRole(context, "AC", "Architect");
             AddRole(context, "EN", "Engineer");
