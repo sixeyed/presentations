@@ -272,3 +272,8 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+# output from builds
+./docker/web/ProductLaunchWeb
+./docker/save-prospect/SaveProspectHandler
+./docker/index-prospect/IndexProspectHandler

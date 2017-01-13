@@ -19,13 +19,28 @@ services:
     networks:
       - app-net
 
+  elasticsearch:
+    image: sixeyed/elasticsearch:nanoserver
+    ports:
+      - "9200:9200"
+    networks:
+      - app-net
+
+  kibana:
+    image: sixeyed/kibana:nanoserver
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - app-net
+
   product-launch-web:
-    image: sixeyed/product-launch-web:v3
+    image: sixeyed/product-launch-web:v4
     ports:
       - "80:80"
     environment:
       - DB_CONNECTION_STRING=Server=product-launch-db;Database=ProductLaunch;User Id=sa;Password=NDC_l0nd0n;
-      - MESSAGE_QUEUE_URL=nats://message-queue:4222
     depends_on:
       - product-launch-db
       - message-queue
@@ -33,12 +48,19 @@ services:
       - app-net
 
   save-prospect-handler:
-    image: sixeyed/product-launch-handler:v3
+    image: sixeyed/save-prospect-handler:v4
     environment:
       - DB_CONNECTION_STRING=Server=product-launch-db;Database=ProductLaunch;User Id=sa;Password=NDC_l0nd0n;
-      - MESSAGE_QUEUE_URL=nats://message-queue:4222
     depends_on:
       - product-launch-db
+      - message-queue
+    networks:
+      - app-net
+
+  index-prospect-handler:
+    image: sixeyed/index-prospect-handler:v4
+    depends_on:
+      - elasticsearch
       - message-queue
     networks:
       - app-net

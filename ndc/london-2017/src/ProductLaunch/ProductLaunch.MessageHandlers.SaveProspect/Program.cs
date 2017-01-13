@@ -18,7 +18,7 @@ namespace ProductLaunch.MessageHandlers.SaveProspect
             using (var connection = MessageQueue.CreateConnection())
             {
                 var subscription = connection.SubscribeAsync(ProspectSignedUpEvent.MessageSubject);
-                subscription.MessageHandler += ProspectSignUpMessageHandler;
+                subscription.MessageHandler += SaveProspect;
                 subscription.Start();
                 Console.WriteLine($"Listening on subject: {ProspectSignedUpEvent.MessageSubject}");
 
@@ -27,7 +27,7 @@ namespace ProductLaunch.MessageHandlers.SaveProspect
             }
         }
 
-        private static void ProspectSignUpMessageHandler(object sender, MsgHandlerEventArgs e)
+        private static void SaveProspect(object sender, MsgHandlerEventArgs e)
         {
             Console.WriteLine($"Received message, subject: {e.Message.Subject}");
             var eventMessage = MessageHelper.FromData<ProspectSignedUpEvent>(e.Message.Data);
