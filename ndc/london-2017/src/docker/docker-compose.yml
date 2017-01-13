@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  
+  product-launch-db:
+    image: microsoft/mssql-server-windows-express
+    ports:
+      - "1433:1433"
+    environment: 
+      - ACCEPT_EULA=Y
+      - sa_password=NDC_l0nd0n
+    networks:
+      - app-net
+
+  message-queue:
+    image: sixeyed/nats:nanoserver
+    ports:
+      - "4222:4222"
+    networks:
+      - app-net
+
+  product-launch-web:
+    image: sixeyed/product-launch-web:v3
+    ports:
+      - "80:80"
+    environment:
+      - DB_CONNECTION_STRING=Server=product-launch-db;Database=ProductLaunch;User Id=sa;Password=NDC_l0nd0n;
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
+    depends_on:
+      - product-launch-db
+      - message-queue
+    networks:
+      - app-net
+
+  save-prospect-handler:
+    image: sixeyed/product-launch-handler:v3
+    environment:
+      - DB_CONNECTION_STRING=Server=product-launch-db;Database=ProductLaunch;User Id=sa;Password=NDC_l0nd0n;
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
+    depends_on:
+      - product-launch-db
+      - message-queue
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

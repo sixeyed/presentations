@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="\\Mac\scm\github\sixeyed\presentations\ndc\london-2017\src\ProductLaunch\ProductLaunch.Web\obj\Debug\Package\PackageTmp" />
+  <setAcl path="\\Mac\scm\github\sixeyed\presentations\ndc\london-2017\src\ProductLaunch\ProductLaunch.Web\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="\\Mac\scm\github\sixeyed\presentations\ndc\london-2017\src\ProductLaunch\ProductLaunch.Web\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

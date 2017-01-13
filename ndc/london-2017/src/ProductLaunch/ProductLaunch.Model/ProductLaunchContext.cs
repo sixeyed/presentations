@@ -1,16 +1,11 @@
 ﻿using ProductLaunch.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductLaunch.Model
 {
     public class ProductLaunchContext : DbContext
     {
-        public ProductLaunchContext() : base("ProductLaunchDb") { }
+        public ProductLaunchContext() : base(Config.DbConnectionString) { }
 
         public DbSet<Country> Countries { get; set; }
 
@@ -23,7 +18,7 @@ namespace ProductLaunch.Model
             builder.Entity<Country>().HasKey(c => c.CountryCode);
             builder.Entity<Role>().HasKey(r => r.RoleCode);
             builder.Entity<Prospect>().HasOptional<Country>(p => p.Country);
-            builder.Entity<Prospect>().HasOptional<Role>(p => p.Role);
-        }
+            builder.Entity<Prospect>().HasOptional<Role>(p => p.Role);            
+        }        
     }
 }
