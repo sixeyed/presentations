@@ -34,8 +34,11 @@ namespace ProductLaunch.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateRoles();
-            PopulateCountries();
+            if (!Page.IsPostBack)
+            {
+                PopulateRoles();
+                PopulateCountries();
+            }
         }
 
         private void PopulateRoles()
