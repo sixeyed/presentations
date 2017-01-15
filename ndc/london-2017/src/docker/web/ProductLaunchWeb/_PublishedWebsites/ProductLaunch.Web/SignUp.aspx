@@ -25,7 +25,7 @@
         <asp:TextBox class="form-control" id="txtEmail" runat="server" />
     </div>
     <div class="form-group">
-        <label for="txtCompanyName">Country</label>
+        <label for="ddlCountry">Country</label>
         <asp:DropDownList class="form-control" id="ddlCountry" runat="server"/>
     </div>
     <div class="form-group">

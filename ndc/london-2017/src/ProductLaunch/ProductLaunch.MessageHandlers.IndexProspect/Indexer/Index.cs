@@ -6,15 +6,12 @@ namespace ProductLaunch.MessageHandlers.IndexProspect.Indexer
 {
     public class Index
     {
-        private static ElasticClient _Client;
-        private static string _CurrentIndexSuffix;
-
         public static void Setup()
         {
             var node = new Uri(Config.ElasticsearchUrl);
             var settings = new ConnectionSettings(node);
-            _Client = new ElasticClient(settings);
-            _Client.CreateIndex("prospects");
+            var client = new ElasticClient(settings);
+            client.CreateIndex("prospects");
         }        
 
         public static void CreateDocument(Prospect prospect)
