@@ -1,8 +1,8 @@
 
-## Run the SQL Server container
+## Run the SQL Server containe
 
 ```
-docker run -d -p 1433:1433 -e sa_password=NDC_l0nd0n -e ACCEPT_EULA=Y --name product-launch-db --ip 172.20.244.163 microsoft/mssql-server-windows-express
+docker run -d -p 1533:1433 -e sa_password=NDC_l0nd0n -e ACCEPT_EULA=Y --name sql-server --ip 172.31.118.118 microsoft/mssql-server-windows-express
 ```
 
 ## Run the NATS container

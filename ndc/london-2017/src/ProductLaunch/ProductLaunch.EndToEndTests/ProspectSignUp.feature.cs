@@ -74,7 +74,7 @@ namespace ProductLaunch.EndToEndTests
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I browse to the Sign Up Page at \"172.31.124.114\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I browse to the Sign Up Page at \"172.31.126.66\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.And(string.Format("I enter details \'{0}\' \'{1}\' \'{2}\' \'{3}\' \'{4}\' \'{5}\'", firstName, lastName, emailAddress, companyName, country, role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
