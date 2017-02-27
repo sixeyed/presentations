@@ -53,3 +53,17 @@ Show Kibana.
 
 # Demo 3 - Hybrid Swarm in Azure
 
+Switch to swarm
+
+```
+```
+
+URLs:
+
+- [UCP](https://ddc-ucp606684.northeurope.cloudapp.azure.com/#/dashboard)
+- [DTR](https://ddc-dtr975144.northeurope.cloudapp.azure.com/repositories)
+
+- [Voting app](http://ddc-linux-1.northeurope.cloudapp.azure.com:5000/)
+- [Voting results](http://ddc-linux-1.northeurope.cloudapp.azure.com:5001/)
+
+- [Pi app](http://ddc-win-1.northeurope.cloudapp.azure.com/)
