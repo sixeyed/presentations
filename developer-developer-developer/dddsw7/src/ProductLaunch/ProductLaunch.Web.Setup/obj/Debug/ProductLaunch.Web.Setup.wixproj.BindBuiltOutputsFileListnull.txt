@@ -1,0 +1,2 @@
+E:\scm\github\sixeyed\dc-mta-workshop\src\ProductLaunch\ProductLaunch.Web.Setup\bin\Debug\ProductLaunch.Web.Setup.msi
+E:\scm\github\sixeyed\dc-mta-workshop\src\ProductLaunch\ProductLaunch.Web.Setup\bin\Debug\ProductLaunch.Web.Setup.wixpdb
