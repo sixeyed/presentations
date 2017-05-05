@@ -19,6 +19,11 @@ docker-compose -f .\app\docker-compose-v2.yml up -d
 
 ## v3
 
+> On Win10 need to run Elasticsearch separately to specify memory:
+```
+docker run -d -P --name elasticsearch --memory 2.5G sixeyed/elasticsearch:nanoserver
+```
+
 ```
 docker build -t sixeyed/dddsw7-index-handler -f docker\index-handler\Dockerfile .
 
@@ -31,4 +36,10 @@ docker-compose -f .\app\docker-compose-v3.yml up -d
 docker build -t sixeyed/dddsw7-homepage .\docker\homepage
 
 docker-compose -f .\app\docker-compose-v4.yml up -d
+```
+
+## vNext
+
+```
+docker run -d -P --name cms sixeyed/umbraco-demo:i2d 
 ```
