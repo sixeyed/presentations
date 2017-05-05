@@ -1,0 +1,11 @@
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\ProductLaunch.Messaging.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\ProductLaunch.Messaging.pdb
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\NATS.Client.DLL
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\Newtonsoft.Json.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\ProductLaunch.Entities.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\ProductLaunch.Entities.pdb
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\NATS.Client.xml
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\bin\Debug\Newtonsoft.Json.xml
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\obj\Debug\ProductLaunch.Messaging.csprojResolveAssemblyReference.cache
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\obj\Debug\ProductLaunch.Messaging.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Messaging\obj\Debug\ProductLaunch.Messaging.pdb

@@ -1,0 +1,10 @@
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\ProductLaunch.Model.dll.config
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\ProductLaunch.Model.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\ProductLaunch.Model.pdb
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\EntityFramework.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\ProductLaunch.Entities.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\ProductLaunch.Entities.pdb
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\bin\Debug\EntityFramework.xml
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\obj\Debug\ProductLaunch.Model.csprojResolveAssemblyReference.cache
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\obj\Debug\ProductLaunch.Model.dll
+E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Model\obj\Debug\ProductLaunch.Model.pdb

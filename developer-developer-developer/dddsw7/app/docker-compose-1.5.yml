@@ -1,0 +1,72 @@
+version: '3.1'
+
+services:
+  
+  mta-db:
+    image: microsoft/mssql-server-windows-express
+    environment: 
+      - ACCEPT_EULA=Y
+      - sa_password=DockerCon!!!
+    networks:
+      - app-net
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+
+  elasticsearch:
+    image: ${dockerid}/elasticsearch:nanoserver
+    networks:
+      - app-net
+
+  kibana:
+    image: ${dockerid}/kibana:nanoserver
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - app-net
+
+  homepage:
+    image: ${dockerid}/mta-homepage
+    networks:
+      - app-net
+
+  mta-app:
+    image: ${dockerid}/mta-app:1.3
+    ports:
+      - "80:80"
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!;
+      - HOMEPAGE_URL=http://homepage
+    depends_on:
+      - mta-db
+      - message-queue
+      - homepage
+    networks:
+      - app-net
+
+  mta-save-handler:
+    image: ${dockerid}/mta-save-handler
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!;
+    depends_on:
+      - mta-db
+      - message-queue
+    networks:
+      - app-net
+
+  mta-index-handler:
+    image: ${dockerid}/mta-index-handler
+    depends_on:
+      - elasticsearch
+      - message-queue
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
