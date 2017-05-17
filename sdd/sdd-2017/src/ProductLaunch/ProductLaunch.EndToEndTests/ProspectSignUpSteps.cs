@@ -65,7 +65,7 @@ namespace ProductLaunch.EndToEndTests
         [Then(@"my details should be saved")]
         public void ThenMyDetailsShouldBeSaved()
         {
-            AssertHelper.RetryAssert(50, 20, $"Email address: {_emailAddress} not found", () =>
+            AssertHelper.RetryAssert(50, 40, $"Email address: {_emailAddress} not found", () =>
             {
                 var count = 0;
                 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");

@@ -1,0 +1,89 @@
+version: "3"
+
+# TODO - host ports and endpoint mode not supported until 17.06
+# need to manually set services to dnsrr & publish ports after stack created
+
+services:
+
+  mta-db:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/db
+    environment:
+      - ACCEPT_EULA=Y
+      - sa_password=DockerCon!!!
+    volumes:
+      - mta-db-data:c:\database
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  message-queue:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/nats:nanoserver
+    networks:
+      - mta-net
+    deploy:    
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  elasticsearch:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/elasticsearch:nanoserver
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - mta-es-data:c:\data
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  kibana:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/kibana:nanoserver
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  mta-app:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/web-app:v2
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  mta-save-handler:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/save-handler
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  mta-index-handler:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/index-handler
+    networks:
+      - mta-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+networks:
+  mta-net:
+
+volumes:
+  mta-es-data:
+  mta-db-data:

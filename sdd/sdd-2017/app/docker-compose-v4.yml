@@ -35,12 +35,12 @@ services:
       - app-net
 
   homepage:
-    image: sixeyed/dddsw7-homepage
+    image: sixeyed/sdd2017-homepage
     networks:
       - app-net
 
   mta-app:
-    image: sixeyed/dddsw7-web:v2
+    image: sixeyed/sdd2017-web:v2
     ports:
       - "80:80"
     environment:
@@ -54,7 +54,7 @@ services:
       - app-net
 
   mta-save-handler:
-    image: sixeyed/dddsw7-save-handler
+    image: sixeyed/sdd2017-save-handler
     env_file:
       - db-credentials.env
     depends_on:
@@ -64,7 +64,7 @@ services:
       - app-net
 
   mta-index-handler:
-    image: sixeyed/dddsw7-index-handler
+    image: sixeyed/sdd2017-index-handler
     depends_on:
       - elasticsearch
       - message-queue
