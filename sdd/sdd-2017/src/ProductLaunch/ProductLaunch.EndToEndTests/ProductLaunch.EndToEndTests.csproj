@@ -50,6 +50,7 @@
       <HintPath>..\packages\SimpleBrowser.WebDriver.0.5.37\lib\net40\SimpleBrowser.WebDriver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="TechTalk.SpecFlow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
@@ -71,6 +72,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AssertHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProspectSignUp.feature.cs">
       <AutoGen>True</AutoGen>

@@ -15,8 +15,6 @@ services:
 
   message-queue:
     image: nats:nanoserver
-#    ports:
-#      - "4222:4222"
     networks:
       - app-net
 
@@ -24,8 +22,6 @@ services:
     image: sixeyed/elasticsearch:nanoserver
     environment:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
-#    ports:
-#      - "9200:9200"
     networks:
       - app-net
 

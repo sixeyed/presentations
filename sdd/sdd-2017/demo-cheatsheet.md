@@ -7,6 +7,14 @@ docker build -t sixeyed/sdd2017-web:v1 .\docker\web-v1
 docker-compose -f .\app\docker-compose-v1.yml up -d
 ```
 
+## v1 tests
+
+```
+docker build -t sixeyed/sdd2017-e2e-tests -f docker\e2e-tests\Dockerfile .
+
+docker run sixeyed/sdd2017-e2e-tests
+```
+
 ## v2
 
 ```

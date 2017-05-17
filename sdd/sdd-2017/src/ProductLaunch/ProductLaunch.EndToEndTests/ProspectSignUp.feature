@@ -4,10 +4,11 @@
 	So that I can be updated with news
 
 Scenario Outline: Sign Up with Valid Details
-	Given I browse to the Sign Up Page at "mta-app" 
+	Given I browse to the Sign Up Page at "http://mta-app/ProductLaunch/SignUp"
 	And I enter details '<FirstName>' '<LastName>' '<EmailAddress>' '<CompanyName>' '<Country>' '<Role>'
 	When I press Go
 	Then I should see the Thank You page
+	And my details should be saved
 
 Examples:
 	| FirstName | LastName | EmailAddress           | CompanyName   | Country        | Role           |
