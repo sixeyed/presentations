@@ -11,9 +11,9 @@ services:
       - ACCEPT_EULA=Y
       - sa_password=DockerCon!!!
     volumes:
-      - mta-db-data:c:\database
+      - sdd2017-db-data:c:\database
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
@@ -22,7 +22,7 @@ services:
   message-queue:
     image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/nats:nanoserver
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:    
       placement:
         constraints:
@@ -33,9 +33,9 @@ services:
     environment:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
     volumes:
-      - mta-es-data:c:\data
+      - sdd2017-es-data:c:\data
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
@@ -44,18 +44,18 @@ services:
   kibana:
     image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/kibana:nanoserver
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
           - 'node.platform.os == windows'
 
   mta-app:
-    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/web-app:v2
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/web:v2
     environment:
       - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
@@ -66,7 +66,7 @@ services:
     environment:
       - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
@@ -75,15 +75,15 @@ services:
   mta-index-handler:
     image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/index-handler
     networks:
-      - mta-net
+      - sdd2017-net
     deploy:
       placement:
         constraints:
           - 'node.platform.os == windows'
 
 networks:
-  mta-net:
+  sdd2017-net:
 
 volumes:
-  mta-es-data:
-  mta-db-data:
+  sdd2017-es-data:
+  sdd2017-db-data:

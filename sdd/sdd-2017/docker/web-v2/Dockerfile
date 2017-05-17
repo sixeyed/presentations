@@ -11,7 +11,7 @@ RUN msbuild ProductLaunch.Web.csproj /p:OutputPath=c:\out\web\ProductLaunchWeb `
         /p:DeployOnBuild=true /p:VSToolsPath=C:\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath
 
 # app image
-FROM microsoft/aspnet:windowsservercore-10.0.14393.1066
+FROM microsoft/aspnet:windowsservercore-10.0.14393.1198
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN Set-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord

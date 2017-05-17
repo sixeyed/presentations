@@ -70,3 +70,13 @@ docker-compose -f .\app\docker-compose-v4.yml up -d
 ```
 docker run -d -P --name cms sixeyed/umbraco-demo:i2d 
 ```
+
+## Prod
+
+- UCP: https://ub-ucp-01.westeurope.cloudapp.azure.com
+
+- DTR: https://ub-dtr-01.westeurope.cloudapp.azure.com/orgs/sdd2017/users
+
+- Website: http://win-worker-01.westeurope.cloudapp.azure.com:8080/ProductLaunch/
+
+- Kibana: http://win-worker-01.westeurope.cloudapp.azure.com:5601
