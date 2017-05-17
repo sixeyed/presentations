@@ -4,37 +4,45 @@ services:
   
   mta-db:
     image: microsoft/mssql-server-windows-express
+    ports:
+      - "1433:1433"
     environment: 
       - ACCEPT_EULA=Y
-      - sa_password=DockerCon!!!
+    env_file:
+      - db-credentials.env
     networks:
       - app-net
 
   message-queue:
     image: nats:nanoserver
+    ports:
+      - "4222:4222"
     networks:
       - app-net
 
-  elasticsearch:
-    image: ${dockerid}/elasticsearch:nanoserver
-    networks:
-      - app-net
+# not on Win10 - needs to be run with --memory which compose doesn't support
+#  elasticsearch:
+#    image: sixeyed/elasticsearch:nanoserver
+#    ports:
+#      - "9200:9200"
+#    networks:
+#      - app-net
 
   kibana:
-    image: ${dockerid}/kibana:nanoserver
+    image: sixeyed/kibana:nanoserver
     ports:
       - "5601:5601"
-    depends_on:
-      - elasticsearch
+#    depends_on:
+#      - elasticsearch
     networks:
       - app-net
 
   mta-app:
-    image: ${dockerid}/mta-app:1.3
+    image: sixeyed/dddsw7-web:v2
     ports:
       - "80:80"
-    environment:
-      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!;
+    env_file:
+      - db-credentials.env
     depends_on:
       - mta-db
       - message-queue
@@ -42,9 +50,9 @@ services:
       - app-net
 
   mta-save-handler:
-    image: ${dockerid}/mta-save-handler
-    environment:
-      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!;
+    image: sixeyed/dddsw7-save-handler
+    env_file:
+      - db-credentials.env
     depends_on:
       - mta-db
       - message-queue
@@ -52,7 +60,7 @@ services:
       - app-net
 
   mta-index-handler:
-    image: ${dockerid}/mta-index-handler
+    image: sixeyed/dddsw7-index-handler
     depends_on:
       - elasticsearch
       - message-queue

@@ -20,23 +20,6 @@ services:
     networks:
       - app-net
 
-# not on Win10 - needs to be run with --memory which compose doesn't support
-#  elasticsearch:
-#    image: sixeyed/elasticsearch:nanoserver
-#    ports:
-#      - "9200:9200"
-#    networks:
-#      - app-net
-
-  kibana:
-    image: sixeyed/kibana:nanoserver
-    ports:
-      - "5601:5601"
-#    depends_on:
-#      - elasticsearch
-    networks:
-      - app-net
-
   mta-app:
     image: sixeyed/dddsw7-web:v2
     ports:
@@ -55,14 +38,6 @@ services:
       - db-credentials.env
     depends_on:
       - mta-db
-      - message-queue
-    networks:
-      - app-net
-
-  mta-index-handler:
-    image: sixeyed/dddsw7-index-handler
-    depends_on:
-      - elasticsearch
       - message-queue
     networks:
       - app-net
