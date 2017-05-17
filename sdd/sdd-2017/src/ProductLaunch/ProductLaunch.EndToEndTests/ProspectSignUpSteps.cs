@@ -1,9 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
-using System.Threading;
+using SimpleBrowser.WebDriver;
 using TechTalk.SpecFlow;
 
 namespace ProductLaunch.EndToEndTests
@@ -16,7 +14,7 @@ namespace ProductLaunch.EndToEndTests
         [BeforeFeature]
         public static void Setup()
         {
-            _Driver = new FirefoxDriver();
+            _Driver = new SimpleBrowserDriver();
         }
 
         [AfterFeature]
@@ -56,9 +54,7 @@ namespace ProductLaunch.EndToEndTests
         [Then(@"I should see the Thank You page")]
         public void ThenIShouldSeeTheThankYouPage()
         {
-            //HACK
-            Thread.Sleep(1500);
-            Assert.AreEqual("Ta", _Driver.Title);
+            Assert.AreEqual("Ta", _Driver.Title.Trim());
         }
     }
 }

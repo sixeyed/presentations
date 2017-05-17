@@ -1,10 +1,13 @@
 # escape=`
 
 FROM sixeyed/msbuild:netfx-4.5.2-10.0.14393.1198 AS builder
-COPY src\ProductLaunch C:\src
+
 WORKDIR C:\src\ProductLaunch.MessageHandlers.IndexProspect
-RUN msbuild /t:restore ProductLaunch.MessageHandlers.IndexProspect.csproj; `
-    msbuild ProductLaunch.MessageHandlers.IndexProspect.csproj /p:OutputPath=c:\out\index-prospect\IndexProspectHandler
+COPY src\ProductLaunch\ProductLaunch.MessageHandlers.IndexProspect\packages.config .
+RUN nuget restore packages.config -PackagesDirectory ..\packages
+
+COPY src\ProductLaunch C:\src
+RUN msbuild ProductLaunch.MessageHandlers.IndexProspect.csproj /p:OutputPath=c:\out\index-prospect\IndexProspectHandler
 
 # app image
 FROM microsoft/windowsservercore:10.0.14393.1198

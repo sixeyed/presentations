@@ -1,9 +1,14 @@
 # escape=`
 
-# builder
-FROM sixeyed/msbuild:4.5.2-webdeploy AS builder
+FROM sixeyed/msbuild:netfx-4.5.2-webdeploy-10.0.14393.1198 AS builder
+
+WORKDIR C:\src\ProductLaunch.Web
+COPY src\ProductLaunch\ProductLaunch.Web\packages.config .
+RUN nuget restore packages.config -PackagesDirectory ..\packages
+
 COPY src\ProductLaunch C:\src
-RUN C:\src\ProductLaunch.Web\build.ps1
+RUN msbuild ProductLaunch.Web.csproj /p:OutputPath=c:\out\web\ProductLaunchWeb `
+        /p:DeployOnBuild=true /p:VSToolsPath=C:\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath
 
 # app image
 FROM microsoft/aspnet:windowsservercore-10.0.14393.1066

@@ -15,30 +15,31 @@ services:
 
   message-queue:
     image: nats:nanoserver
-    ports:
-      - "4222:4222"
+#    ports:
+#      - "4222:4222"
     networks:
       - app-net
 
-# not on Win10 - needs to be run with --memory which compose doesn't support
-#  elasticsearch:
-#    image: sixeyed/elasticsearch:nanoserver
+  elasticsearch:
+    image: sixeyed/elasticsearch:nanoserver
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
 #    ports:
 #      - "9200:9200"
-#    networks:
-#      - app-net
+    networks:
+      - app-net
 
   kibana:
     image: sixeyed/kibana:nanoserver
     ports:
       - "5601:5601"
-#    depends_on:
-#      - elasticsearch
+    depends_on:
+      - elasticsearch
     networks:
       - app-net
 
   mta-app:
-    image: sixeyed/dddsw7-web:v2
+    image: sixeyed/sdd2017-web:v2
     ports:
       - "80:80"
     env_file:
@@ -50,7 +51,7 @@ services:
       - app-net
 
   mta-save-handler:
-    image: sixeyed/dddsw7-save-handler
+    image: sixeyed/sdd2017-save-handler
     env_file:
       - db-credentials.env
     depends_on:
@@ -60,7 +61,7 @@ services:
       - app-net
 
   mta-index-handler:
-    image: sixeyed/dddsw7-index-handler
+    image: sixeyed/sdd2017-index-handler
     depends_on:
       - elasticsearch
       - message-queue

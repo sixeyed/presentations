@@ -1,9 +1,13 @@
 # escape=`
 
-# builder
-FROM sixeyed/msbuild:4.5.2 AS builder
+FROM sixeyed/msbuild:netfx-4.5.2-10.0.14393.1198 AS builder
+
+WORKDIR C:\src\ProductLaunch.MessageHandlers.SaveProspect
+COPY src\ProductLaunch\ProductLaunch.MessageHandlers.SaveProspect\packages.config .
+RUN nuget restore packages.config -PackagesDirectory ..\packages
+
 COPY src\ProductLaunch C:\src
-RUN C:\src\ProductLaunch.MessageHandlers.SaveProspect\build.ps1
+RUN msbuild ProductLaunch.MessageHandlers.SaveProspect.csproj /p:OutputPath=c:\out\save-prospect\SaveProspectHandler
 
 # app image
 FROM microsoft/windowsservercore:10.0.14393.1198

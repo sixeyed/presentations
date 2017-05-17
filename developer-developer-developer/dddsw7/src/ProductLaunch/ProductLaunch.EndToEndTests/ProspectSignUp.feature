@@ -4,7 +4,7 @@
 	So that I can be updated with news
 
 Scenario Outline: Sign Up with Valid Details
-	Given I browse to the Sign Up Page at "172.31.114.153"
+	Given I browse to the Sign Up Page at "win-worker-01.westeurope.cloudapp.azure.com:8090"
 	And I enter details '<FirstName>' '<LastName>' '<EmailAddress>' '<CompanyName>' '<Country>' '<Role>'
 	When I press Go
 	Then I should see the Thank You page
