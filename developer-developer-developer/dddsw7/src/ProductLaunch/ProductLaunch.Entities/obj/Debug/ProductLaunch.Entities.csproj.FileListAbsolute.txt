@@ -1,5 +1,0 @@
-E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Entities\bin\Debug\ProductLaunch.Entities.dll
-E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Entities\bin\Debug\ProductLaunch.Entities.pdb
-E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Entities\obj\Debug\ProductLaunch.Entities.csprojResolveAssemblyReference.cache
-E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Entities\obj\Debug\ProductLaunch.Entities.dll
-E:\scm\github\sixeyed\presentations\developer-developer-developer\dddsw7\src\ProductLaunch\ProductLaunch.Entities\obj\Debug\ProductLaunch.Entities.pdb
