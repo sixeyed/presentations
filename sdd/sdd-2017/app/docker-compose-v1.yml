@@ -14,7 +14,7 @@ services:
       - app-net
 
   mta-app:
-    image: sixeyed/dddsw7-web:v1
+    image: sixeyed/sdd2017-web:v1
     ports:
       - "80:80"
     env_file:

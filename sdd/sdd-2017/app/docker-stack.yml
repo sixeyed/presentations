@@ -19,11 +19,33 @@ services:
         constraints:
           - 'node.platform.os == windows'
 
+  mta-app:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/web:v2
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
+    networks:
+      - sdd2017-net
+    deploy:
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
   message-queue:
     image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/nats:nanoserver
     networks:
       - sdd2017-net
     deploy:    
+      placement:
+        constraints:
+          - 'node.platform.os == windows'
+
+  mta-save-handler:
+    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/save-handler
+    environment:
+      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
+    networks:
+      - sdd2017-net
+    deploy:
       placement:
         constraints:
           - 'node.platform.os == windows'
@@ -43,28 +65,6 @@ services:
 
   kibana:
     image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/kibana:nanoserver
-    networks:
-      - sdd2017-net
-    deploy:
-      placement:
-        constraints:
-          - 'node.platform.os == windows'
-
-  mta-app:
-    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/web:v2
-    environment:
-      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
-    networks:
-      - sdd2017-net
-    deploy:
-      placement:
-        constraints:
-          - 'node.platform.os == windows'
-
-  mta-save-handler:
-    image: ub-dtr-01.westeurope.cloudapp.azure.com/sdd2017/save-handler
-    environment:
-      - DB_CONNECTION_STRING=Server=mta-db;Database=ProductLaunch;User Id=sa;Password=DockerCon!!!
     networks:
       - sdd2017-net
     deploy:

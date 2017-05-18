@@ -13,8 +13,30 @@ services:
     networks:
       - app-net
 
+  mta-app:
+    image: sixeyed/sdd2017-web:v2
+    ports:
+      - "80:80"
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - mta-db
+      - message-queue
+    networks:
+      - app-net
+
   message-queue:
     image: nats:nanoserver
+    networks:
+      - app-net
+
+  mta-save-handler:
+    image: sixeyed/sdd2017-save-handler
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - mta-db
+      - message-queue
     networks:
       - app-net
 
@@ -31,28 +53,6 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-    networks:
-      - app-net
-
-  mta-app:
-    image: sixeyed/sdd2017-web:v2
-    ports:
-      - "80:80"
-    env_file:
-      - db-credentials.env
-    depends_on:
-      - mta-db
-      - message-queue
-    networks:
-      - app-net
-
-  mta-save-handler:
-    image: sixeyed/sdd2017-save-handler
-    env_file:
-      - db-credentials.env
-    depends_on:
-      - mta-db
-      - message-queue
     networks:
       - app-net
 

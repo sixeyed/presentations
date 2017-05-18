@@ -13,13 +13,8 @@ services:
     networks:
       - app-net
 
-  message-queue:
-    image: nats:nanoserver
-    networks:
-      - app-net
-
   mta-app:
-    image: sixeyed/dddsw7-web:v2
+    image: sixeyed/sdd2017-web:v2
     ports:
       - "80:80"
     env_file:
@@ -30,8 +25,13 @@ services:
     networks:
       - app-net
 
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+
   mta-save-handler:
-    image: sixeyed/dddsw7-save-handler
+    image: sixeyed/sdd2017-save-handler
     env_file:
       - db-credentials.env
     depends_on:

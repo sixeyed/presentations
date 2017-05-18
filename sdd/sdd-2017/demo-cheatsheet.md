@@ -2,6 +2,8 @@
 ## v1
 
 ```
+docker run -d -P microsoft/iis:nanoserver 
+
 docker build -t sixeyed/sdd2017-web:v1 .\docker\web-v1
 
 docker-compose -f .\app\docker-compose-v1.yml up -d
@@ -16,10 +18,14 @@ Build & run tests:
 ```
 docker build -t sixeyed/sdd2017-e2e-tests -f docker\e2e-tests\Dockerfile .
 
-docker run sixeyed/sdd2017-e2e-tests
+docker run --env-file app\db-credentials.env sixeyed/sdd2017-e2e-tests
 ```
 
 Check SQL.
+
+```
+docker exec app_mta-db_1 powershell "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database ProductLaunch"
+```
 
 ## v2
 
@@ -38,7 +44,7 @@ Browse to website, complete form manually, check SQL.
 Run tests:
 
 ```
-docker run sixeyed/sdd2017-e2e-tests
+docker run --env-file app\db-credentials.env sixeyed/sdd2017-e2e-tests
 ```
 
 Check SQL, check handler logs.
