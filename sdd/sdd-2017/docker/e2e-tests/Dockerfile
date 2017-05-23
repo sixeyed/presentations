@@ -16,7 +16,6 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Set-ItemProperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord
 
 WORKDIR /e2e-tests
-VOLUME C:\test-results
-CMD nunit3-console ProductLaunch.EndToEndTests.dll --results=C:\test-results\nunit-e2e.xml
+CMD nunit3-console ProductLaunch.EndToEndTests.dll
 
 COPY --from=builder C:\out\tests\EndToEndTests .
