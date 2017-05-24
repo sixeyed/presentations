@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+
+  web:
+    build:
+      context: ../
+      dockerfile: ./docker/web/Dockerfile
+
+  save-handler:
+    build:
+      context: ../
+      dockerfile: ./docker/save-handler/Dockerfile
+
+  index-handler:
+    build:
+      context: ../
+      dockerfile: ./docker/index-handler/Dockerfile

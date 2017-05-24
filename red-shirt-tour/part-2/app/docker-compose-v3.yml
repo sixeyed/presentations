@@ -1,0 +1,70 @@
+version: '3.1'
+
+services:
+  
+  db:
+    image: microsoft/mssql-server-windows-express
+    environment: 
+      - ACCEPT_EULA=Y
+    env_file:
+      - db-credentials.env
+    networks:
+      - app-net
+    ports:    
+      - "1433:1433"
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+
+  web:
+    image: dockersamples/signup-web
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - db
+      - message-queue
+    networks:
+      - app-net
+    ports:
+      - "80:80"
+
+  save-handler:
+    image: dockersamples/signup-save-handler
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - db
+      - message-queue
+    networks:
+      - app-net
+
+  index-handler:
+    image: dockersamples/signup-index-handler
+    depends_on:
+      - elasticsearch
+      - message-queue
+    networks:
+      - app-net
+
+  elasticsearch:
+    image: sixeyed/elasticsearch:nanoserver
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    networks:
+      - app-net
+
+  kibana:
+    image: sixeyed/kibana:nanoserver
+    depends_on:
+      - elasticsearch
+    networks:
+      - app-net
+    ports:
+      - "5601:5601"
+
+networks:
+  app-net:
+    external:
+      name: nat

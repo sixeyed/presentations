@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  
+  db:
+    image: microsoft/mssql-server-windows-express
+    environment: 
+      - ACCEPT_EULA=Y
+    env_file:
+      - db-credentials.env
+    networks:
+      - app-net
+    ports:    
+      - "1433:1433"
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+
+  web:
+    image: dockersamples/signup-web
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - db
+      - message-queue
+    networks:
+      - app-net
+    ports:
+      - "80:80"
+
+  save-handler:
+    image: dockersamples/signup-save-handler
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - db
+      - message-queue
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
