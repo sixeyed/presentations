@@ -1,4 +1,4 @@
 
-# Hybrid Docker Swarms on Azure
+# Hybrid Docker Swarm
 
 ## 
