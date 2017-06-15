@@ -12,9 +12,9 @@ docker build -t web .
 Run SQL Server & app:
 
 ```
-docker run -d -e ACCEPT_EULA=Y --env-file db-credentials.env microsoft/mssql-server-windows-express
+docker run -d --name db -e ACCEPT_EULA=Y --env-file db-credentials.env microsoft/mssql-server-windows-express
 
-docker run -d -P --env-file db-credentials.env web
+docker run -d -p 80:80 --env-file db-credentials.env web
 ```
 
 ## App V2
@@ -22,7 +22,7 @@ docker run -d -P --env-file db-credentials.env web
 Multi-stage builds:
 
 ```
-docker-compose -f docker-compose-v2.yml -f docker-compose-v2.build.yml build
+docker-compose -f ./app/docker-compose-v2.yml -f ./app/docker-compose-v2.build.yml build
 ```
 
 Start whole solution:
