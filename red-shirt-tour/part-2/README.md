@@ -28,6 +28,19 @@ docker-compose -f ./app/docker-compose-v2.yml -f ./app/docker-compose-v2.build.y
 Start whole solution:
 
 ```
-docker-compose -f docker-compose-v2.yml up -d
+docker-compose -f ./app/docker-compose-v2.yml up -d
 ```
 
+## App V3
+
+Multi-stage builds:
+
+```
+docker-compose -f ./app/docker-compose-v3.yml -f ./app/docker-compose-v3.build.yml build
+```
+
+Start whole solution:
+
+```
+docker-compose -f ./app/docker-compose-v3.yml up -d
+```
