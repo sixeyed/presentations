@@ -6,7 +6,9 @@
 Build V1 using MSI:
 
 ```
-docker build -t web .
+cd \part-2\v1
+
+docker image build -t web .
 ```
 
 Run SQL Server & app:
@@ -19,15 +21,24 @@ docker run -d -P --env-file db-credentials.env web
 
 ## App V2
 
-Multi-stage builds:
+Run from pre-public images:
 
 ```
-docker-compose -f .\app\docker-compose-v2.yml -f .\app\docker-compose-v2.build.yml build
-```
+cd \part-2\v2
 
-Start whole solution:
-
-```
 docker-compose -f .\app\docker-compose-v2.yml up -d
+
+docker inspect app_web_1
 ```
+
+## App V3
+
+Upgrade from public images:
+
+```
+docker-compose -f .\app\docker-compose-v3.yml up -d
+
+docker inspect app_web_1
+```
+
 
