@@ -11,6 +11,7 @@ docker service create \
  microsoft/mssql-server-windows-express
 
 docker service create \
+ --detach \
  --network newsletter --endpoint-mode dnsrr \
  --constraint 'node.platform.os == windows' \
  --name elasticsearch \

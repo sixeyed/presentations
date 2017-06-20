@@ -22,7 +22,7 @@ Replace Elasticsearch and Kibana with Linux containers:
 Replace NATS message queue with Linux container:
 
 ```
-./02-replace-nats.sh
+./03-replace-nats.sh
 ```
 
 ## Demo 3 - SQL Server on Linux
@@ -30,5 +30,5 @@ Replace NATS message queue with Linux container:
 Replace SQL Server with Linux container:
 
 ```
-./02-replace-mssql.sh
+./04-replace-mssql.sh
 ```
