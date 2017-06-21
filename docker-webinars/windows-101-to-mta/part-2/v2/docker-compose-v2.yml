@@ -11,12 +11,14 @@ services:
     networks:
       - app-net
     ports:    
-      - "1433:1433"
+      - "1433"
 
   message-queue:
     image: nats:nanoserver
     networks:
       - app-net
+    ports:    
+      - "4222"
 
   web:
     image: dockersamples/signup-web
@@ -28,7 +30,7 @@ services:
     networks:
       - app-net
     ports:
-      - "80:80"
+      - "80"
 
   save-handler:
     image: dockersamples/signup-save-handler
