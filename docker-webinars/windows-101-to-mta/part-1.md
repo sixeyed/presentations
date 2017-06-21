@@ -18,7 +18,7 @@ docker container run --interactive --tty microsoft/windowsservercore powershell
 Background container - run and browse:
 
 ```
-docker container run --detach --publish-all --name iis microsoft/iis:nanoserver
+docker container run --detach --publish-all --name iis microsoft/iis:windowsservercore
 
 docker container inspect iis
 ```
@@ -58,8 +58,10 @@ for ($i=0; $i -lt 5; $i++) {
 Browse all:
 
 ```
-for ($i=0; $i -lt 10; $i++) {
+for ($i=0; $i -lt 5; $i++) {
     $ip = & docker inspect --format '{{ .NetworkSettings.Networks.nat.IPAddress }}' "app-$i"
     start "http://$ip"
 }
 ```
+
+On server: list containers, get-process, get-service w3svc

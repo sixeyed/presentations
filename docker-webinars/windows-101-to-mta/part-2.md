@@ -6,7 +6,7 @@
 Build V1 using MSI:
 
 ```
-cd \part-2\v1
+cd .\part-2\v1
 
 docker image build -t web .
 ```
@@ -14,21 +14,21 @@ docker image build -t web .
 Run SQL Server & app:
 
 ```
-docker run -d --name db -e ACCEPT_EULA=Y --env-file db-credentials.env microsoft/mssql-server-windows-express
+docker run -d -p 1433 --name db -e ACCEPT_EULA=Y --env-file db-credentials.env microsoft/mssql-server-windows-express
 
 docker run -d -P --env-file db-credentials.env web
 ```
 
 ## App V2
 
-Run from pre-public images:
+Run from public images:
 
 ```
-cd \part-2\v2
+cd .\part-2\v2
 
-docker-compose -f .\app\docker-compose-v2.yml up -d
+docker-compose -f docker-compose-v2.yml up -d
 
-docker inspect app_web_1
+docker inspect v2_web_1
 ```
 
 ## App V3
