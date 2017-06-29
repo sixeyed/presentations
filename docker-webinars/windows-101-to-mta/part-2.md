@@ -31,7 +31,16 @@ docker-compose -f docker-compose-v2.yml up -d
 docker inspect v2_web_1
 ```
 
-## App V3
+Enter data, check output:
+
+```
+docker exec v2_db_1 powershell "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUp"
+
+docker logs v2_save-handler_1
+```
+
+
+## * If there's time* App V3
 
 Upgrade from public images:
 

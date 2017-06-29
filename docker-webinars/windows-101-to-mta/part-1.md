@@ -33,7 +33,7 @@ cd .\part-1\hostname-app
 docker image build --tag sixeyed/hostname-app .
 ```
 
-Push to [sixeyed/hostname-app](https://cloud.docker.com/swarm/sixeyed/repository/registry-1.docker.io/sixeyed/tweet-app/general) on Docker Cloud:
+Push to [sixeyed/hostname-app](https://cloud.docker.com/swarm/sixeyed/repository/registry-1.docker.io/sixeyed/hostname-app/general) on Docker Cloud:
 
 ```
 docker image push sixeyed/hostname-app
