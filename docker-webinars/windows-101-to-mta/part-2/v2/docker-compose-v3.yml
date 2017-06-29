@@ -11,12 +11,14 @@ services:
     networks:
       - app-net
     ports:    
-      - "1433:1433"
+      - "1433"
 
   message-queue:
     image: nats:nanoserver
     networks:
       - app-net
+    ports:    
+      - "4222"
 
   web:
     image: dockersamples/signup-web
@@ -28,7 +30,7 @@ services:
     networks:
       - app-net
     ports:
-      - "80:80"
+      - "80"
 
   save-handler:
     image: dockersamples/signup-save-handler
@@ -54,6 +56,8 @@ services:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
     networks:
       - app-net
+    ports:    
+      - "9200"
 
   kibana:
     image: sixeyed/kibana:nanoserver
@@ -62,7 +66,7 @@ services:
     networks:
       - app-net
     ports:
-      - "5601:5601"
+      - "5601"
 
 networks:
   app-net:
