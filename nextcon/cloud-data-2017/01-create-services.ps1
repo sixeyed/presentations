@@ -1,11 +1,9 @@
-#!/bin/bash
-
 docker network create -d overlay newsletter
 
 docker service create --detach `
- --secrets signup-db-sa.password `
  --network newsletter --endpoint-mode dnsrr `
  --constraint 'node.platform.os == windows' `
+ --secret signup-db-sa.password `
  --name db `
  dockersamples/signup-db
 
@@ -25,15 +23,14 @@ docker service create --detach `
  --network newsletter --endpoint-mode dnsrr `
  --publish mode=host,target=80,published=80 `
  --constraint 'node.platform.os == windows' `
- --secrets signup-db.connectionstring `
+ --secret signup-db.connectionstring `
  --name web `
  dockersamples/signup-web
 
 docker service create --detach `
  --network newsletter --endpoint-mode dnsrr `
  --constraint 'node.platform.os == windows' `
- --secrets signup-db-sa.password `
- --secrets signup-db.connectionstring `
+ --secret signup-db.connectionstring `
  --name save-handler `
  dockersamples/signup-save-handler
 
