@@ -1,0 +1,98 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: dockersamples/signup-db
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    networks:
+      app-net:
+    secrets:
+    - source: signup-db-sa.password
+
+  elasticsearch:
+    image: elasticsearch:5.2
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    environment:
+      ES_JAVA_OPTS: -Xms768m -Xmx768m
+    networks:
+      app-net:
+
+  kibana:
+    image: kibana:5.2
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    networks:
+      app-net:
+    ports:
+    - mode: host
+      published: 5601
+      target: 5601
+
+  message-queue:
+    image: nats:0.9.6
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    networks:
+      app-net:
+
+  index-handler:
+    image: dockersamples/signup-index-handler
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    networks:
+      app-net:
+
+  save-handler:
+    image: dockersamples/signup-save-handler
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    networks:
+      app-net: null
+    secrets:
+    - source: signup-db.connectionstring
+
+  web:
+    image: dockersamples/signup-web
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    networks:
+      app-net: null
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+    secrets:
+    - source: signup-db.connectionstring
+
+networks:
+  app-net: 
+
+secrets:
+  signup-db-sa.password:
+    external: true
+  signup-db.connectionstring:
+    external: true
