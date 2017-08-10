@@ -36,6 +36,8 @@ docker container run -d -P db2
 SQL with schema in scripts - with mapped volume:
 
 ```
+mkdir -p C:\db\db2 
+
 docker container run -d -P -v C:\db\db2:C:\mssql db2
 ```
 
