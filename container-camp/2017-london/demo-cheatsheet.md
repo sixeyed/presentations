@@ -97,6 +97,6 @@ Verify:
 
 ```
 docker container exec app_signup-db_1 powershell `
- "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUp"
+ "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUpDb"
 ```
 
