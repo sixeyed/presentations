@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  
+  backbone-db:
+    image: microsoft/mssql-server-windows-express
+    environment:
+      - ACCEPT_EULA=Y
+      - sa_password=DockerCon!!!
+    networks:
+      - app-net
+
+  chat-web:
+    image: chat-web:v1
+    build:
+      context: ../
+      dockerfile: ./docker/web/Dockerfile
+    depends_on:
+      - backbone-db
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
