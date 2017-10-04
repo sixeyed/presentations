@@ -1,3 +1,17 @@
+## Prep
+
+Turn off Defender:
+
+```
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
+
+Run the database container in advance:
+
+```
+docker container run --detach --name signup-db signup-db
+```
+
 ## Demo 1 - I2D and run app locally
 
 Install:
@@ -54,17 +68,10 @@ CMD Start-Service W3SVC; `
     Get-Content -path 'C:\websites\SignUp.Web\App_Data\SignUp.log' -Tail 1 -Wait
 ```
 
-Build v2:
+Build and run v2:
 
 ```
 docker image build --tag signup-web:v2 .
-```
-
-Run with database:
-
-```
-
-docker container run --detach --name signup-db signup-db
 
 docker container run --detach --publish 8090 signup-web:v2
 ```
