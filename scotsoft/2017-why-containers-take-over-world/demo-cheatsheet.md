@@ -1,4 +1,17 @@
-## Demo 1 - I2D and run app locally
+## Prep
+
+Run the database container in advance:
+
+```
+docker container run --detach --name signup-db signup-db
+```
+
+## Demo 1 - tour of UCP
+
+https://ucp.sixeyed.com
+
+
+## Demo 2 - I2D and run app locally
 
 Install:
 
@@ -76,8 +89,7 @@ Verify:
 docker container exec signup-db powershell `
  "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUpDb"
 ```
-
-## Demo 2 - push to DTR, scanning & run in UCP
+Tag & push to DTR;
 
 ```
 docker image tag signup-web:v2 dtr.sixeyed.com/scotsoft/signup-web:v2
@@ -86,5 +98,3 @@ docker image push dtr.sixeyed.com/scotsoft/signup-web:v2
 ```
 
 https://dtr.sixeyed.com
-
-https://ucp.sixeyed.com
