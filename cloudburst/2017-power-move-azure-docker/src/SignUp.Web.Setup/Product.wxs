@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+      xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <Product Id="{8BEFF31F-7F57-4BDB-B88F-1A3B117C758D}" Language="1033"
+           Manufacturer="Docker Samples" Name="Product Launch"
+           UpgradeCode="{7AC5232E-7CED-4D94-8470-622B5D4A549D}" Version="1.1.0.0">
+    <Package Compressed="yes" InstallerVersion="200" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
+    <Property Id="ALLUSERS" Value="1"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="DockerSamplesFolder" Name="DockerSamples">
+          <Directory Id="INSTALLLOCATION" Name="SignUp">
+            <Directory Id="WebDir" Name="web">
+              <Component Id="Web.Dir" Guid="{AADC60A9-1957-412F-B7BA-36CE7AA0A002}">
+                <File Id="filB17CD5107754D72266E00C5B4A4859D7" Name="About.aspx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\About.aspx" />
+                <File Id="filB934109658F1B0690AA5AEA8DFEAF6A2" Name="ApplicationInsights.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\ApplicationInsights.config" />
+                <File Id="fil5480BEC274754BA4AE09522BAF2DD239" Name="Bundle.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Bundle.config" />
+                <File Id="fil16DB4F44DB1CB1544D12F9376477F492" Name="Contact.aspx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Contact.aspx" />
+                <File Id="filB89D5A65124D0CEA9023C12E4107D539" Name="Default.aspx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Default.aspx" />
+                <File Id="fil455512C844D954EACC1C4635CF47F7FC" Name="favicon.ico" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\favicon.ico" />
+                <File Id="filB09A43DF0E506A015CCC0E7DE00D5A13" Name="Global.asax" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Global.asax" />
+                <File Id="filC23685A0194CE94D20403E29854EB1C3" Name="packages.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\packages.config" />
+                <File Id="filF4A8E5A9DE053065165A8BBDC18DF0C1" Name="SignUp.aspx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\SignUp.aspx" />
+                <File Id="filDD2FB4E8836ACCCDC23C699764B43D05" Name="Site.Master" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Site.Master" />
+                <File Id="fil5DD94A377C392EFAEB01ADA6E175D4B9" Name="Site.Mobile.Master" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Site.Mobile.Master" />
+                <File Id="fil2FA41373F483C1645FF5BB0FC679BFCF" Name="ThankYou.aspx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\ThankYou.aspx" />
+                <File Id="filA75DC4FA820018F1DEF3CA0EE96B22A4" Name="ViewSwitcher.ascx" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\ViewSwitcher.ascx" />
+                <File Id="filF84EEA0AF6F911CE5BC0B3077FC1327E" Name="Web.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Web.config" />
+              </Component>
+              <Directory Id="WebBinDir" Name="bin">
+                <Component Id="Web.BinDir" Guid="{13CBFC4F-E18A-49D2-B7EF-0CD986C5AA82}">
+                  <File Id="filFFB841C5D8DF7E47131DB78564E37DC9" Name="Antlr3.Runtime.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Antlr3.Runtime.dll" />
+                  <File Id="fil41300624983580EA4E4A0B0D8C5C38E2" Name="ApplicationInsights.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\ApplicationInsights.config" />
+                  <File Id="fil71595D29586FA74A7521E6B044388CD9" Name="AspNet.ScriptManager.bootstrap.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\AspNet.ScriptManager.bootstrap.dll" />
+                  <File Id="fil5D329A72E36628E250F499727AA4A680" Name="AspNet.ScriptManager.jQuery.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\AspNet.ScriptManager.jQuery.dll" />
+                  <File Id="fil16BB47955D4543D1608B54BB4BBFC2DA" Name="EntityFramework.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\EntityFramework.dll" />
+                  <File Id="fil246BE28766B10A8BC12760AC01ADBDB1" Name="Microsoft.AspNet.FriendlyUrls.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.AspNet.FriendlyUrls.dll" />
+                  <File Id="fil4C849124D63DD13479E2F8F7F21B048E" Name="Microsoft.AspNet.Web.Optimization.WebForms.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+                  <File Id="fil0863493215F7E15C2854EE141562A742" Name="Microsoft.ScriptManager.MSAjax.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.ScriptManager.MSAjax.dll" />
+                  <File Id="fil90584294F6ADB8526DDE19D05955565B" Name="Microsoft.ScriptManager.WebForms.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.ScriptManager.WebForms.dll" />
+                  <File Id="filBEC584CC40BD81C119E99E8E1C45D468" Name="Microsoft.Web.Infrastructure.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.Web.Infrastructure.dll" />
+                  <File Id="fil5F01EA27A1B2A2CFDB626823195CF8D2" Name="Microsoft.WindowsAzure.Diagnostics.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Microsoft.WindowsAzure.Diagnostics.dll" />
+                  <File Id="filFE7948D6FC6B4EEF8A7DA24FF4BD97D4" Name="MonAgentListener.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\MonAgentListener.dll" />
+                  <File Id="filA3472C0B5DC06290F80030664BC9DB7F" Name="NATS.Client.DLL" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\NATS.Client.DLL" />
+                  <File Id="filCA3EB71749ABBCA92D7AE0D4DEE89351" Name="Newtonsoft.Json.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\Newtonsoft.Json.dll" />
+                  <File Id="fil7257FBCF785146935A6D701E0859D790" Name="SignUp.Entities.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\SignUp.Entities.dll" />
+                  <File Id="filD26400FEF809D67C9EAB718BA3776BD0" Name="SignUp.Messaging.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\SignUp.Messaging.dll" />
+                  <File Id="filE4B6E2F9357D37A175859E1555BC0D1B" Name="SignUp.Model.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\SignUp.Model.dll" />
+                  <File Id="filC71D8BED1FEFD541C16C40DCE17A0E77" Name="SignUp.Model.dll.config" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\SignUp.Model.dll.config" />
+                  <File Id="filED5D76E50D94A5F9F9E2258519DAF934" Name="SignUp.Web.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\SignUp.Web.dll" />
+                  <File Id="fil4902BBA8C9F95B245039FE47CCDE535E" Name="System.Web.Optimization.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\System.Web.Optimization.dll" />
+                  <File Id="filEF312C20AB4AC61B8678ABFF99D388F0" Name="WebGrease.dll" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\bin\WebGrease.dll" />
+                </Component>
+              </Directory>
+              <Directory Id="WebContentDir" Name="Content">
+                <Component Id="Web.ContentDir" Guid="{C9302DBD-8970-46D3-8D35-5E82DAC383B9}">
+                  <File Id="filE1D573C240FFA38948F8571146D9496C" Name="bootstrap.css" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Content\bootstrap.css" />
+                  <File Id="filB1434FC64DD8B9E5528F9E16A43640D0" Name="bootstrap.min.css" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Content\bootstrap.min.css" />
+                  <File Id="fil3762B634BA03D01EA09D5AD997AEE9EA" Name="Site.css" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Content\Site.css" />
+                </Component>
+              </Directory>
+              <Directory Id="WebFontsDir" Name="fonts">
+                <Component Id="Web.FontsDir" Guid="{DD3CA3D0-7D04-4045-BB86-CDF7C79B16F1}">
+                  <File Id="filECD9FC79926F1D384ACC1136292C1CD7" Name="glyphicons-halflings-regular.eot" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\fonts\glyphicons-halflings-regular.eot" />
+                  <File Id="filCA31E6D50696E457969731C168EDD456" Name="glyphicons-halflings-regular.svg" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\fonts\glyphicons-halflings-regular.svg" />
+                  <File Id="filEB4869B687E511AFEECCC4DA84B9F558" Name="glyphicons-halflings-regular.ttf" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\fonts\glyphicons-halflings-regular.ttf" />
+                  <File Id="fil0561E0A7920B8DFA220200DEB36A0B6E" Name="glyphicons-halflings-regular.woff" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\fonts\glyphicons-halflings-regular.woff" />
+                </Component>
+                <Directory Id="WebFontsGeomanistDir" Name="geomanist">
+                  <Component Id="Web.FontsGeomanistDir" Guid="{1F6A8C2F-80E5-417A-9F14-509021E67F7B}">
+                    <File Id="filF42E91FE0B1670FD455D56F57E0F37C5" Name="hinted-Geomanist-Book.woff2" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\fonts\geomanist\hinted-Geomanist-Book.woff2" />
+                  </Component>
+                </Directory>
+              </Directory>
+              <Directory Id="WebImgDir" Name="img">
+                <Component Id="Web.ImgDir" Guid="{CDFAAF70-12D9-4E21-9063-A8BFDB5AA8EA}">
+                  <File Id="fil721FF53D4809C360868765959C47823E" Name="dockercon-2017.png" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\img\dockercon-2017.png" />
+                </Component>
+              </Directory>
+              <Directory Id="WebScriptsDir" Name="Scripts">
+                <Component Id="Web.ScriptsDir" Guid="{A20155A8-F2CD-409A-8AE1-0FD8211CA0EA}">
+                  <File Id="filF239F5161BED54F508F7901107FEFDDE" Name="bootstrap.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\bootstrap.js" />
+                  <File Id="filE40537CFD1C150D330387853244BAC72" Name="bootstrap.min.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\bootstrap.min.js" />
+                  <File Id="fil48F4C70235C03E15A4DE53E60A96E331" Name="jquery-1.10.2.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\jquery-1.10.2.js" />
+                  <File Id="filE0E64111868908691912969492F60483" Name="jquery-1.10.2.min.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\jquery-1.10.2.min.js" />
+                  <File Id="fil459656F9DC7EA867373C6FA28C6E0686" Name="jquery-1.10.2.min.map" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\jquery-1.10.2.min.map" />
+                  <File Id="filB26BA38EE0C11C0AD43481CD156D2916" Name="modernizr-2.6.2.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\modernizr-2.6.2.js" />
+                  <File Id="filBB4F7BE7D2871C21C8F5A97FF01463AC" Name="respond.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\respond.js" />
+                  <File Id="filE5314B12D98BB9512A5A1588D52194DC" Name="respond.min.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\respond.min.js" />
+                  <File Id="fil0CFB899953060351A69100D76775672A" Name="_references.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\_references.js" />
+                </Component>
+                <Directory Id="WebScriptsWebFormsDir" Name="WebForms">
+                  <Component Id="Web.ScriptsWebFormsDir" Guid="{848C06D4-218E-47FC-B245-174AC18043A2}">
+                    <File Id="fil22496E1D0F139529BEFA37C2EB6A3F2D" Name="DetailsView.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\DetailsView.js" />
+                    <File Id="filCD1EC6F0D47CAE919114FA0E14F6023A" Name="Focus.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\Focus.js" />
+                    <File Id="fil83488C399B14051CFC75558B7E460229" Name="GridView.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\GridView.js" />
+                    <File Id="filD7B7FABB9A8F4F80D123BB354EDDF455" Name="Menu.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\Menu.js" />
+                    <File Id="fil93BE6820EDB8C5A89752A50B51F7C1B9" Name="MenuStandards.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MenuStandards.js" />
+                    <File Id="fil8AA00BD5188881A7C9FB5DCFF5375757" Name="SmartNav.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\SmartNav.js" />
+                    <File Id="fil8F4FF5A808FF7B7F88935F41AA0616C3" Name="TreeView.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\TreeView.js" />
+                    <File Id="filCB8168B2D7ED2784527258AE019939A8" Name="WebForms.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\WebForms.js" />
+                    <File Id="filDDD2EB7CBA24B1399F4D562C7ED5CBF1" Name="WebParts.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\WebParts.js" />
+                    <File Id="fil15A457179D1F9D5F6DA42DD4F0AB4CED" Name="WebUIValidation.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\WebUIValidation.js" />
+                  </Component>
+                  <Directory Id="WebScriptsWebFormsMSAjaxDir" Name="MSAjax">
+                    <Component Id="Web.ScriptsWebFormsMSAjaxDir" Guid="{8141A204-2972-4065-850E-0877FAD7CDFB}">
+                      <File Id="fil26FA5E40FAE38D42DEB663104AA2CDA7" Name="MicrosoftAjax.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+                      <File Id="fil4338E8572F9CBF287ADB34BEE0362F28" Name="MicrosoftAjaxApplicationServices.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+                      <File Id="filD2D85479E5E67E101ABE06EE1289AE5C" Name="MicrosoftAjaxComponentModel.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+                      <File Id="fil624CE56800153103387A5119751026B4" Name="MicrosoftAjaxCore.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+                      <File Id="fil244AA4C502F6E813B8C3D4251BE87D29" Name="MicrosoftAjaxGlobalization.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+                      <File Id="fil23F94AD859345DFEBB1F9F628BFA370F" Name="MicrosoftAjaxHistory.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+                      <File Id="filA07C477CD59F422D42CF38B9015BA744" Name="MicrosoftAjaxNetwork.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+                      <File Id="filE2CE1F37AC74247414955D447D71C655" Name="MicrosoftAjaxSerialization.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+                      <File Id="fil8445D411AC9315FE217173CCD2FFA8E6" Name="MicrosoftAjaxTimer.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+                      <File Id="filF174E4EF62F42151008143FC0337C7F8" Name="MicrosoftAjaxWebForms.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+                      <File Id="filCC2372603E2130E67901EF17877A52AD" Name="MicrosoftAjaxWebServices.js" Source="C:\scm\github\sixeyed\docker-windows-workshop\signup\src\SignUp\SignUp.Web\bin\Release\PublishOutput\Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+                    </Component>
+                  </Directory>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Website -->
+      <Component Id="Web.Site" Guid="{B935A624-63E6-4554-A9E2-AB4893AFC117}">
+        <iis:WebVirtualDir Id="WebVirtualDir"
+                   Alias="ProductLaunch"
+                   Directory="WebDir" WebSite="DefaultWebSite">
+          <iis:WebApplication Id="WebApplication" Name="SignUp" />
+        </iis:WebVirtualDir>
+      </Component>
+
+    </Directory>
+
+    <iis:WebSite Id="DefaultWebSite" Description="Default Web Site">
+      <iis:WebAddress Id="AllUnassigned" Port="80" />
+    </iis:WebSite>
+
+    <Feature Id="ProductFeature" Title="SignUp" Level="1">
+      <ComponentRef Id="Web.Dir"/>
+      <ComponentRef Id="Web.BinDir"/>
+      <ComponentRef Id="Web.ContentDir"/>
+      <ComponentRef Id="Web.FontsDir"/>
+      <ComponentRef Id="Web.FontsGeomanistDir" />
+      <ComponentRef Id="Web.ImgDir"/>
+      <ComponentRef Id="Web.ScriptsDir"/>
+      <ComponentRef Id="Web.ScriptsWebFormsDir"/>
+      <ComponentRef Id="Web.ScriptsWebFormsMSAjaxDir"/>
+      <ComponentRef Id="Web.Site"/>
+    </Feature>
+
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+
+    <UIRef Id="WixUI_SignUp" />
+
+  </Product>
+
+  <Fragment>
+    <UI Id="WixUI_SignUp">
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Mondo" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+
+      <DialogRef Id="BrowseDlg" />
+
+      <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+      <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4"><![CDATA[WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">WixUI_InstallMode = "Repair" OR WixUI_InstallMode = "Remove"</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+    </UI>
+
+    <UIRef Id="WixUI_Common" />
+
+  </Fragment>
+
+</Wix>

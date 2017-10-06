@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  
+  signup-db:
+    image: microsoft/mssql-server-windows-express
+    environment: 
+      - ACCEPT_EULA=Y
+    env_file:
+      - db-credentials.env
+    networks:
+      - app-net
+
+  signup-web:
+    image: cloudburst:v2
+    ports:
+      - "80"
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - signup-db
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
