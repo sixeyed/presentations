@@ -1,0 +1,45 @@
+﻿@using DockerSamples.AspNetChat.Web.Models
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Chat! by Docker Samples";
+}
+
+<div class="jumbotron">
+    <h1>[@Model.Name]: Chat!</h1>
+</div>
+
+<div class="form-inline">
+    <div class="form-group">
+        <input type="text" id="message" class="form-control text-lg" />
+        <input type="button" id="sendmessage" value="Send" class="btn btn-primary btn-lg"/>        
+        <input type="hidden" id="displayname" value="@Model.Name"/>
+        <ul id="discussion" style="font-size: 30pt;"></ul>
+    </div>
+</div>
+
+    @section scripts {
+        <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+        <script src="~/signalr/hubs"></script>
+        <script>
+            $(function () {
+                var chat = $.connection.chatHub;
+                chat.client.addNewMessageToPage = function (name, message) {
+                    $('#discussion').append('<li><strong>' + htmlEncode(name)
+                        + '</strong>: ' + htmlEncode(message) + '</li>');
+                };
+                $('#message').focus();
+                $.connection.hub.start().done(function () {
+                    $('#sendmessage').click(function () {
+                        chat.server.send($('#displayname').val(), $('#message').val());
+                        $('#message').val('').focus();
+                    });
+                });
+            });
+
+            function htmlEncode(value) {
+                var encodedValue = $('<div />').text(value).html();
+                return encodedValue;
+            }
+        </script>
+    }

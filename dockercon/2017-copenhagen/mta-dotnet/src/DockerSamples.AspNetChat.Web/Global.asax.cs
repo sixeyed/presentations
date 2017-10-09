@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DockerSamples.AspNetChat.Web.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,8 @@ namespace DockerSamples.AspNetChat.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Log.Info("Application_Start completed");
         }
     }
 }

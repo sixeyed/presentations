@@ -1,4 +1,7 @@
-﻿using System.Configuration;
+﻿using DockerSamples.AspNetChat.Web.Logging;
+using Polly;
+using System;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace DockerSamples.AspNetChat.Web
@@ -7,18 +10,37 @@ namespace DockerSamples.AspNetChat.Web
     {
         public static void InitializeDatabase()
         {
-            //SQL backbone will deploy the schema, but not create the DB
+            //SQL backbone will deploy the schema, but not create the DB, so do that here:
             var connectionString = ConfigurationManager.ConnectionStrings["SignalR-Backbone"].ConnectionString;
-            var masterConnectionString = connectionString.Replace("SignalR", "master");
-            using (var sqlConnection = new SqlConnection(masterConnectionString))
+            if (connectionString.Contains("SignalR"))
             {
-                sqlConnection.Open();
-                using (var sqlCommand = sqlConnection.CreateCommand())
-                {
-                    sqlCommand.CommandText = "IF DB_ID('SignalR') IS NULL CREATE DATABASE SignalR";
-                    sqlCommand.ExecuteNonQuery();
-                }
+                var retryPolicy = Policy.Handle<SqlException>()
+                                .WaitAndRetry(5, x => TimeSpan.FromMilliseconds(500));
+
+                retryPolicy.Execute(() => CreateSignalRDatabase(connectionString));
             }
          }
+
+        private static void CreateSignalRDatabase(string connectionString)
+        {            
+            try
+            {                
+                var masterConnectionString = connectionString.Replace("SignalR", "master");
+                using (var sqlConnection = new SqlConnection(masterConnectionString))
+                {
+                    sqlConnection.Open();
+                    using (var sqlCommand = sqlConnection.CreateCommand())
+                    {
+                        sqlCommand.CommandText = "IF DB_ID('SignalR') IS NULL CREATE DATABASE SignalR";
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+                Log.Info("Initialized SQL Server backbone for SignalR");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Failed to initialize SQL Server backbone for SignalR");
+            }
+        }
     }
 }

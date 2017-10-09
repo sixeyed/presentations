@@ -1,0 +1,28 @@
+﻿@using DockerSamples.AspNetChat.Web.Models
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Login! to Chat!";
+}
+
+<div class="jumbotron">
+    <h1>Login!</h1>
+</div>
+
+@using (Html.BeginForm("Login", "Chat", FormMethod.Post, new { @class = "form-inline" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control text-lg" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-default btn-lg" />
+    </div>
+}
+

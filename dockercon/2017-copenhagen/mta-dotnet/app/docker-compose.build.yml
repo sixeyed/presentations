@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  
+  backbone-db:
+    build:
+      context: ../
+      dockerfile: ./docker/backbone-db/Dockerfile
+
+  audit-db:
+    build:
+      context: ../
+      dockerfile: ./docker/audit-db/Dockerfile
+    networks:
+      - app-net
+
+  web-app:
+    build:
+      context: ../
+      dockerfile: ./docker/web/Dockerfile

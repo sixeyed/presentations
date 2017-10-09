@@ -11,7 +11,7 @@ RUN msbuild DockerSamples.AspNetChat.Web.csproj /p:OutputPath=c:\out `
 
 # app image
 FROM microsoft/aspnet:windowsservercore
-SHELL ["powershell"]
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 WORKDIR C:\web-app
 RUN Remove-Website -Name 'Default Web Site';`

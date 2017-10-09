@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[ChatAudit]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [User] NVARCHAR(50) NOT NULL, 
+    [Message] NVARCHAR(300) NOT NULL, 
+    [Timestamp] DATETIME2 NOT NULL DEFAULT GETDATE()
+)
