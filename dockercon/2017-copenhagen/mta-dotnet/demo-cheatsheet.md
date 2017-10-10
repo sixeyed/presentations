@@ -1,5 +1,12 @@
 # Prep
 
+On local machine:
+
+```
+drmf
+cd C:\scm\github\sixeyed\presentations\dockercon\2017-copenhagen\mta-dotnet
+```
+
 On test VM:
 
 ```
@@ -8,14 +15,17 @@ cd C:\mta-dotnet\app\secrets
 docker secret create audit-db.password audit-db.password
 docker secret create backbone-db.password backbone-db.password
 docker secret create chat-connection-strings chat-connection-strings
+cd C:\mta-dotnet\app
 ```
 
 On UCP:
 
 - join Windows node
 - remove stacks
+- create secrets
 
-# Demo 1 - build
+
+# Demo 1 - build and run locally
 
 Build app in Docker:
 
@@ -23,7 +33,7 @@ Build app in Docker:
 docker image build -t chat-web -f docker\web\Dockerfile .
 ```
 
-Run with Docker Compose locally:
+Run with Docker Compose:
 
 ```
 cd app
@@ -31,13 +41,27 @@ cd app
 docker-compose up -d
 ```
 
-# Demo 2 - ship
+Connect to local DB:
+
+```
+docker container inspect app_audit-db_1
+```
+
+Try app locally:
+
+```
+dip app_web-app_1
+```
+
+# Demo 2 - ship to DTR
 
 Three issues: db passwords in plaintext, startup time, log files
 
 Build new version:
 
 ```
+cd ..
+
 docker image build -t chat-web:v2 -f docker\web\Dockerfile.v2 .
 ```
 
