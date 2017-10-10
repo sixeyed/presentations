@@ -1,13 +1,9 @@
 # escape=`
 FROM sixeyed/msbuild:netfx-4.5.2-webdeploy AS builder
 
-WORKDIR C:\src\DockerSamples.AspNetChat.Web
-COPY src\DockerSamples.AspNetChat.Web\packages.config .
-RUN nuget restore packages.config -PackagesDirectory ..\packages
-
 COPY src\ C:\src
-RUN msbuild DockerSamples.AspNetChat.Web.csproj /p:OutputPath=c:\out `
-        /p:DeployOnBuild=true /p:VSToolsPath=C:\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath
+WORKDIR C:\src\DockerSamples.AspNetChat.Web
+RUN ["powershell", ".\\build.ps1"]
 
 # app image
 FROM microsoft/aspnet:windowsservercore

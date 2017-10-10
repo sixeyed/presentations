@@ -1,11 +1,9 @@
 # escape=`
 FROM sixeyed/msbuild:netfx-4.5.2-ssdt AS builder
 
-WORKDIR C:\src
-COPY src\DockerSamples.AspNetChat.Database\ .
-RUN msbuild DockerSamples.AspNetChat.Database.sqlproj `
-      /p:SQLDBExtensionsRefPath="C:\Microsoft.Data.Tools.Msbuild.10.0.61026\lib\net40" `
-      /p:SqlServerRedistPath="C:\Microsoft.Data.Tools.Msbuild.10.0.61026\lib\net40"
+COPY src\ C:\src
+WORKDIR C:\src\DockerSamples.AspNetChat.Database
+RUN ["powershell", ".\\build.ps1"]
 
 # db image
 FROM microsoft/mssql-server-windows-express

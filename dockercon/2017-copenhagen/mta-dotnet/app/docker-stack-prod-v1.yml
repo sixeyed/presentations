@@ -1,20 +1,11 @@
 version: '3.3'
 
 services:
-  
+
   backbone-db:
     image: dtr.sixeyed.com/dockercon/backbone-db
     secrets:
-      - backbone-db-password
-    networks:
-      - app-net
-    deploy:
-      endpoint_mode: dnsrr
-
-  audit-db:
-    image: dtr.sixeyed.com/dockercon/audit-db
-    secrets:
-      - audit-db-password
+      - backbone-db.password
     networks:
       - app-net
     deploy:
@@ -34,12 +25,12 @@ services:
       endpoint_mode: dnsrr
 
 secrets:
-  backbone-db-password:
-    external: true
-  audit-db-password:
-    external: true
+  backbone-db.password:
+    external: 
+      name: chat-db.password
   chat-connection-strings:
-    external: true
+    external: 
+      name: chat-web.connectionstring
 
 networks:
   app-net:
