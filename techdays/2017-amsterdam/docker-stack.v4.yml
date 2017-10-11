@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  
+  save-handler:
+    image: dockersamples/signup-save-handler
+    networks:
+      app-net: null
+    secrets:
+    - source: signup-db.connectionstring
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+        
+  web:
+    image: dockersamples/signup-web
+    networks:
+      - app-net
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+    secrets:
+    - source: signup-db.connectionstring
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+  
+secrets:
+  signup-db.connectionstring:
+    external:
+      name: signup-db-azure.connectionstring
+
+networks:
+  app-net:

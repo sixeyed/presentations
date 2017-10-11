@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  
+  message-queue:
+    image: nats:linux
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    networks:
+      - app-net
+      
+networks:
+  app-net:

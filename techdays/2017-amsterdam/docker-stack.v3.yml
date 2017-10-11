@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+
+  elasticsearch:
+    image: elasticsearch:5.2
+    environment:
+      - ES_JAVA_OPTS:=-Xms512m -Xmx512m
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    networks:
+      - app-net
+      
+  kibana:
+    image: kibana:5.2
+    ports:
+     - mode: host
+       published: 5601
+       target: 5601
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+    networks:
+      - app-net
+
+networks:
+  app-net:
