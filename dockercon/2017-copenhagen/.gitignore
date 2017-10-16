@@ -1,6 +1,8 @@
 ## Cut-down version of:
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+ucp-bundle-elton/
+
 # User-specific files
 *.suo
 *.user

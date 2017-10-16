@@ -69,7 +69,24 @@ docker image push dtr.sixeyed.com/dockercon/chat-web:v2
 
 # Demo 3 - run prod
 
-Run in EE with `docker-stack-prod-v1.yml`.
+Connect to remote swarm:
+
+```
+cd ucp-bundle-elton
+
+. .\env.ps1
+
+docker node ls
+```
+
+Run with `docker-stack-prod-v1.yml`:
+
+```
+cd ..\app
+
+docker stack deploy -f docker-stack-prod-v1.yml chat
+```
+
 
 Check with Sqlectron.
 
@@ -79,4 +96,10 @@ Find issue:
 Bye!'); DELETE ChatAudit; --
 ```
 
-Fix issue with `docker-stack-prod-v2.yml`.
+Fix issue with `docker-stack-prod-v2.yml`:
+
+```
+docker stack deploy -f docker-stack-prod-v2.yml chat
+```
+
+Repeat test - check logs in https://ucp.sixeyed.com
