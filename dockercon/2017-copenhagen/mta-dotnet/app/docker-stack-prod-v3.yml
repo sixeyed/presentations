@@ -16,10 +16,6 @@ services:
 
   web-app:
     image: dtr.sixeyed.com/dockercon/chat-web:v2
-    ports:
-    - mode: host
-      published: 80
-      target: 80
     secrets:
       - chat-connection-strings
     networks:
@@ -29,6 +25,20 @@ services:
       placement:
         constraints:
         - node.platform.os == windows
+
+  waf:
+    image: dockersamples/web-application-firewall:jessie
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
 
 secrets:
   backplane-db.password:

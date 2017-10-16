@@ -1,0 +1,8 @@
+<connectionStrings>
+  <add name="SignalR-Backplane"
+       connectionString="Server=backbone-db;Database=SignalR;User Id=sa;Password=tf$$dc_00"
+       providerName="System.Data.SqlClient"/>
+  <add name="Audit-DB"
+       connectionString="Server=tcp:sixeyed.database.windows.net,1433;Initial Catalog=chat-audit-db;Persist Security Info=False;User ID=USER;Password=NOTTHEREALPASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+       providerName="System.Data.SqlClient"/>
+</connectionStrings>

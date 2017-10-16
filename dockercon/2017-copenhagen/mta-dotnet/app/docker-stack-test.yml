@@ -2,10 +2,10 @@ version: '3.3'
 
 services:
   
-  backbone-db:
-    image: dtr.sixeyed.com/dockercon/backbone-db
+  backplane-db:
+    image: dtr.sixeyed.com/dockercon/backplane-db
     secrets:
-      - backbone-db.password
+      - backplane-db.password
     networks:
       - app-net
     deploy:
@@ -34,7 +34,7 @@ services:
       endpoint_mode: dnsrr
 
 secrets:
-  backbone-db.password:
+  backplane-db.password:
     external: true
   audit-db.password:
     external: true

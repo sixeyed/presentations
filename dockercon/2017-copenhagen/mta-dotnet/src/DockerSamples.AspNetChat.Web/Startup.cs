@@ -12,7 +12,7 @@ namespace DockerSamples.AspNetChat.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["SignalR-Backbone"].ConnectionString;            
+            var connectionString = ConfigurationManager.ConnectionStrings["SignalR-backplane"].ConnectionString;            
             GlobalHost.DependencyResolver.UseSqlServer(connectionString);
             app.MapSignalR();
         }

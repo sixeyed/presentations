@@ -10,12 +10,12 @@ namespace DockerSamples.AspNetChat.Web
     {
         public static void InitializeDatabase()
         {
-            //SQL backbone will deploy the schema, but not create the DB, so do that here:
-            var connectionString = ConfigurationManager.ConnectionStrings["SignalR-Backbone"].ConnectionString;
+            //SQL backplane will deploy the schema, but not create the DB, so do that here:
+            var connectionString = ConfigurationManager.ConnectionStrings["SignalR-backplane"].ConnectionString;
             if (connectionString.Contains("SignalR"))
             {
                 var retryPolicy = Policy.Handle<SqlException>()
-                                .WaitAndRetry(5, x => TimeSpan.FromMilliseconds(500));
+                                .WaitAndRetry(20, x => TimeSpan.FromMilliseconds(1000));
 
                 retryPolicy.Execute(() => CreateSignalRDatabase(connectionString));
             }
@@ -35,11 +35,11 @@ namespace DockerSamples.AspNetChat.Web
                         sqlCommand.ExecuteNonQuery();
                     }
                 }
-                Log.Info("Initialized SQL Server backbone for SignalR");
+                Log.Info("Initialized SQL Server backplane for SignalR");
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Failed to initialize SQL Server backbone for SignalR");
+                Log.Error(ex, "Failed to initialize SQL Server backplane for SignalR");
             }
         }
     }

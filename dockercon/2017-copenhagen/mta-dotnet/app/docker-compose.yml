@@ -2,8 +2,8 @@ version: '3.3'
 
 services:
   
-  backbone-db:
-    image: backbone-db
+  backplane-db:
+    image: backplane-db
     environment:
       - ACCEPT_EULA=Y
       - sa_password=DockerCon!!!
@@ -19,7 +19,7 @@ services:
     image: chat-web:v1
     depends_on:
       - audit-db
-      - backbone-db
+      - backplane-db
     networks:
       - app-net
 

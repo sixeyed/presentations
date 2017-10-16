@@ -2,10 +2,10 @@ version: '3.3'
 
 services:
   
-  backbone-db:
+  backplane-db:
     build:
       context: ../
-      dockerfile: ./docker/backbone-db/Dockerfile
+      dockerfile: ./docker/backplane-db/Dockerfile
 
   audit-db:
     build:

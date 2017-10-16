@@ -2,14 +2,17 @@ version: '3.3'
 
 services:
 
-  backbone-db:
-    image: dtr.sixeyed.com/dockercon/backbone-db
+  backplane-db:
+    image: dtr.sixeyed.com/dockercon/backplane-db
     secrets:
-      - backbone-db.password
+      - backplane-db.password
     networks:
       - app-net
     deploy:
       endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
 
   web-app:
     image: dtr.sixeyed.com/dockercon/chat-web:v2
@@ -19,9 +22,12 @@ services:
       - app-net
     deploy:
       endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
 
   waf:
-    image: dockersamples/web-application-firewall
+    image: dockersamples/web-application-firewall:nanoserver
     ports:
     - mode: host
       published: 80
@@ -30,9 +36,12 @@ services:
       - app-net
     deploy:
       endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
 
 secrets:
-  backbone-db.password:
+  backplane-db.password:
     external: 
       name: chat-db.password
   chat-connection-strings:
