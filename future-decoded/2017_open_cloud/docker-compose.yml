@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  
+  bulletin-board:
+    image: sixeyed/bulletin-board
+    ports:
+      - 8080:8080
+    networks:
+      - bb-net
+
+networks:
+  bb-net:
