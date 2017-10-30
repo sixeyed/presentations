@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulletinBoard.Web", "BulletinBoard.Web\BulletinBoard.Web.csproj", "{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Debug|x86.Build.0 = Debug|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Release|x86.ActiveCfg = Release|Any CPU
+		{17A57CF4-A6C1-47C1-AA38-650DB6D87F8F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
