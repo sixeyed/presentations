@@ -1,7 +1,12 @@
 version: '3.3'
 
 services:
-  
+
+  sql-db:
+    image: sixeyed/bulletin-board-db
+    networks:
+      - bb-net
+
   bulletin-board:
     image: sixeyed/bulletin-board
     ports:

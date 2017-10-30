@@ -1,4 +1,5 @@
 CREATE DATABASE BulletinBoard;
+GO
 
 USE BulletinBoard;
 
