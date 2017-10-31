@@ -1,13 +1,19 @@
 
 ## Setup
 
-> Switch to Linux containers
+- Switch to Linux containers
 
-docker network create bb-net
+- Add IP address to SQL Azure firewall
 
-drmf
+- Run
 
-Set-MpPreference -DisableRealTimeMonitoring $true
+```
+cd C:\scm\github\sixeyed\presentations\future-decoded\201711-open-cloud\bulletin-board; `
+Set-MpPreference -DisableRealTimeMonitoring $true; `
+docker network create bb-net; `
+drmf; `
+rm -force -r C:\fd17
+```
 
 ## Demo 1
 
@@ -23,8 +29,6 @@ docker container run `
 Connect and run SQL script
 
 ## Demo 2
-
-cd C:\scm\github\sixeyed\presentations\future-decoded\201711-open-cloud\bulletin-board
 
 docker image build --tag sixeyed/bulletin-board .
 
@@ -46,15 +50,20 @@ https://fd17.westeurope.cloudapp.azure.com
 
 ConvertTo-Dockerfile `
   -ImagePath C:\VMs\win2003-iis.vhd `
-  -OutputPath C:\fd17-2 `
+  -OutputPath C:\fd17 `
   -Artifact IIS -ArtifactParam BulletinBoard `
   -Verbose
+
+cd C:\fd17
 
 docker image build --tag sixeyed/bb-mta .
 
 docker container run `
  --detach --publish-all `
+ --name bb-mta `
  sixeyed/bb-mta
+
+docker container inspect bb-mta
 
 ## Bonus 
 
