@@ -7,6 +7,8 @@ docker network create bb-net
 
 drmf
 
+Set-MpPreference -DisableRealTimeMonitoring $true
+
 ## Demo 1
 
 docker container run `
@@ -15,19 +17,24 @@ docker container run `
   --env "MSSQL_SA_PASSWORD=DockerCon!!!" `
   --publish 1433:1433 `
   --network bb-net `
+  --name sql-db `
   microsoft/mssql-server-linux:2017-CU1
 
 Connect and run SQL script
 
 ## Demo 2
 
-docker image build sixeyed/bulletin-board
+cd C:\scm\github\sixeyed\presentations\future-decoded\201711-open-cloud\bulletin-board
+
+docker image build --tag sixeyed/bulletin-board .
 
 docker container run `
   --detach `
   --publish 8080:8080 `
   --network bb-net `
   sixeyed/bulletin-board
+
+Browse to http://localhost:8080
 
 > Deploy compose file to UCP
 
@@ -43,9 +50,11 @@ ConvertTo-Dockerfile `
   -Artifact IIS -ArtifactParam BulletinBoard `
   -Verbose
 
-docker image build -t sixeyed/bb-mta .
+docker image build --tag sixeyed/bb-mta .
 
-docker container run -d -P sixeyed/bb-mta
+docker container run `
+ --detach --publish-all `
+ sixeyed/bb-mta
 
 ## Bonus 
 

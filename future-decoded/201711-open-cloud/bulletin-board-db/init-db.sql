@@ -17,4 +17,4 @@ INSERT INTO Events (Title, Detail, [Date], CreatedAt, UpdatedAt) VALUES
 (N'Future Decoded - Day 1', N'The Open Cloud', '2017-10-31', GETDATE(), GETDATE()),
 (N'Future Decoded - Day 2', N'Technical Deep Dive', '2017-11-01', GETDATE(), GETDATE());
 
-SELECT * FROM Events;
+SELECT * FROM BulletinBoard.dbo.Events;
