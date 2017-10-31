@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  bulletin-board:
+    image: dtr.sixeyed.com/fd17/bb-mta
+    networks:
+      - bb-net    
+    ports:
+    - mode: host
+      published: 8091
+      target: 8091
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  bb-net:
