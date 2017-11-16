@@ -1,6 +1,14 @@
+## Prep
 
+Switch Docker to Windows VM.
 
-# Demo 1 - run some sample containers
+```
+cd ~/scm/github/sixeyed/presentations/buildstuff/2017-11-modernizing-dotnet-with-docker
+
+. ./setup-mac.sh
+```
+
+## Demo 1 - run some sample containers
 
 IIS:
 
@@ -81,4 +89,22 @@ Run proxy:
 
 ```
 docker container run --detach --publish 8090:80 --name proxy nginx
+```
+
+## Demo 5 - CI / CD
+
+Clean up:
+
+```
+docker container rm -f $(docker container ls -aq)
+```
+
+Build:
+
+```
+cd app
+
+docker-compose build
+
+docker-compose up -d
 ```
