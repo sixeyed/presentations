@@ -1,0 +1,75 @@
+version: '3.3'
+
+services:
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  save-handler:
+    image: sixeyed/buildstuff-save-handler:v2
+    secrets:
+      - source: signup-db.connectionstring
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  homepage:
+    image: sixeyed/buildstuff-umbraco:v1
+    ports:
+    - mode: host
+      published: 8088
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+    
+  signup-web:
+    image: sixeyed/buildstuff-signup-web:v3
+    healthcheck:
+      disable: true
+    networks:
+      - app-net
+    secrets:
+    - source: signup-db.connectionstring
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  proxy:
+    image: sixeyed/buildstuff-nginx
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  app-net: 
+  
+secrets:
+  signup-db.connectionstring:
+    external:
+      name: signup-db-azure.connectionstring

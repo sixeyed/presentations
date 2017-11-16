@@ -9,7 +9,7 @@ RUN Invoke-WebRequest -UseBasicParsing -OutFile nginx.zip -Uri "http://nginx.org
     Rename-Item "C:\nginx-$($env:NGINX_VERSION)" C:\nginx
 
 # Nginx
-FROM microsoft/windowsservercore
+FROM microsoft/windowsservercore:10.0.14393.1884
 
 EXPOSE 80 443
 WORKDIR C:\nginx

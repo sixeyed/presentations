@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  proxy:
+    image: sixeyed/buildstuff-nginx:linux
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+networks:
+  app-net:
