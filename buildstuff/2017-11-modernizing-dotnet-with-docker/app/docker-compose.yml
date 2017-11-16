@@ -17,7 +17,7 @@ services:
       - app-net
 
   save-handler:
-    image: save-handler
+    image: sixeyed/buildstuff-save-handler
     build:
       context: ../
       dockerfile: ./docker/save-handler/Dockerfile
@@ -30,14 +30,14 @@ services:
       - app-net
 
   homepage:
-    image: umbraco:v1
+    image: sixeyed/buildstuff-umbraco:v1
     ports:
       - "8088:80"
     networks:
       - app-net
 
   signup-web:
-    image: signup-web:v2
+    image: sixeyed/buildstuff-signup-web:v2
     build:
       context: ../
       dockerfile: ./docker/web/Dockerfile.v2
@@ -50,7 +50,7 @@ services:
       - app-net
 
   proxy:
-    image: nginx
+    image: sixeyed/buildstuff-nginx
     build:
       context: ../
       dockerfile: ./docker/nginx/Dockerfile
