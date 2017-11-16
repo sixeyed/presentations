@@ -1,12 +1,14 @@
 
 ## Prep
 
+Switch to swarm:
+
 ```
-docker swarm init
+cd ~/ucp/ddc086-bundle-elton
 
-docker secret create signup-db-sa.password ./secrets/signup-db-sa.password
+. ./env.sh
 
-docker secret create signup-db.connectionstring ./secrets/signup-db.connectionstring
+cd ~/scm/github/sixeyed/presentations/buildstuff/2017-11-hybrid-docker-swarm
 ```
 
 ## Demo 1
@@ -40,6 +42,8 @@ docker service create \
 V1 - running in Windows containers & SQL Azure:
 
 ```
+docker service rm iis
+
 docker stack deploy -c docker-stack.v1.yml buildstuff
 ```
 
@@ -48,6 +52,8 @@ V2 - move NATS to Linux
 ```
 docker stack deploy -c docker-stack.v2.yml buildstuff
 ```
+
+Try... Then restart web, msg handler and proxy
 
 V3 - add Elasticsearch & kibana
 
