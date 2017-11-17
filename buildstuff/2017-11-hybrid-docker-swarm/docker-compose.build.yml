@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  
+  signup-db:
+    image: sixeyed/buildstuff-signup-db
+    build:
+      context: ./
+      dockerfile: ./docker/db/Dockerfile
+
+  save-handler:
+    image: sixeyed/buildstuff-save-handler:v2
+    build:
+      context: ./
+      dockerfile: ./docker/save-handler/Dockerfile
+
+  index-handler:
+    image: sixeyed/buildstuff-index-handler:v1
+    build:
+      context: ./
+      dockerfile: ./docker/index-handler/Dockerfile
+
+  signup-web:
+    image: sixeyed/buildstuff-signup-web:v3
+    build:
+      context: ./
+      dockerfile: ./docker/web/Dockerfile
