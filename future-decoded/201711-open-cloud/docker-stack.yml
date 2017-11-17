@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   bulletin-board:
-    image: dtr.sixeyed.com/fd17/bb-mta
+    image: sixeyed/bb-mta
     networks:
       - bb-net    
     ports:

@@ -1,4 +1,3 @@
-
 ## Setup
 
 - Switch to Linux containers

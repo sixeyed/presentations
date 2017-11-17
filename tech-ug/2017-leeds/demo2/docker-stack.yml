@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+
+  signup-db:
+    image: dtr.sixeyed.com/techug/signup-db
+    networks:
+      - tech-ug-net
+    deploy:
+      endpoint_mode: dnsrr
+
+  signup-web:
+    image: dtr.sixeyed.com/techug/signup-web:v2
+    networks:
+      - tech-ug-net
+    ports:
+    - mode: host
+      published: 80
+      target: 8090
+    deploy:
+      endpoint_mode: dnsrr
+
+networks:
+  tech-ug-net:
