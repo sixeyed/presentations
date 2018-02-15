@@ -100,7 +100,7 @@ docker image tag `
  dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
 
 docker image push `
- "$env:DTR_DOMAIN/demo2/signup-web:v2"
+ dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
 ```
 
 RDP to Win 2016 VM:
