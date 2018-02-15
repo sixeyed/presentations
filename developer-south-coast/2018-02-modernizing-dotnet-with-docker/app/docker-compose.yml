@@ -1,0 +1,68 @@
+version: '3.1'
+
+services:
+  
+  signup-db:
+    image: microsoft/mssql-server-windows-express
+    ports:
+      - "1433:1433"
+    env_file:
+      - db-credentials.env
+    networks:
+      - app-net
+
+  message-queue:
+    image: nats
+    networks:
+      - app-net
+
+  save-handler:
+    image: sixeyed/buildstuff-save-handler
+    build:
+      context: ../
+      dockerfile: ./docker/save-handler/Dockerfile
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - signup-db
+      - message-queue
+    networks:
+      - app-net
+
+  homepage:
+    image: sixeyed/buildstuff-umbraco:v1
+    ports:
+      - "8088:80"
+    networks:
+      - app-net
+
+  signup-web:
+    image: sixeyed/buildstuff-signup-web:v2
+    build:
+      context: ../
+      dockerfile: ./docker/web/Dockerfile.v2
+    env_file:
+      - db-credentials.env
+    depends_on:
+      - signup-db
+      - message-queue
+    networks:
+      - app-net
+
+  proxy:
+    image: sixeyed/buildstuff-nginx
+    build:
+      context: ../
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - signup-web
+      - homepage
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
