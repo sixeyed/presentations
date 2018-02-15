@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/aspnet:4.6.2
+FROM microsoft/aspnet:4.7.1-windowsservercore-10.0.14393.1884
 SHELL ["powershell"]
 
 ENTRYPOINT ["powershell", "C:\\bootstrap.ps1"]

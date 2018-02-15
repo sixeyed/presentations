@@ -34,7 +34,8 @@ docker image build --tag signup-web:v1 --file docker/web/Dockerfile.v1 .
 Run:
 
 ```
-docker container run --detach --publish 80:80 --env-file db-credentials.env --name signup-web signup-web:v1
+docker container run `
+ --detach --publish 80:80 --env-file db-credentials.env --name signup-web ` signup-web:v1
 ```
 
 ## Demo 3 - app v2
@@ -58,7 +59,7 @@ docker image build --tag signup-web:v2 --file docker/web/Dockerfile.v2 .
 Run message queue:
 
 ```
-docker container run --detach --name message-queue nats
+docker container run --detach --name message-queue nats:nanoserver
 ```
 
 Replace web app with v2:
@@ -66,13 +67,16 @@ Replace web app with v2:
 ```
 docker container rm -f signup-web
 
-docker container run --detach --publish 80:80 --env-file db-credentials.env --name signup-web signup-web:v2
+docker container run `
+ --detach --publish 80:80 --env-file db-credentials.env --name signup-web sixeyed/buildstuff-signup-web:v2
 ```
 
 Run message handler:
 
 ```
-docker container run --detach --env-file db-credentials.env save-handler
+docker container run `
+ --detach --env-file db-credentials.env 
+ sixeyed/buildstuff-save-handler
 ```
 
 ## Demo 4 - app v3
@@ -80,13 +84,17 @@ docker container run --detach --env-file db-credentials.env save-handler
 Run CMS:
 
 ```
-docker container run --detach --publish 8088:80 --name homepage umbraco:v1
+docker container run `
+ --detach --publish 8088:80 --name homepage `
+sixeyed/buildstuff-umbraco:v1
 ```
 
 Run proxy:
 
 ```
-docker container run --detach --publish 8090:80 --name proxy nginx
+docker container run `
+ --detach --publish 8090:80 --name proxy `
+ sixeyed/buildstuff-nginx
 ```
 
 ## Demo 5 - CI / CD

@@ -92,18 +92,12 @@ docker container exec demo1_signup-db_1 powershell `
 
 ## Demo 2 - push to DTR, scanning & run in cloud VM
 
-Save DTR domain in environment variable:
-
-```
-$env:DTR_DOMAIN = 'my_dtr_domain'
-```
-
 Tag and push:
 
 ```
 docker image tag `
  signup-web:v2 `
- "$env:DTR_DOMAIN/demo2/signup-web:v2"
+ dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
 
 docker image push `
  "$env:DTR_DOMAIN/demo2/signup-web:v2"
@@ -112,15 +106,10 @@ docker image push `
 RDP to Win 2016 VM:
 
 ```
-$env:DTR_DOMAIN = 'my_dtr_domain'
-
 docker-compose up -d
 ```
 
 ## Demo 3 - tour signup app on UCP and demo code
-
-https://ucp.sixeyed.com
-
 
 Deploy stack.
 

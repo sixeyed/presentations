@@ -3,7 +3,7 @@ version: '3.3'
 services:
   
   signup-db:
-    image: dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-db
+    image: sixeyed/dsc-signup-db
     networks:
       - app-net
     deploy:
@@ -13,7 +13,7 @@ services:
         - node.platform.os == windows
 
   signup-app:
-    image: dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
+    image: sixeyed/dsc-signup-web:v2
     ports:
       - "80:8090"
     depends_on:

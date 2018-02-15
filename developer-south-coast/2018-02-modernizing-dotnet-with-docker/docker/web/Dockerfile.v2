@@ -10,7 +10,7 @@ RUN msbuild SignUp.Web.csproj /p:OutputPath=c:\out\web\SignUpWeb `
         /p:DeployOnBuild=true /p:VSToolsPath=C:\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\tools\VSToolsPath
 
 # app image
-FROM microsoft/aspnet:4.6.2-windowsservercore-10.0.14393.1884
+FROM microsoft/aspnet:4.7.1-windowsservercore-10.0.14393.1884
 SHELL ["powershell"]
 
 RUN Remove-Website -Name 'Default Web Site';`
