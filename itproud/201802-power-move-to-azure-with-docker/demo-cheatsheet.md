@@ -96,6 +96,10 @@ docker image push dtr.sixeyed.com/newsletter/signup-web:1.1
 
 ## Demo 3 - scanning & run in UCP
 
+> Walk through setup at https://dockr.ly/ee-azure
+
+> Walk through generated resources
+
 https://dtr.sixeyed.com
 
 https://ucp.sixeyed.com
