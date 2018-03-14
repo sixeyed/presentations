@@ -1,0 +1,94 @@
+version: '3.3'
+
+services:
+  
+  signup-db:
+    image: sixeyed/signup-db
+    environment:
+      - sa_password=DockerCon!!!
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-web:
+    image: sixeyed/signup-web:1.4
+    environment:
+      - DB_CONNECTION_STRING=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+    networks:
+      - app-net
+    ports:
+      - mode: host
+        target: 80
+        published: 80
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-save-handler:
+    image: sixeyed/signup-save-handler:2
+    environment:
+      - DB_CONNECTION_STRING=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 3
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  elasticsearch:
+    image: sixeyed/elasticsearch:nanoserver
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  kibana:
+    image: sixeyed/kibana:nanoserver
+    networks:
+      - app-net
+    ports:
+      - mode: host
+        target: 5601
+        published: 5601
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-index-handler:
+    image: sixeyed/signup-index-handler:2
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      replicas: 3
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  app-net:
