@@ -52,7 +52,7 @@ Browse to http://win2016-01:8085, input data, check logs for app & save handler.
 SSH to manager and run Nuclio:
 
 ```
-docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/playground:stable-amd64
+sudo docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/playground:stable-amd64
 ```
 
 Browse to http://ub1604-01:8070/, deploy Node JS function, call with Postman.
