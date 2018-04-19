@@ -1,0 +1,36 @@
+version: '3.2'
+
+services:
+
+  signup-db:
+    image: dockersamples/mta-dev-signup-db:v1
+    networks:
+      - app-net
+
+  message-queue:
+    image: nats:1.0.4-nanoserver
+    networks:
+      - app-net
+
+  signup-app:
+    image: dockersamples/mta-dev-signup-app:v3
+    ports:
+      - "80:80"
+    depends_on:
+      - signup-db
+      - message-queue
+    networks:
+      - app-net
+
+  signup-save-handler:
+    image: dockersamples/mta-dev-signup-save-handler:v1
+    depends_on:
+      - signup-db
+      - message-queue
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  
+  signup-db:
+    image: sixeyed/dsc-signup-db
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-app:
+    image: sixeyed/dsc-signup-web:v2
+    ports:
+      - "80:8090"
+    depends_on:
+      - signup-db
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  app-net:
