@@ -1,3 +1,7 @@
+# TODO 
+
+Cut to 20 minutes - demo v1 to v4 from MTA dev videos
+
 ## Prep
 
 Switch Docker to Windows VM.

@@ -10,7 +10,7 @@ Write-Output "Pulling images. Source registry: $SourceRegistry"
 
 foreach ($tag in $images) {
 
-    Write-Output "** Pulling tag: $tag, from registry: $SourceRegistry"
+    Write-Output "** Pulling tag: $tag"
 
     $sourceTag = $tag
     if ($SourceRegistry.Length -gt 0) {

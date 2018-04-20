@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+
+  signup-db:
+    image: dockersamples/mta-dev-signup-db:v1
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-app:
+    image: dockersamples/mta-dev-signup-app:v1
+    ports:
+    - mode: host
+      published: 8085
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  app-net:

@@ -1,0 +1,8 @@
+microsoft/iis:nanoserver
+microsoft/mssql-server-windows-express:2016-sp1
+microsoft/aspnet:3.5-windowsservercore-10.0.14393.1715
+sixeyed/git:2.15.1
+sixeyed/docker-ee:17.06.2-ee-6
+sixeyed/jenkins:2.89.2
+sixeyed/registry:2.6.2-nanoserver
+sixeyed/bonobo:6.1.0-windowsservercore

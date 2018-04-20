@@ -1,19 +1,6 @@
 # TODO 
 
-Cut to 20 minutes - demo IIS & SQL server & I2D (or MSI)
-
-
-## Pre-reqs
-
-Set up a hybrid EE cluster to show the production lifecycle. 
-
-Simplest is using Azure Marketplace - https://dockr.ly/ee-azure.
-
-Make a note of the Docker Trusted Registry (DTR) domain; also login and create:
-
- - an organization: `demo2`
- - a repo: `demo2/signup-db`
- - a repo: `demo2/signup-web`
+Bump to 60 minutes - demo IIS & SQL server & I2D (or MSI); + CI/CD w/ Jenkins & Bonobo
 
 ## Demo 1 - I2D and run app locally
 
@@ -30,7 +17,7 @@ Run:
 ```
 ConvertTo-Dockerfile `
  -ImagePath C:\VMs\win2003-iis.vhd `
- -OutputPath C:\dev-south-coast `
+ -OutputPath C:\winops `
  -Artifact IIS `
  -ArtifactParam SignUp.Web `
  -Verbose 
@@ -39,19 +26,18 @@ ConvertTo-Dockerfile `
 Build:
 
 ```
-cd /dev-south-coast
+cd /winops
 
 docker image build --tag signup-web:v1 .
 ```
 
-Deploy V1 - hmm...
+Deploy V1:
 
 ```
 docker container run --detach signup-web:v1 
 ```
-Browse to container IP, port 8090.
 
-Check logs in `C:\websites\SignUp.Web\App_Data\SignUp.log`
+Hmm. Check logs in `C:\websites\SignUp.Web\App_Data\SignUp.log`
 
 ### Part 2 - fix
 
@@ -75,13 +61,13 @@ CMD Start-Service W3SVC; `
 Build v2:
 
 ```
-docker image build -t signup-web:v2 .
+docker image build --tag signup-web:v2 .
 ```
 
 Run with database:
 
 ```
-docker container rm -f $(docker container ls -aq)
+
 docker-compose up -d
 ```
 
@@ -96,25 +82,22 @@ docker container exec demo1_signup-db_1 powershell `
 
 ## Demo 2 - push to DTR, scanning & run in cloud VM
 
-Tag and push:
-
 ```
-docker image tag `
- signup-web:v2 `
- dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
+docker image tag signup-web:v2 ` 
+ dtr.sixeyed.com/winops/signup-web:v2
 
-docker image push `
- dtrlb-ynp2ligkw5fkg.westeurope.cloudapp.azure.com/demo2/signup-web:v2
+docker image push dtr.sixeyed.com/winops/signup-web:v2
 ```
 
-RDP to Win 2016 VM:
+https://dtr.sixeyed.com
+
+Login to VM - show Compose:
 
 ```
 docker-compose up -d
 ```
 
-## Demo 3 - tour signup app on UCP and demo code
 
-Deploy stack.
+## Demo 3 - tour signup app on UCP
 
-Browse to windows LB.
+https://ucp.sixeyed.com
