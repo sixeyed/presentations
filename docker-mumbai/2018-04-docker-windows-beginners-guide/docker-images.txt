@@ -1,3 +1,4 @@
+microsoft/windowsservercore
 microsoft/iis:nanoserver
 microsoft/mssql-server-windows-express:2016-sp1
 microsoft/aspnet:3.5-windowsservercore-10.0.14393.1715

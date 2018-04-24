@@ -1,107 +1,66 @@
-# TODO 
+## Demo 1 - app v1.2
 
-Cut to 20 minutes - demo v1 to v4 from MTA dev videos
-
-## Prep
-
-Switch Docker to Windows VM.
+Build from source:
 
 ```
-cd C:\scm\github\sixeyed\presentations\developer-south-coast\2018-02-modernizing-dotnet-with-docker
-```
+cd C:\scm\github\sixeyed\docker-windows-workshop
 
-## Demo 1 - run some sample containers
-
-IIS:
-
-```
-docker container run --detach --publish 8081:80 microsoft/iis:nanoserver
-```
-
-SQL Server:
-
-```
-docker container run --detach --publish 1433:1433 `
- --env-file db-credentials.env `
- --name signup-db `
- microsoft/mssql-server-windows-express:2016-sp1
-```
-
-## Demo 2 - app v1
-
-Build with MSI:
-
-```
-docker image build --tag signup-web:v1 --file docker/web/Dockerfile.v1 .
+docker image build --tag sixeyed/signup-web:1.2 --file part-2\web-1.2\Dockerfile .
 ```
 
 Run:
 
 ```
-docker container run `
- --detach --publish 80:80 --env-file db-credentials.env --name signup-web ` signup-web:v1
+cd app
+
+docker-compose -f docker-compose-1.2.yml up -d 
 ```
 
-## Demo 3 - app v2
 
-- Update SignUp.aspx.cs to publish event. 
+## Demo 3 - app v1.3
 
-- Walk through message handler code.
+> Update SignUp.aspx.cs to publish event. 
 
-Build message handler:
+> Walk through message handler code.
 
-```
-docker image build --tag save-handler --file docker/save-handler/Dockerfile .
-```
-
-Build web app v2:
+Build:
 
 ```
-docker image build --tag signup-web:v2 --file docker/web/Dockerfile.v2 .
+cd C:\scm\github\sixeyed\docker-windows-workshop
+
+docker image build --tag  sixeyed/signup-web:1.3 -f part-3\web-1.3\Dockerfile .
+
+docker image build --tag sixeyed/signup-save-handler -f part-3\save-handler\Dockerfile .
 ```
 
-Run message queue:
+Run with message queue:
 
 ```
-docker container run --detach --name message-queue nats:nanoserver
+cd app
+
+docker-compose -f .\docker-compose-1.3.yml up -d
 ```
 
-Replace web app with v2:
+## Demo 3 - analytics
+
+Build:
 
 ```
-docker container rm -f signup-web
+cd C:\scm\github\sixeyed\docker-windows-workshop
 
-docker container run `
- --detach --publish 80:80 --env-file db-credentials.env --name signup-web sixeyed/buildstuff-signup-web:v2
+docker image build --tag sixeyed/signup-index-handler --file part-3\index-handler\Dockerfile .
 ```
 
-Run message handler:
+Run with Elasticsearch & Kibana:
 
 ```
-docker container run `
- --detach --env-file db-credentials.env 
- sixeyed/buildstuff-save-handler
+cd app
+
+docker-compose -f .\docker-compose-1.4.yml up -d
 ```
 
-## Demo 4 - app v3
 
-Run CMS:
-
-```
-docker container run `
- --detach --publish 8088:80 --name homepage `
-sixeyed/buildstuff-umbraco:v1
-```
-
-Run proxy:
-
-```
-docker container run `
- --detach --publish 8090:80 --name proxy `
- sixeyed/buildstuff-nginx
-```
-
-## Demo 5 - CI / CD
+## Demo 4 - CI / CD
 
 Clean up:
 
@@ -109,12 +68,16 @@ Clean up:
 docker container rm -f $(docker container ls -aq)
 ```
 
+> Walk through `part-6` scripts
+
 Build:
 
 ```
-cd app
+cd C:\scm\github\sixeyed\docker-windows-workshop\part-6
 
-docker-compose build
-
-docker-compose up -d
+docker-compose`
+ -f .\app\docker-compose.yml `
+ -f .\app\docker-compose.build.yml `
+ -f .\app\docker-compose.local.yml `
+build
 ```
