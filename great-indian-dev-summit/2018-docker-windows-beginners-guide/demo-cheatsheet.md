@@ -9,9 +9,11 @@ Launch:
 - VS Code with presentations
 - VS Code with workshop
 
-Switch PowerShell to presentations dir:
+Turn off Defender; switch PowerShell to presentations dir:
 
 ```
+Set-MpPreference -DisableRealtimeMonitoring $true
+
 cd C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-docker-windows-beginners-guide
 ```
 

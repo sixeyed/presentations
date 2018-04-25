@@ -1,11 +1,20 @@
 ## Setup
 
-Clone the workshop repo:
+Launch:
+
+- Docker for Windows
+- PowerShell
+- Sqlectron
+- Firefox open at [Docker Hub](https://hub.docker.com/r/sixeyed/signup-web/), [UCP](https://ucp.sixeyed.com) and [DTR](https://dtr.sixeyed.com)
+- VS Code with presentations
+- VS Code with workshop
+
+Turn off Defender; switch PowerShell to workshop dir:
 
 ```
-git clone https://github.com/sixeyed/docker-windows-workshop.git
+Set-MpPreference -DisableRealtimeMonitoring $true
 
-cd docker-windows-workshop
+cd C:\scm\github\sixeyed\docker-windows-workshop\app
 ```
 
 ## Demo 1 - run local
@@ -15,8 +24,6 @@ cd docker-windows-workshop
 Deploy v1.4:
 
 ```
-cd C:\scm\github\sixeyed\docker-windows-workshop\app
-
 docker-compose `
   -f .\docker-compose-1.4.yml `
   up -d
@@ -52,8 +59,11 @@ docker image push `
   dtr.sixeyed.com/newsletter/signup-web:1.3
 ```
 
+> Fails, only CI server has access - [dtr.sixeyed.com](https://dtr.sixeyed.com)
+
 > Deploy to Windows Server in Azure
 
+Browse at [gids18-test.southindia.cloudapp.azure.com](http://gids18-test.southindia.cloudapp.azure.com)
 
 ## Demo 3 - scanning & run in UCP
 
@@ -68,3 +78,5 @@ cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\great-indian-dev-summit\02-doc
 https://dtr.sixeyed.com
 
 https://ucp.sixeyed.com
+
+Deploy app and browse at [gids18-prod.southindia.cloudapp.azure.com](http://gids18-test.southindia.cloudapp.azure.com)

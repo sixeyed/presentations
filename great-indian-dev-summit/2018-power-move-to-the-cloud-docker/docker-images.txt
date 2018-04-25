@@ -1,2 +1,8 @@
 microsoft/mssql-server-windows-express:2016-sp1
 microsoft/aspnet:4.7.1-windowsservercore-10.0.14393.1884
+dockersamples/kibana:5.6.0-windowsservercore
+dockersamples/elasticsearch:5.6.0-nanoserver
+nats:nanoserver
+sixeyed/signup-save-handler
+sixeyed/signup-index-handler
+sixeyed/signup-web:1.3
