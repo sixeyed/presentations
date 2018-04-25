@@ -1,103 +1,107 @@
-# TODO 
+## Demo 1 - run some sample containers
 
-Bump to 60 minutes - demo IIS & SQL server & I2D (or MSI); + CI/CD w/ Jenkins & Bonobo
-
-## Demo 1 - I2D and run app locally
-
-Install:
+Windows:
 
 ```
-Install-Module Image2Docker
+docker container run -it microsoft/windowsservercore powershell
+```
 
-Import-Module Image2Docker
+IIS:
+
+```
+docker container run --detach --publish 8081:80 microsoft/iis:nanoserver
+```
+
+SQL Server:
+
+```
+cd C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-docker-windows-beginners-guide
+
+docker container run --detach --publish 1433:1433 `
+ --env-file db-credentials.env `
+ --name mta-db `
+ microsoft/mssql-server-windows-express:2016-sp1
+```
+
+## Demo 2 - Build, ship & run
+
+Build:
+
+```
+cd C:\scm\github\sixeyed\docker-windows-workshop\part-2\web-1.1
+
+docker image build -t signup-web:1.1 .
+```
+
+Ship:
+
+```
+docker image tag signup-web:1.1 sixeyed/signup-web:1.1-gids18
+
+docker image push sixeyed/signup-web:1.1-gids18
 ```
 
 Run:
 
 ```
-ConvertTo-Dockerfile `
- -ImagePath C:\VMs\win2003-iis.vhd `
- -OutputPath C:\winops `
- -Artifact IIS `
- -ArtifactParam SignUp.Web `
- -Verbose 
+docker container run -d -P sixeyed/signup-web:1.1-gids18
 ```
+
+## Demo 1 - app v1.2
+
+Build from source:
+
+```
+cd C:\scm\github\sixeyed\docker-windows-workshop
+
+docker image build `
+  --tag sixeyed/signup-web:1.2 `
+  --file part-2\web-1.2\Dockerfile .
+```
+
+Run:
+
+```
+cd app
+
+docker-compose `
+  -f docker-compose-1.2.yml `
+  up -d 
+```
+
+
+## Demo 3 - app v1.3
+
+> Update SignUp.aspx.cs to publish event
 
 Build:
 
 ```
-cd /winops
+cd C:\scm\github\sixeyed\docker-windows-workshop
 
-docker image build --tag signup-web:v1 .
+docker image build `
+  --tag sixeyed/signup-web:1.3 `
+  -f part-3\web-1.3\Dockerfile .
 ```
 
-Deploy V1:
+Run with message queue:
 
 ```
-docker container run --detach signup-web:v1 
+cd app
+
+docker-compose `
+  -f .\docker-compose-1.3.yml `
+  up -d
 ```
 
-Hmm. Check logs in `C:\websites\SignUp.Web\App_Data\SignUp.log`
+## Demo 3 - analytics
 
-### Part 2 - fix
-
-Fix Web.config - connection string:
+Run with Elasticsearch & Kibana:
 
 ```
-<add name="SignUpDbEntities" 
-     connectionString="metadata=res://*/Model.SignUpModel.csdl|res://*/Model.SignUpModel.ssdl|res://*/Model.SignUpModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=signup-db;initial catalog=SignUpDb;user id=sa;password=DockerCon!!!;MultipleActiveResultSets=True;App=EntityFramework&quot;" 
-     providerName="System.Data.EntityClient" />
+cd app
+
+docker-compose `
+  -f .\docker-compose-1.4.yml `
+  up -d
 ```
-
-Add to Dockerfile:
-
-```
-ENTRYPOINT ["powershell"]
-CMD Start-Service W3SVC; `
-    Invoke-WebRequest http://localhost:8090 -UseBasicParsing | Out-Null; `
-    Get-Content -path 'C:\websites\SignUp.Web\App_Data\SignUp.log' -Tail 1 -Wait
-```
-
-Build v2:
-
-```
-docker image build --tag signup-web:v2 .
-```
-
-Run with database:
-
-```
-
-docker-compose up -d
-```
-
-Complete form. 
-
-Verify:
-
-```
-docker container exec demo1_signup-db_1 powershell `
- "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUpDb"
-```
-
-## Demo 2 - push to DTR, scanning & run in cloud VM
-
-```
-docker image tag signup-web:v2 ` 
- dtr.sixeyed.com/winops/signup-web:v2
-
-docker image push dtr.sixeyed.com/winops/signup-web:v2
-```
-
-https://dtr.sixeyed.com
-
-Login to VM - show Compose:
-
-```
-docker-compose up -d
-```
-
-
-## Demo 3 - tour signup app on UCP
-
-https://ucp.sixeyed.com

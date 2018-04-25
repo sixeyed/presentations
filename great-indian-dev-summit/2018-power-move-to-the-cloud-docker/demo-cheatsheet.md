@@ -12,12 +12,14 @@ cd docker-windows-workshop
 
 > Walk through compose file
 
-Deploy v1.1:
+Deploy v1.4:
 
 ```
 cd C:\scm\github\sixeyed\docker-windows-workshop\app
 
-docker-compose -f docker-compose-1.1.yml up -d
+docker-compose `
+  -f .\docker-compose-1.4.yml `
+  up -d
 ``` 
 
 Browse to app:
@@ -28,35 +30,37 @@ docker container inspect app_signup-web_1
 
 Save form. Verify:
 
+> Use Sqlectron or...
+
 ```
 docker container exec app_signup-db_1 powershell `
  "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUp"
 ```
 
+## Demo 2 - run in test
+
 Push to DTR:
 
 ```
 docker image tag `
-  sixeyed/signup-web:1.1 `
-  dtr.sixeyed.com/newsletter/signup-web:1.1
+  sixeyed/signup-web:1.3 `
+  dtr.sixeyed.com/newsletter/signup-web:1.3
 
 docker login dtr.sixeyed.com --username elton
 
 docker image push `
-  dtr.sixeyed.com/newsletter/signup-web:1.1
+  dtr.sixeyed.com/newsletter/signup-web:1.3
 ```
 
-> Fails - only CI server has push permission
+> Deploy to Windows Server in Azure
 
 
 ## Demo 3 - scanning & run in UCP
 
-> Walk through setup at https://dockr.ly/ee-azure
-
-> Walk through generated resources
+> Walk through generated Azure resources
 
 ```
-cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\devops-live\2018-docker-power-move-cloud\bundle'
+cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\great-indian-dev-summit\02-docker-power-move-cloud\bundle'
 
 . ./env.ps1
 ```
