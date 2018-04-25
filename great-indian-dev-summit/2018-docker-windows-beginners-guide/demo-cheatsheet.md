@@ -1,26 +1,56 @@
+## Setup
+
+Launch:
+
+- Docker for Windows
+- PowerShell
+- Sqlectron
+- Firefox open at [Docker Hub](https://hub.docker.com/r/sixeyed/signup-web/)
+- VS Code with presentations
+- VS Code with workshop
+
+Switch PowerShell to presentations dir:
+
+```
+cd C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-docker-windows-beginners-guide
+```
+
 ## Demo 1 - run some sample containers
 
 Windows:
 
 ```
-docker container run -it microsoft/windowsservercore powershell
+docker container run -it `
+  microsoft/windowsservercore powershell
 ```
 
 IIS:
 
 ```
-docker container run --detach --publish 8081:80 microsoft/iis:nanoserver
+docker container run `
+  --name iis `
+  --detach --publish 8081:80 `
+  microsoft/iis:nanoserver
 ```
+
+Exec into container and replace homepage:
+
+```
+docker container exec `
+  -it iis powershell
+
+echo '<h1>Hello #gids18!</h1>' > C:\inetpub\wwwroot\iisstart.htm
+```
+
 
 SQL Server:
 
 ```
-cd C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-docker-windows-beginners-guide
-
-docker container run --detach --publish 1433:1433 `
- --env-file db-credentials.env `
- --name mta-db `
- microsoft/mssql-server-windows-express:2016-sp1
+docker container run `
+  --detach --publish 1433:1433 `
+  --env-file db-credentials.env `
+  --name mta-db `
+  microsoft/mssql-server-windows-express:2016-sp1
 ```
 
 ## Demo 2 - Build, ship & run
@@ -30,24 +60,28 @@ Build:
 ```
 cd C:\scm\github\sixeyed\docker-windows-workshop\part-2\web-1.1
 
-docker image build -t signup-web:1.1 .
+docker image build `
+  --tag signup-web:1.1 .
 ```
 
 Ship:
 
 ```
-docker image tag signup-web:1.1 sixeyed/signup-web:1.1-gids18
+docker image tag signup-web:1.1 `
+  sixeyed/signup-web:1.1-gids18
 
-docker image push sixeyed/signup-web:1.1-gids18
+docker image push `
+  sixeyed/signup-web:1.1-gids18
 ```
 
 Run:
 
 ```
-docker container run -d -P sixeyed/signup-web:1.1-gids18
+docker container run -d -P `
+  sixeyed/signup-web:1.1-gids18
 ```
 
-## Demo 1 - app v1.2
+## Demo 3 - app v1.2
 
 Build from source:
 
@@ -69,8 +103,7 @@ docker-compose `
   up -d 
 ```
 
-
-## Demo 3 - app v1.3
+## Demo 4 - app v1.3
 
 > Update SignUp.aspx.cs to publish event
 
@@ -94,13 +127,11 @@ docker-compose `
   up -d
 ```
 
-## Demo 3 - analytics
+## Demo 5 - analytics
 
 Run with Elasticsearch & Kibana:
 
 ```
-cd app
-
 docker-compose `
   -f .\docker-compose-1.4.yml `
   up -d
