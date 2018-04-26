@@ -7,13 +7,18 @@ Simplest is using Azure Marketplace - https://dockr.ly/ee-azure.
 Set directory & switch context to UCP:
 
 ```
-cd ~/scm/github/sixeyed/presentations/devops-barcelona/2018-why-containers-take-over-world/apps
+cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\great-india
+n-dev-summit\03-why-containers-take-over-world\bundle'
+
+. .\env.ps1
+
+cd 'C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-why-containers-take-over-world\apps'
 ```
 
 ## Setup
 
-* 1x terminal window connected to UCP
-* 1x terminal window SSH to manager
+* 1x PowerShell window connected to UCP
+* 1x Ubuntu window SSH to manager
 * 1x VS Code with app manifests
 * 1x VS Code with mta-netfx-dev code
 * 1x Postman with Nuclio collection
@@ -27,17 +32,17 @@ Deploy Sock Shop:
 docker stack deploy -c sockshop-stack.yml sockshop
 ```
 
-Browse to http://ub1604-01:8080
+Browse to http://ucp.sixeyed.com:8080/
 
 ## Demo 2 - Traditional App
 
-Deploy SignUup v1 - a .NET 3.5 WebForms app:
+Deploy SignUp v1 - a .NET 3.5 WebForms app:
 
 ```
 docker stack deploy -c signup-stack-v1.yml signup
 ```
 
-Browse to http://win2016-01:8085
+Browse to http://win2016-01.southindia.cloudapp.azure.com:8085/
 
 Now deploy update - .NET 4.7 app with EDA and new front-end:
 
@@ -45,14 +50,16 @@ Now deploy update - .NET 4.7 app with EDA and new front-end:
 docker stack deploy -c signup-stack-v4.yml signup
 ```
 
-Browse to http://win2016-01:8085, input data, check logs for app & save handler.
+Browse to http://win2016-01.southindia.cloudapp.azure.com:8085/, input data, check logs for app & save handler.
 
-## Demo 2 - Serverless
+## Demo 3 - Serverless
 
 SSH to manager and run Nuclio:
 
 ```
+ssh ub1604-01.southindia.cloudapp.azure.com
+
 sudo docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/playground:stable-amd64
 ```
 
-Browse to http://ub1604-01:8070/, deploy Node JS function, call with Postman.
+Browse to http://ucp.sixeyed.com:8070/, deploy Node JS function, call with Postman.

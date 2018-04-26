@@ -1,9 +1,9 @@
 dockersamples/mta-dev-signup-db:v1
 dockersamples/mta-dev-signup-app:v1
 dockersamples/mta-dev-signup-app:v4
-nats:1.0.4-nanoserver
-dockersamples/elasticsearch:5.6.0-nanoserver
-dockersamples/kibana:5.6.0-windowsservercore
+nats:nanoserver
+dockersamples/elasticsearch:5.6.0-nanoserver-sac2016
+dockersamples/kibana:5.6.0-windowsservercore-ltsc2016
 dockersamples/mta-dev-signup-save-handler:v1
 dockersamples/mta-dev-signup-index-handler:v1
 dockersamples/mta-dev-signup-homepage:v1
