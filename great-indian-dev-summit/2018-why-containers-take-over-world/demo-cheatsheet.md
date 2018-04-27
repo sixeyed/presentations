@@ -7,10 +7,11 @@ Simplest is using Azure Marketplace - https://dockr.ly/ee-azure.
 Set directory & switch context to UCP:
 
 ```
-cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\great-india
-n-dev-summit\03-why-containers-take-over-world\bundle'
+cd 'C:\Users\Elton Stoneman\Dropbox\Sessions\2018\great-indian-dev-summit\03-why-containers-take-over-world\bundle'
 
 . .\env.ps1
+
+$env:DOCKER_ORCHESTRATOR='swarm'
 
 cd 'C:\scm\github\sixeyed\presentations\great-indian-dev-summit\2018-why-containers-take-over-world\apps'
 ```
