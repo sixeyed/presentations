@@ -1,0 +1,101 @@
+version: "3"
+
+services:
+
+  front-end:
+    image: weaveworksdemos/front-end:0.3.12
+    ports:
+      - '8080:8079'
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  catalogue:
+    image: weaveworksdemos/catalogue:0.3.5
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  catalogue-db:
+    image: weaveworksdemos/catalogue-db:0.3.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=socksdb
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  carts:
+    image: weaveworksdemos/carts:0.4.8
+    environment:
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  carts-db:
+    image: mongo:3.4    
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  orders:
+    image: weaveworksdemos/orders:0.4.7
+    environment:
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  orders-db:
+    image: mongo:3.4
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  shipping:
+    image: weaveworksdemos/shipping:0.4.8
+    environment:
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  rabbitmq:
+    image: rabbitmq:3.6.8
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  payment:
+    image: weaveworksdemos/payment:0.4.3
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  user:
+    image: weaveworksdemos/user:0.4.4
+    environment:
+      - MONGO_HOST=user-db:27017
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+  user-db:
+    image: weaveworksdemos/user-db:0.4.0
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
