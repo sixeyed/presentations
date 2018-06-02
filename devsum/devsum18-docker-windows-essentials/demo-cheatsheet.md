@@ -1,11 +1,3 @@
-## Prep
-
-Switch Docker to Windows VM.
-
-```
-cd C:\scm\github\sixeyed\presentations\developer-south-coast\2018-02-modernizing-dotnet-with-docker
-```
-
 ## Demo 1 - run some sample containers
 
 Windows:
