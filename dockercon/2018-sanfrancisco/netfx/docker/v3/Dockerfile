@@ -16,5 +16,5 @@ RUN Import-Module WebAdministration; `
     New-Website -Name 'web-app' -Port 80 -PhysicalPath $env:APP_ROOT -ApplicationPool '.NET v2.0'
 
 VOLUME C:\logs
-COPY .\v2\startup.ps1 .
+COPY .\v3\startup.ps1 .
 ENTRYPOINT ["powershell", ".\\startup.ps1"]
