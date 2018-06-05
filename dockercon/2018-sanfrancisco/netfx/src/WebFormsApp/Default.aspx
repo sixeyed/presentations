@@ -11,10 +11,13 @@
         <h1>
             .NET WebForms App</h1>
         <h2>
-            With Logging!</h2>
+            Served by: <asp:Label runat="server" ID="lblServer" />
+        </h2>
     </div>
     
     <hr />
+    
+    <h2>Logging</h2>
     <div>
     <h3>log4net config</h3>
         <asp:Table runat="server" EnableViewState="False" GridLines="Both">
@@ -33,7 +36,6 @@
         </asp:Table>
     </div>
     
-    <hr />
     <div>
     <h3>appSettings config</h3>
         <asp:Table runat="server" EnableViewState="False" GridLines="Both">
@@ -44,10 +46,42 @@
         </asp:Table>
     </div>
     
-    <hr />
+    <br/>
     <div>
         <asp:Button runat="server" ID="btnLog" Text="Write Logs" OnClick="btnLog_Click" />
+            &nbsp;
+            <i>
+            <asp:Label runat="server" ID="lblLogOutput" />
+            </i>
     </div>
+    
+    <hr />
+    
+    <h2>Database Access</h2>
+    
+    <div>
+    <h3>connectionStrings config</h3>
+        <asp:Table runat="server" EnableViewState="False" GridLines="Both">
+            <asp:TableRow runat="server">
+                <asp:TableCell runat="server">Server Name</asp:TableCell>
+                <asp:TableCell ID="tblCellSqlServer" runat="server"></asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+    </div>
+    
+    <br/>
+    <div>
+        <asp:Button runat="server" ID="btnSql" Text="Execute SQL" 
+            onclick="btnSql_Click"/>        
+            &nbsp;
+            <i>
+            <asp:Label runat="server" ID="lblSqlOutput" />
+            </i>
+            
+    </div>
+            
+    </div>
+    
     </form>
 </body>
 </html>
