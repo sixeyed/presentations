@@ -69,21 +69,27 @@ docker container run -d -p 8080:80 sixeyed/dcsf-netfx:v3
 Run in swarm mode with SQL container & secret:
 
 ```
+docker network create -d overlay netfx
+
 docker service create `
   --name sql-server `
   --env ACCEPT_EULA=Y `
   --env sa_password=DockerCon!!! `
+  --network netfx `
+  --endpoint-mode dnsrr `
   microsoft/mssql-server-windows-express:2016-sp1  
 
 docker secret create netfx-connectionstrings .\connectionStrings.config
   
 docker service create `
   --config netfx-appsettings `
-  --env APPSETTINGS_CONFIG_PATH=C:\netfx-appsettings `
+  --env 'APPSETTINGS_CONFIG_PATH=C:\netfx-appsettings' `
   --config netfx-log4net `
-  --env LOG4NET_CONFIG_PATH=C:\netfx-log4net `
+  --env 'LOG4NET_CONFIG_PATH=C:\netfx-log4net' `
   --secret netfx-connectionstrings `
-  --env CONNECTIONSTRINGS_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-connectionstrings `
-  --publish published=8080,target=80,mode=host `
+  --env 'CONNECTIONSTRINGS_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-connectionstrings' `
+  --publish published=8080,target=80,mode=host `  
+  --network netfx `
+  --endpoint-mode dnsrr `
   sixeyed/dcsf-netfx:v3
 ```

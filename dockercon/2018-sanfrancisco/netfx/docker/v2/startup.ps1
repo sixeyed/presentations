@@ -9,7 +9,7 @@ function RedirectConfigFile {
                 -ItemType SymbolicLink `
                 -Value $sourcePath
 
-        Write-Output "STARTUP: Redirected $sourcePath config to read from $targetPath"
+        Write-Output "STARTUP: Redirected $targetPath config to read from $sourcePath"
     }
 }
 
