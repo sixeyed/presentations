@@ -9,14 +9,18 @@ function RedirectConfigFile {
                 -ItemType SymbolicLink `
                 -Value $sourcePath
 
-        Write-Verbose "STARTUP: Redirected $sourcePath config to read from $targetPath"
+        Write-Output "STARTUP: Redirected $sourcePath config to read from $targetPath"
     }
 }
 
 Write-Output 'STARTUP: Loading config files'
 RedirectConfigFile $env:LOG4NET_CONFIG_PATH "$env:APP_ROOT\log4net.config"
 RedirectConfigFile $env:APPSETTINGS_CONFIG_PATH "$env:APP_ROOT\appSettings.config"
+RedirectConfigFile $env:CONNECTIONSTRINGS_CONFIG_PATH "$env:APP_ROOT\connectionStrings.config"
        
+Write-Output 'STARTUP: Validating dependencies'
+#TODO
+
 Write-Output 'STARTUP: Starting IIS'
 Start-Service W3SVC
 

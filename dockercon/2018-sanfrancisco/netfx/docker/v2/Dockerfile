@@ -8,7 +8,8 @@ RUN Expand-Archive -Path WebFormsApp.zip -DestinationPath C:\; `
     
 ENV APP_ROOT="C:\WebFormsApp" `
     LOG4NET_CONFIG_PATH="" `
-    APPSETTINGS_CONFIG_PATH=""
+    APPSETTINGS_CONFIG_PATH="" `
+    CONNECTIONSTRINGS_CONFIG_PATH=""
 
 RUN Import-Module WebAdministration; `
     Set-ItemProperty 'IIS:\AppPools\.NET v2.0' -Name processModel.identityType -Value LocalSystem; `
