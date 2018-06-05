@@ -5,7 +5,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 COPY WebFormsApp.zip .
 RUN Expand-Archive -Path WebFormsApp.zip -DestinationPath C:\; `
     Remove-Item WebFormsApp.zip
-    
+  
 ENV APP_ROOT="C:\WebFormsApp" `
     LOG4NET_CONFIG_PATH="" `
     APPSETTINGS_CONFIG_PATH="" `
@@ -19,3 +19,7 @@ RUN Import-Module WebAdministration; `
 VOLUME C:\logs
 COPY .\v3\startup.ps1 .
 ENTRYPOINT ["powershell", ".\\startup.ps1"]
+
+COPY DependencyChecker.zip .
+RUN Expand-Archive -Path DependencyChecker.zip -DestinationPath $env:APP_ROOT; `
+    Remove-Item DependencyChecker.zip

@@ -19,7 +19,10 @@ RedirectConfigFile $env:APPSETTINGS_CONFIG_PATH "$env:APP_ROOT\appSettings.confi
 RedirectConfigFile $env:CONNECTIONSTRINGS_CONFIG_PATH "$env:APP_ROOT\connectionStrings.config"
        
 Write-Output 'STARTUP: Validating dependencies'
-#TODO
+& $env:APP_ROOT\DependencyChecker.exe
+if ($LastExitCode -ne 0) {
+    return 1
+}
 
 Write-Output 'STARTUP: Starting IIS'
 Start-Service W3SVC
