@@ -20,7 +20,7 @@ namespace HealthChecker
                     Task.WaitAll(task);
                     stopwatch.Stop();
                     Console.WriteLine($"HEALTHCHECK: status {task.Result.StatusCode}, took {stopwatch.ElapsedMilliseconds}ms");
-                    if (task.Result.StatusCode == HttpStatusCode.OK && stopwatch.ElapsedMilliseconds < 500)
+                    if (task.Result.StatusCode == HttpStatusCode.OK && stopwatch.ElapsedMilliseconds < 150)
                     {
                         exitCode = 0;                        
                     }

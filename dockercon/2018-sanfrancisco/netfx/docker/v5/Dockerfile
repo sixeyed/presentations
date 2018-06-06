@@ -1,4 +1,6 @@
 # escape=`
+FROM dockersamples/aspnet-monitoring-exporter AS exporter
+
 FROM microsoft/aspnet:3.5-windowsservercore-10.0.14393.1884
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -10,7 +12,9 @@ ENV APP_ROOT="C:\WebFormsApp" `
     LOG4NET_CONFIG_PATH="" `
     APPSETTINGS_CONFIG_PATH="" `
     CONNECTIONSTRINGS_CONFIG_PATH="" `
-    DEPENDENCY_CHECK_ENABLED=""
+    DEPENDENCY_CHECK_ENABLED="" `
+    METRICS_COLLECTOR_ROOT="C:\aspnet-exporter" `
+    COLLECTOR_CONFIG_PATH="w3svc-collectors.json"
 
 RUN Import-Module WebAdministration; `
     Set-ItemProperty 'IIS:\AppPools\.NET v2.0' -Name processModel.identityType -Value LocalSystem; `
@@ -19,8 +23,8 @@ RUN Import-Module WebAdministration; `
 
 VOLUME C:\logs
 
-COPY .\v4\startup.ps1 .
-ENTRYPOINT ["powershell", ".\\startup.ps1"]
+COPY .\v5\startup.ps1 .
+ENTRYPOINT ["powershell", "\\startup.ps1"]
 
 COPY DependencyChecker.zip .
 RUN Expand-Archive -Path DependencyChecker.zip -DestinationPath $env:APP_ROOT; `
@@ -32,3 +36,6 @@ RUN Expand-Archive -Path HealthChecker.zip -DestinationPath $env:APP_ROOT; `
 
 HEALTHCHECK --interval=2s `
  CMD powershell "cd $env:APP_ROOT; ./HealthChecker.exe"
+
+COPY --from=exporter C:\aspnet-exporter ${METRICS_COLLECTOR_ROOT}
+EXPOSE 50505

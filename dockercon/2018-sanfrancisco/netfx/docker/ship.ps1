@@ -7,3 +7,5 @@ docker image push sixeyed/dcsf-netfx:v2
 docker image push sixeyed/dcsf-netfx:v3
 
 docker image push sixeyed/dcsf-netfx:v4
+
+docker image push sixeyed/dcsf-netfx:v5
