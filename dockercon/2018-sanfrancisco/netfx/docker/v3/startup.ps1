@@ -17,11 +17,13 @@ Write-Output 'STARTUP: Loading config files'
 RedirectConfigFile $env:LOG4NET_CONFIG_PATH "$env:APP_ROOT\log4net.config"
 RedirectConfigFile $env:APPSETTINGS_CONFIG_PATH "$env:APP_ROOT\appSettings.config"
 RedirectConfigFile $env:CONNECTIONSTRINGS_CONFIG_PATH "$env:APP_ROOT\connectionStrings.config"
-       
-Write-Output 'STARTUP: Validating dependencies'
-& $env:APP_ROOT\DependencyChecker.exe
-if ($LastExitCode -ne 0) {
-    return 1
+
+if ($env:DEPENDENCY_CHECK_ENABLED) {
+    Write-Output 'STARTUP: Validating dependencies'
+    & $env:APP_ROOT\DependencyChecker.exe
+    if ($LastExitCode -ne 0) {
+        return 1
+    }
 }
 
 Write-Output 'STARTUP: Starting IIS'

@@ -9,6 +9,7 @@ RUN Expand-Archive -Path WebFormsApp.zip -DestinationPath C:\; `
 ENV APP_ROOT="C:\WebFormsApp" `
     LOG4NET_CONFIG_PATH="" `
     APPSETTINGS_CONFIG_PATH="" `
+    CONNECTIONSTRINGS_CONFIG_PATH="" `
     CONNECTIONSTRINGS_CONFIG_PATH=""
 
 RUN Import-Module WebAdministration; `
@@ -17,6 +18,7 @@ RUN Import-Module WebAdministration; `
     New-Website -Name 'web-app' -Port 80 -PhysicalPath $env:APP_ROOT -ApplicationPool '.NET v2.0'
 
 VOLUME C:\logs
+
 COPY .\v4\startup.ps1 .
 ENTRYPOINT ["powershell", ".\\startup.ps1"]
 
@@ -28,5 +30,5 @@ COPY HealthChecker.zip .
 RUN Expand-Archive -Path HealthChecker.zip -DestinationPath $env:APP_ROOT; `
     Remove-Item HealthChecker.zip
 
-HEALTHCHECK --interval=2s --start-period=10s `
- CMD powershell -command & $env:APP_ROOT\HealthChecker.exe
+HEALTHCHECK --interval=2s `
+ CMD powershell "cd $env:APP_ROOT; ./HealthChecker.exe"
