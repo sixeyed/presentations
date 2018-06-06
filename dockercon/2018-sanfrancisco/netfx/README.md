@@ -43,6 +43,7 @@ docker config create netfx-appsettings .\appSettings.config
 docker config create netfx-log4net .\log4net.config 
 
 docker service create `
+  --name netfx-web `
   --config netfx-appsettings `
   --env APPSETTINGS_CONFIG_PATH=C:\netfx-appsettings `
   --config netfx-log4net `
@@ -81,15 +82,32 @@ docker service create `
 
 docker secret create netfx-connectionstrings .\connectionStrings.config
   
-docker service create `
-  --config netfx-appsettings `
-  --env 'APPSETTINGS_CONFIG_PATH=C:\netfx-appsettings' `
-  --config netfx-log4net `
-  --env 'LOG4NET_CONFIG_PATH=C:\netfx-log4net' `
+docker service update `
   --secret netfx-connectionstrings `
   --env 'CONNECTIONSTRINGS_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-connectionstrings' `
-  --publish published=8080,target=80,mode=host `  
-  --network netfx `
-  --endpoint-mode dnsrr `
-  sixeyed/dcsf-netfx:v3
+  --image sixeyed/dcsf-netfx:v3 `
+  netfx-web
+```
+
+
+### v4 - add healthcheck
+
+Uses utility app to ping website in container.
+
+```
+docker image build -t sixeyed/dcsf-netfx:v4 -f ./v4/Dockerfile .
+```
+
+Run locally:
+
+```
+docker container run -d -p 8080:80 sixeyed/dcsf-netfx:v4
+```
+
+Run in swarm mode:
+
+```
+docker service update `
+  --image sixeyed/dcsf-netfx:v4 `
+  netfx-web
 ```
