@@ -3,15 +3,32 @@ using System.Configuration;
 using WebFormsApp.Logging;
 using WebFormsApp.Database;
 using System.Net;
+using System.Threading;
 
 namespace WebFormsApp
 {
     public partial class _Default : System.Web.UI.Page
     {
+        static Random _Random = new Random();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Log.Info("Page loaded");
+            bool slowMode = _Random.Next(10) > 6;
+            Log.Info("Page loaded, slowMode: {0}", slowMode); 
+            if (slowMode)
+            {                
+                Thread.Sleep(200);
+            }
+            SetLabelText(slowMode);            
+        }
+
+        private void SetLabelText(bool slowMode)
+        {            
             lblServer.Text = Dns.GetHostName();
+            if (slowMode)
+            {
+                lblServer.Text += " [SLOW MODE]";
+            }
             tblCellLevel.Text = Log.GetLogLevel();
             tblCellAppender.Text = Log.GetAppenderName();
             tblCellTarget.Text = Log.GetAppenderTarget();

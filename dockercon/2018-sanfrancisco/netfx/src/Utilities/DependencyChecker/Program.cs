@@ -9,6 +9,8 @@ namespace DependencyChecker
     {
         static int Main(string[] args)
         {
+            Console.WriteLine("DEPENDENCY: starting");
+
             var sqlPolicy = Policy.Handle<SqlException>()
                                   .Retry(3, (exception, retryCount) =>
                                    {
@@ -31,6 +33,8 @@ namespace DependencyChecker
         private static void ConnectToSqlServer()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["SqlDb"].ConnectionString;
+            var server = connectionString.Split(';')[0].Split('=')[1];
+            Console.WriteLine("DEPENDENCY: Connecting to SQL Server: {0}", server);
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();

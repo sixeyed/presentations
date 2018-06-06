@@ -11,7 +11,7 @@
         <h1>
             .NET WebForms App</h1>
         <h2>
-            Served by: <asp:Label runat="server" ID="lblServer" />
+            Server: <asp:Label runat="server" ID="lblServer" />
         </h2>
     </div>
     
