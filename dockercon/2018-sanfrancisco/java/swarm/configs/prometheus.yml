@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    monitor: 'local-monitor'
+
+scrape_configs:
+  - job_name: 'java-web'
+    static_configs:
+      - targets: ['java-web:50505']
+
+#TODO -check port

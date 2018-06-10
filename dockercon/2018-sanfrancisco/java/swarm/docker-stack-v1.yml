@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+
+  java-web:
+    image: sixeyed/dcsf-java:v1
+    networks:
+      - java
+    ports:
+    - mode: ingress
+      published: 8090
+      target: 8080
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+networks:
+  java:

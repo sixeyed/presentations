@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+
+  java-web:
+    image: sixeyed/dcsf-java:v2
+    environment:
+      - LOGGING_PROPERTIES_PATH=/logging.properties
+      - WEB_XML_PATH=/web.xml
+    configs:
+      - source: java-logging
+        target: /logging.properties
+        mode: 0440
+      - source: java-web
+        target: /web.xml
+        mode: 0440
+    networks:
+      - java
+    ports:
+    - mode: ingress
+      published: 8090
+      target: 8080
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+networks:
+  java:
+
+configs:
+  java-logging:
+    external: true
+  java-web:
+    external: true

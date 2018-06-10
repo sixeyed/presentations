@@ -5,7 +5,6 @@ services:
   netfx-web:
     image: sixeyed/dcsf-netfx:v2
     environment:
-      - DEPENDENCY_CHECK_ENABLED=1 
       - APPSETTINGS_CONFIG_PATH=C:\netfx-appsettings
       - LOG4NET_CONFIG_PATH=C:\netfx-log4net
     configs:

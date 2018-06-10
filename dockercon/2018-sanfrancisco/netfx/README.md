@@ -1,9 +1,6 @@
-
 ## .NET Sample App
 
 ASP.NET 3.5 WebForms app, built from `src` using VS2008, published to directory and zipped as `WebFormsApp.zip`.
-
-==TODO - add hostname to homepage and db config and write-to-db button==
 
 ### v0 - vanilla
 
@@ -40,7 +37,7 @@ Run in swarm mode:
 ```
 docker config create netfx-appsettings .\appSettings.config
 
-docker config create netfx-log4net .\log4net.config 
+docker config create netfx-log4net .\log4net.config
 
 docker service create `
   --name netfx-web `
@@ -51,7 +48,6 @@ docker service create `
   --publish published=8080,target=80,mode=host `
   sixeyed/dcsf-netfx:v2
 ```
-
 
 ### v3 - add dependency checks
 
@@ -81,14 +77,13 @@ docker service create `
   microsoft/mssql-server-windows-express:2016-sp1  
 
 docker secret create netfx-connectionstrings .\connectionStrings.config
-  
+
 docker service update `
   --secret netfx-connectionstrings `
   --env 'CONNECTIONSTRINGS_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-connectionstrings' `
   --image sixeyed/dcsf-netfx:v3 `
   netfx-web
 ```
-
 
 ### v4 - add healthcheck
 
