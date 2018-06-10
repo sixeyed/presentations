@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+  external_labels:
+    monitor: 'local-monitor'
+
+scrape_configs:
+  - job_name: 'netfx-web'
+    static_configs:
+      - targets: ['netfx-web:50505']
