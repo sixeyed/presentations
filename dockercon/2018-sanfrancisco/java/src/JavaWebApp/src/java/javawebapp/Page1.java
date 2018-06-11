@@ -372,9 +372,9 @@ public class Page1 extends AbstractPageBean {
     public String btnSql_action() throws SQLException {
         Connection conn = mySqlDataSource.getConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT SYSDATE() FROM DUAL;");
+        ResultSet rs = stmt.executeQuery("SELECT SYSDATE() AS UtcNow FROM DUAL;");
         if (rs.next()){
-            Date dbDate = rs.getDate(0);
+            Date dbDate = rs.getDate("UtcNow");
             this.lblSqlOutput.setText(dbDate.toString());
         }
         conn.close();
