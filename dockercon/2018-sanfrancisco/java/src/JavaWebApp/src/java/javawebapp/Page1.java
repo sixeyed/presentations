@@ -297,6 +297,10 @@ public class Page1 extends AbstractPageBean {
             this.lblLogLevel.setText(properties.getProperty("java.util.logging.FileHandler.level"));
             this.lblLogTarget.setText(properties.getProperty("java.util.logging.FileHandler.pattern"));
         }
+        else if (handlers.indexOf("java.util.logging.ConsoleHandler") > -1) {
+            this.lblLogLevel.setText(properties.getProperty("java.util.logging.ConsoleHandler.level"));
+            this.lblLogTarget.setText("-");
+        }
 
         //app config: 
         Context initialContext = new InitialContext();

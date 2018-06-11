@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/JavaWebApp">
+<Context path="/JavaWebApp" allowLinking="true">
     <Resource
         name="jdbc/mysql" type="javax.sql.DataSource"
         maxActive="100" maxIdle="30" maxWait="10000" 
