@@ -17,7 +17,7 @@ public class Main {
     private static Resource mySqlResource;
 
     public static void main(String[] args) throws URISyntaxException {
-        loadContext();
+        loadContext(args);
 
         RetryPolicy retryPolicy = new RetryPolicy()
                 .retryOn(Exception.class)
@@ -37,7 +37,7 @@ public class Main {
         }
     }
 
-    private static void loadContext() throws URISyntaxException {
+    private static void loadContext(String[] args) throws URISyntaxException {
         XStream xstream = new XStream();
         xstream.alias("Context", Context.class);
         xstream.aliasField("Resource", Context.class, "resource");
@@ -46,13 +46,14 @@ public class Main {
         xstream.useAttributeFor(Resource.class, "username");
         xstream.useAttributeFor(Resource.class, "password");
 
-        Context context;
-        String path = System.getenv("CONTEXT_XML_PATH");
-        if (path!= null) {
-            File file =new File(path);
-            context = (Context) xstream.fromXML(file);
+        Context context = null;
+        if (args.length > 0 && args[0].length() > 0){
+            File file =new File(args[0]);
+            if (file.exists()) {
+                context = (Context) xstream.fromXML(file);
+            }
         }
-        else {
+        if (context == null) {
             InputStream stream = Main.class.getResourceAsStream("context.xml");
             context = (Context) xstream.fromXML(stream);
         }
