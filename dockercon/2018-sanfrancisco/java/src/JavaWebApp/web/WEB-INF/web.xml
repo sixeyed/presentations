@@ -109,6 +109,4 @@
         <res-auth>Container</res-auth>
         <res-sharing-scope>Shareable</res-sharing-scope>
     </resource-ref>
-
-    172.18.128.1
 </web-app>

@@ -49,7 +49,7 @@ services:
     networks:
       - netfx
     ports:
-    - published: 9090
+    - published: 9080
       target: 9090
     deploy:
       placement:

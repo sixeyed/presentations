@@ -3,9 +3,11 @@ version: '3.4'
 services:
 
   my-sql:
-    image: mysql:8.0.11
-    environment:
-      MYSQL_ROOT_PASSWORD: DockerCon!!!
+    image: mysql:5.7.22
+    environment: 
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_USER=gordon
+      - MYSQL_PASSWORD=DockerCon!!!
     networks:
       - java
     deploy:

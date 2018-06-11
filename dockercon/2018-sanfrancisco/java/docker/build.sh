@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker image build -t sixeyed/dcsf-java:v1 -f ./v1/Dockerfile .
 
 docker image build -t sixeyed/dcsf-java:v2 -f ./v2/Dockerfile .

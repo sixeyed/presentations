@@ -20,11 +20,14 @@ redirect_config_file \
   $CONTEXT_XML_PATH \
   $APP_ROOT/META-INF/context.xml
 
-if [ "$DEPENDENCY_CHECK_ENABLED" -eq "1" ] 
+if [ "$DEPENDENCY_CHECK_ENABLED" = "1" ] 
 then
     echo STARTUP: Validating dependencies
-    #TODO
-    #java DependencyChecker.jar
+    java -jar $UTIL_ROOT/DependencyChecker.jar $APP_ROOT/META-INF/context.xml
+    if [ $? -eq 1 ]
+    then
+      exit 1
+    fi
 fi
 
 echo STARTUP: Starting Tomcat

@@ -46,3 +46,17 @@ docker container run -d -P \
 ```
 docker secret create java-context ./secrets/context.xml
 ```
+
+## v4
+
+```
+docker stack deploy -c ./docker-stack-v4.yml java
+```
+
+## v5
+
+```
+docker config create java-prometheus ./configs/prometheus.yml
+
+docker stack deploy -c ./docker-stack-v5.yml java
+```

@@ -1,13 +1,25 @@
-FROM ubuntu AS exporter
+FROM alpine AS exporter
 
 WORKDIR /exporter
-#TODO - download JARs and WAR from Maven for nlighten/tomcat_exporter
+
+ADD https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient/0.4.0/simpleclient-0.4.0.jar simpleclient-0.4.0.jar
+
+ADD https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient_common/0.4.0/simpleclient_common-0.4.0.jar simpleclient_common-0.4.0.jar
+
+ADD https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient_servlet/0.4.0/simpleclient_servlet-0.4.0.jar simpleclient_servlet-0.4.0.jar
+
+ADD https://search.maven.org/remotecontent?filepath=io/prometheus/simpleclient_hotspot/0.4.0/simpleclient_hotspot-0.4.0.jar simpleclient_hotspot-0.4.0.jar
+
+ADD https://search.maven.org/remotecontent?filepath=nl/nlighten/tomcat_exporter_client/0.0.6/tomcat_exporter_client-0.0.6.jar tomcat_exporter_client-0.0.6.jar
+
+ADD https://search.maven.org/remotecontent?filepath=nl/nlighten/tomcat_exporter_servlet/0.0.6/tomcat_exporter_servlet-0.0.6.war tomcat_exporter_servlet-0.0.6.war
 
 #app image
-FROM tomcat:7
+FROM tomcat:7-jre8-alpine
 
 COPY JavaWebApp.zip /
 RUN rm -r -f /usr/local/tomcat/webapps/ROOT && \
+    mkdir /usr/local/tomcat/webapps/ROOT && \
     unzip /JavaWebApp.zip -d /usr/local/tomcat/webapps/ROOT && \
     rm /JavaWebApp.zip
 
@@ -17,18 +29,16 @@ ENV APP_ROOT="/usr/local/tomcat/webapps/ROOT" \
     CONTEXT_XML_PATH="" \
     DEPENDENCY_CHECK_ENABLED="" \
     UTIL_ROOT="/usr/local/utils" \
-    EXPORTER_ROOT="/usr/local/tomcat/webapps/metrics"
+    EXPORTER_ROOT="/usr/local/tomcat/webapps"
 
 COPY ./v5/startup.sh /
 CMD ["/startup.sh"]
 
-#COPY DependencyChecker.jar ${UTIL_ROOT}
+COPY DependencyChecker.jar ${UTIL_ROOT}/DependencyChecker.jar
 
-#COPY HealthChecker.jar ${UTIL_ROOT}
-#HEALTHCHECK --interval=2s `
-# CMD java $UTIL_ROOT/HealthChecker.jar
+COPY HealthChecker.jar ${UTIL_ROOT}/HealthChecker.jar
+HEALTHCHECK --interval=2s \
+ CMD java -jar $UTIL_ROOT/HealthChecker.jar
 
-COPY --from=exporter /metrics/*.jar ??
-COPY --from=exporter /metrics/xyz/war ${EXPORTER_ROOT}
-
-#TODO - configure custom port for metrics?
+COPY --from=exporter /exporter/*.jar ${CATALINA_HOME}/lib/
+COPY --from=exporter /exporter/tomcat_exporter_servlet-0.0.6.war ${EXPORTER_ROOT}/metrics.war

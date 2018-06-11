@@ -1,7 +1,8 @@
-FROM tomcat:7
+FROM tomcat:7-jre8-alpine
 
 COPY JavaWebApp.zip /
 RUN rm -r -f /usr/local/tomcat/webapps/ROOT && \
+    mkdir /usr/local/tomcat/webapps/ROOT && \
     unzip /JavaWebApp.zip -d /usr/local/tomcat/webapps/ROOT && \
     rm /JavaWebApp.zip
 
@@ -15,8 +16,8 @@ ENV APP_ROOT="/usr/local/tomcat/webapps/ROOT" \
 COPY ./v4/startup.sh /
 CMD ["/startup.sh"]
 
-#COPY DependencyChecker.jar ${UTIL_ROOT}
+COPY DependencyChecker.jar ${UTIL_ROOT}/DependencyChecker.jar
 
-#COPY HealthChecker.jar ${UTIL_ROOT}
-#HEALTHCHECK --interval=2s `
-# CMD java $UTIL_ROOT/HealthChecker.jar
+COPY HealthChecker.jar ${UTIL_ROOT}/HealthChecker.jar
+HEALTHCHECK --interval=2s \
+ CMD java -jar $UTIL_ROOT/HealthChecker.jar
