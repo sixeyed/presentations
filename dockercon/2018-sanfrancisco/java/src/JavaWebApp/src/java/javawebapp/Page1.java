@@ -374,8 +374,7 @@ public class Page1 extends AbstractPageBean {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT SYSDATE() AS UtcNow FROM DUAL;");
         if (rs.next()){
-            Date dbDate = rs.getDate("UtcNow");
-            this.lblSqlOutput.setText(dbDate.toString());
+            this.lblSqlOutput.setText(rs.getString("UtcNow"));
         }
         conn.close();
         
