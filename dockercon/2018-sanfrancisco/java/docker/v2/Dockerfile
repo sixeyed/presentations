@@ -6,7 +6,7 @@ RUN rm -r -f /usr/local/tomcat/webapps && \
     unzip /JavaWebApp.zip -d /usr/local/tomcat/webapps/ROOT && \
     rm /JavaWebApp.zip
 
-ENV CATALINA_OPTS -Dsecurerandom.source=file:/dev/urandom \
+ENV CATALINA_OPTS="-Dsecurerandom.source=file:/dev/urandom" \
     APP_ROOT="/usr/local/tomcat/webapps/ROOT" \
     LOGGING_PROPERTIES_PATH="" \
     WEB_XML_PATH=""
