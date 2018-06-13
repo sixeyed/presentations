@@ -123,3 +123,6 @@ docker stack deploy \
  -c ./netfx/swarm/docker-stack-v5.yml \
  netfx  #5
 ```
+
+- browse to [Prometheus website](http://ub1604-01:9080)
+- query `w3svc_w3wp_requests_per_sec`
