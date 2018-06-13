@@ -6,4 +6,4 @@ RUN rm -r -f /usr/local/tomcat/webapps && \
     unzip /JavaWebApp.zip -d /usr/local/tomcat/webapps/ROOT && \
     rm /JavaWebApp.zip
 
-ENV CATALINA_OPTS="-Dsecurerandom.source=file:/dev/urandom"
+ENV CATALINA_OPTS="-Dsecurerandom.source\=file:/dev/urandom"
