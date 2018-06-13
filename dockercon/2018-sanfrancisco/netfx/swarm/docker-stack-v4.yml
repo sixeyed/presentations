@@ -35,6 +35,8 @@ services:
       target: 80
     healthcheck:
       retries: 0
+      interval: 5s
+      start_period: 20s
     deploy:
       endpoint_mode: dnsrr
       placement:

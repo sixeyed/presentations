@@ -18,12 +18,13 @@ ADD https://search.maven.org/remotecontent?filepath=nl/nlighten/tomcat_exporter_
 FROM tomcat:7-jre8-alpine
 
 COPY JavaWebApp.zip /
-RUN rm -r -f /usr/local/tomcat/webapps/ROOT && \
-    mkdir /usr/local/tomcat/webapps/ROOT && \
+RUN rm -r -f /usr/local/tomcat/webapps && \
+    mkdir -p /usr/local/tomcat/webapps/ROOT && \
     unzip /JavaWebApp.zip -d /usr/local/tomcat/webapps/ROOT && \
     rm /JavaWebApp.zip
 
-ENV APP_ROOT="/usr/local/tomcat/webapps/ROOT" \
+ENV CATALINA_OPTS -Dsecurerandom.source=file:/dev/urandom \
+    APP_ROOT="/usr/local/tomcat/webapps/ROOT" \
     LOGGING_PROPERTIES_PATH="" \
     WEB_XML_PATH="" \
     CONTEXT_XML_PATH="" \
@@ -38,7 +39,7 @@ COPY DependencyChecker.jar ${UTIL_ROOT}/DependencyChecker.jar
 
 COPY HealthChecker.jar ${UTIL_ROOT}/HealthChecker.jar
 HEALTHCHECK --interval=2s \
- CMD java -jar $UTIL_ROOT/HealthChecker.jar
+ CMD ["java", "-jar", "$UTIL_ROOT/HealthChecker.jar"]
 
 COPY --from=exporter /exporter/*.jar ${CATALINA_HOME}/lib/
 COPY --from=exporter /exporter/tomcat_exporter_servlet-0.0.6.war ${EXPORTER_ROOT}/metrics.war

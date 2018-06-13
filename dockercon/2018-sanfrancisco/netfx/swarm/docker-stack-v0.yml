@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   netfx-web:
-    image: sixeyed/dcsf-netfx:v2
+    image: sixeyed/dcsf-netfx:v0
     networks:
       - netfx
     ports:

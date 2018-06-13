@@ -37,7 +37,7 @@ services:
       - java
     ports:
     - mode: ingress
-      published: 8090
+      published: 8070
       target: 8080
     deploy:
       placement:

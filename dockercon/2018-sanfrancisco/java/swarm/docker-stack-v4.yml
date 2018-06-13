@@ -37,10 +37,12 @@ services:
       - java
     ports:
     - mode: ingress
-      published: 8090
+      published: 8070
       target: 8080
     healthcheck:
-      retries: 0
+      retries: 1
+      interval: 10s
+      start_period: 30s
     deploy:
       placement:
         constraints:
