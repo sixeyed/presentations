@@ -1,7 +1,7 @@
 # escape=`
 FROM dockersamples/aspnet-monitoring-exporter AS exporter
 
-FROM microsoft/aspnet:3.5-windowsservercore-10.0.14393.1884
+FROM microsoft/aspnet:3.5-windowsservercore-ltsc2016
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 COPY WebFormsApp.zip .
@@ -32,10 +32,11 @@ RUN Expand-Archive -Path DependencyChecker.zip -DestinationPath $env:APP_ROOT; `
 
 COPY HealthChecker.zip .
 RUN Expand-Archive -Path HealthChecker.zip -DestinationPath $env:APP_ROOT; `
-    Remove-Item HealthChecker.zip
+    Remove-Item HealthChecker.zip; `
+    [Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';' + $env:APP_ROOT, [EnvironmentVariableTarget]::Machine)
 
 HEALTHCHECK --interval=2s `
- CMD powershell "cd $env:APP_ROOT; ./HealthChecker.exe"
+  CMD ["HealthChecker.exe"]
 
 COPY --from=exporter C:\aspnet-exporter ${METRICS_COLLECTOR_ROOT}
 EXPOSE 50505
