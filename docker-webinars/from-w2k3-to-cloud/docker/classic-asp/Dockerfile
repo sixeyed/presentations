@@ -5,6 +5,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Install-WindowsFeature Web-ASP
 
 COPY ./share/ClassicAspApp.zip .
+
 RUN Expand-Archive -Path ClassicAspApp.zip -DestinationPath C:\ClassicAspApp; `
     Remove-Item ClassicAspApp.zip
 

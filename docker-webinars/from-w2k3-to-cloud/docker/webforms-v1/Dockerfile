@@ -3,6 +3,7 @@ FROM microsoft/aspnet:3.5-windowsservercore-ltsc2016
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 COPY ./share/WebFormsApp.zip .
+
 RUN Expand-Archive -Path WebFormsApp.zip -DestinationPath C:\; `
     Remove-Item WebFormsApp.zip
 
