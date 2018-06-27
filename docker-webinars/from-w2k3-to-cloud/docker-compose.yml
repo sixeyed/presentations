@@ -16,7 +16,7 @@ services:
     networks:
       - app-net
 
-  static-html:
+  webforms:
     image: sixeyed/w2k3-webforms:v1
     ports:
       - "8082:80"
