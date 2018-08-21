@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+
+  netfx-web:
+    image: dtrapp-eecus2-vtkj.centralus.cloudapp.azure.com/w2k3-prod/aspnet-webforms:v6
+    environment:
+      - APPSETTINGS_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-appsettings
+      - LOG4NET_CONFIG_PATH=C:\ProgramData\Docker\secrets\netfx-log4net
+    secrets:
+     - source: netfx-appsettings
+     - source: netfx-log4net
+    networks:
+      - netfx
+    ports:
+    - mode: host
+      published: 8080
+      target: 80
+    healthcheck:
+      retries: 5
+      interval: 10s
+    deploy:
+      endpoint_mode: dnsrr
+      mode: global
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  netfx:
+
+secrets:
+  netfx-appsettings:
+    external: true
+  netfx-log4net:
+    external: true
