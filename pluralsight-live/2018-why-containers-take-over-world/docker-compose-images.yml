@@ -1,0 +1,70 @@
+version: "3.2"
+
+services:
+  # mta app v1
+
+  db-v1:
+    image: dockersamples/mta-dev-signup-db:v1
+
+  app-v1:
+    image: dockersamples/mta-dev-signup-app:v1
+
+  # mta app v4
+  app-v4:
+    image: dockersamples/mta-dev-signup-app:v4
+
+  nats:
+    image: nats:nanoserver
+
+  elasticsearch:
+    image: dockersamples/elasticsearch:5.6.0-nanoserver-sac2016
+
+  kibana:
+    image: dockersamples/kibana:5.6.0-windowsservercore-ltsc2016
+
+  save-handler:
+    image: dockersamples/mta-dev-signup-save-handler:v1
+
+  index-handler:
+    image: dockersamples/mta-dev-signup-index-handler:v1
+
+  homepage:
+    image: dockersamples/mta-dev-signup-homepage:v1
+
+  # sock shop
+
+  front-end:
+    image: weaveworksdemos/front-end:0.3.12
+
+  catalogue:
+    image: weaveworksdemos/catalogue:0.3.5
+
+  catalogue-db:
+    image: weaveworksdemos/catalogue-db:0.3.0
+
+  carts:
+    image: weaveworksdemos/carts:0.4.8
+
+  carts-db:
+    image: mongo:3.4
+
+  orders:
+    image: weaveworksdemos/orders:0.4.7
+
+  orders-db:
+    image: mongo:3.4
+
+  shipping:
+    image: weaveworksdemos/shipping:0.4.8
+
+  rabbitmq:
+    image: rabbitmq:3.6.8
+
+  payment:
+    image: weaveworksdemos/payment:0.4.3
+
+  user:
+    image: weaveworksdemos/user:0.4.4
+
+  user-db:
+    image: weaveworksdemos/user-db:0.4.0
