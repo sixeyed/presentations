@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  
+  classic-asp:
+    image: sixeyed/w2k3-classic-asp
+    ports:
+      - "8080:80"
+    networks:
+      - app-net
+
+  static-html:
+    image: sixeyed/w2k3-static-html
+    ports:
+      - "8081:80"
+    networks:
+      - app-net
+
+  webforms:
+    image: sixeyed/w2k3-webforms:v1
+    ports:
+      - "8082:80"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
