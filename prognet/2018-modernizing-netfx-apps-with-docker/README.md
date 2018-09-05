@@ -5,8 +5,8 @@
 - Powershell
 - Firefox
 - Sqlectron
-- VS Code here
-- VS Code for dwwx
+- VS Code for dwwx - Dockerfiles
+- VS Code here - compose files
 
 ```
 $env:workshop='C:\scm\github\sixeyed\docker-windows-workshop'
