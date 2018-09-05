@@ -1,0 +1,41 @@
+version: '3.1'
+
+services:
+  
+  signup-db:
+    image: microsoft/mssql-server-windows-express:2016-sp1
+    ports:
+      - "1433:1433"
+    environment: 
+      - ACCEPT_EULA=Y
+      - sa_password=DockerCon!!!
+    networks:
+      - app-net
+
+  signup-web:
+    image: dwwx/signup-web
+    ports:
+      - "8020:80"
+    environment: 
+      - ConnectionStrings:SignUpDb=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+      - Dependencies:IReferenceDataLoader=SignUp.Web.ReferenceData.ApiReferenceDataLoader
+      - ReferenceDataApi:Url=http://reference-data-api/api
+    depends_on:
+      - signup-db
+      - reference-data-api
+    networks:
+      - app-net
+
+  reference-data-api:
+    image: dwwx/reference-data-api
+    environment: 
+      - ConnectionStrings:SignUpDb=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+    depends_on:
+      - signup-db
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat

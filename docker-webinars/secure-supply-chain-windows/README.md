@@ -9,6 +9,8 @@
 
 - open settings - storage, using Azure back end, security - online or offline
 
+- open `w2k3-dev/static-html` - show images & scan results
+
 - open `w2k3-dev/aspnet-webforms` - show images & scan results
 
 - open permissions, show teams have push rights
@@ -30,8 +32,13 @@
 
 - walk around UCP, dashboard, nodes, swarm
 
+- user management - orgs & teams, roles, grants
+
+- login as tester - can view container logs, but not restart
 
 ## Demo 2.2 - Secrets
+
+login as admin
 
 Deploy app v1
 
