@@ -1,6 +1,6 @@
 # Modernizing .NET Apps with Docker
 
-Session from ProgNET London, 2018. The demos all use the sampel project from my Docker Windows Workshop, which you can follow through yourself with Windows 10 or Windows Server 2016. You'll find the workshop at https://dwwx.space
+Session from ProgNET London, 2018. The demos all use the sample project from my Docker Windows Workshop, which you can follow through yourself with Windows 10 or Windows Server 2016. You'll find the workshop at https://dwwx.space
 
 ## Setup
 
