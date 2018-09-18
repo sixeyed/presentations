@@ -61,7 +61,8 @@ function RelayLocalLogs() {
 }
 
 function DeployToRemoteDatabase() {    
-    Invoke-Sqlcmd -ServerInstance $TargetServerName -Database $TargetDatabaseName -User $TargetUser -Password $TargetPassword -InputFile deploy.sql -Verbose
+    $SqlCmdVars = "DatabaseName=$TargetDatabaseName"
+    Invoke-Sqlcmd -ServerInstance $TargetServerName -Database $TargetDatabaseName -User $TargetUser -Password $TargetPassword -InputFile deploy.sql -Variable $SqlCmdVars -Verbose
     Write-Host "Deployed AssetsDB to database: $TargetDatabaseName"
 }
 

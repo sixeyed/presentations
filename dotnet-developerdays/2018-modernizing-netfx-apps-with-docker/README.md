@@ -84,6 +84,14 @@ docker container run -d -p 8040:80 --name home dwwx/homepage
 
 > Browse to http://localhost:8040
 
+_Build the reverse proxy image:_
+
+```
+docker image build `
+  -t dwwx/reverse-proxy `
+  -f .\docker\frontend-reverse-proxy\reverse-proxy\Dockerfile .
+```
+
 Run the app with the new homepage & proxy:
 
 ```

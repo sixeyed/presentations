@@ -1,7 +1,7 @@
 
 ## Pre-reqs 
 
-- Create `assets-prod1 db in Azure
+- Create `assets-prod` db in Azure
 
 ## Setup
 
@@ -10,8 +10,8 @@
 - Sqlectron
 
 ```
-$env:workshop='C:\scm\github\sixeyed\docker-windows-workshop'
-cd $env:workshop
+$env:demos='C:\scm\github\sixeyed\presentations\dotnet-developerdays\2018-ci-cd-database-powered-by-containers'
+cd $env:demos
 ```
 
 ## Demo 1 - SQL Server
