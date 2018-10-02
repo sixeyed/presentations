@@ -18,7 +18,7 @@ select * from t1
 
 -- check databases
 /*
-select name from sys.databases
+select name, physical_name from sys.master_files
 */
 
 -- attach database

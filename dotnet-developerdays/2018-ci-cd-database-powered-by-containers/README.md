@@ -77,7 +77,18 @@ docker container run -d -p 1433:1433 `
 
 Wait for startup, check logs, connect & run SQL.
 
-Remove and replace:
+Remove and replace with v1:
+
+```
+docker rm -f assets-db
+
+docker container run -d -p 1433:1433 `
+ -v C:\demo3:C:\data `
+ --name assets-db `
+ dockersamples/assets-db:v1
+```
+
+Remove and replace with v2:
 
 ```
 docker rm -f assets-db
