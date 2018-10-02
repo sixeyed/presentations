@@ -1,7 +1,7 @@
 
 ## Pre-reqs 
 
-- Create `assets-prod1 db in Azure
+- Create `assets-prod` db in Azure
 
 ## Setup
 

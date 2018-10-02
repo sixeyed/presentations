@@ -1,0 +1,57 @@
+version: '3.2'
+
+services:
+
+  signup-db:
+    image: microsoft/mssql-server-windows-express:2016-sp1
+    environment: 
+      - ACCEPT_EULA=Y
+      - sa_password=DockerCon!!!
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  signup-web:
+    image: dwwx/signup-web:v2
+    environment: 
+      - ConnectionStrings:SignUpDb=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  homepage:
+    image: dwwx/homepage
+    networks:
+      - app-net
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+  proxy:
+    image: dwwx/reverse-proxy
+    ports:
+    - mode: host
+      published: 8085
+      target: 80
+    networks:
+      - app-net
+    deploy:
+      replicas: 2
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+
+networks:
+  app-net:

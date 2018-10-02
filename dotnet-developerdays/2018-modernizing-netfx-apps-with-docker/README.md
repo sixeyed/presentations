@@ -92,6 +92,14 @@ docker image build `
   -f .\docker\frontend-reverse-proxy\reverse-proxy\Dockerfile .
 ```
 
+_Build the reverse proxy image:_
+
+```
+docker image build `
+  -t dwwx/reverse-proxy `
+  -f .\docker\frontend-reverse-proxy\reverse-proxy\Dockerfile .
+```
+
 Run the app with the new homepage & proxy:
 
 ```
