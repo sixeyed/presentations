@@ -9,11 +9,6 @@
 - Powershell
 - Sqlectron
 
-```
-$env:workshop='C:\scm\github\sixeyed\docker-windows-workshop'
-cd $env:workshop
-```
-
 ## Demo 1 - SQL Server
 
 ```
@@ -21,13 +16,13 @@ docker container run -d -p 1433:1433 `
  -e ACCEPT_EULA=Y `
  -e SA_PASSWORD=DockerCon!!! `
  --name mssql `
- microsoft/mssql-server-windows-express:2016-sp1
+ microsoft/mssql-server-windows-express:2016-sp1    
 ```
 
 Connect. Create db & table & insert data. Query data file location:
 
 ```
-select * from sys.master_files
+select name, physical_name from sys.master_files
 ```
 
 Exec into container and check data files:

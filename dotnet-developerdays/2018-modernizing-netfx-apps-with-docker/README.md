@@ -1,10 +1,9 @@
 
 ## Setup
 
-- Docker
+- Windows VM
 - Powershell
 - Firefox
-- Sqlectron
 - VS Code for dwwx - Dockerfiles & compose
 
 ```
@@ -53,7 +52,8 @@ docker container run `
   --detach --publish 8020:80 `
   dwwx/signup-web
 ```
-> Browse to http://localhost:8020
+
+> Browse to http://win2016-02:8020
 
 Run stack, app & db container:
 
@@ -61,7 +61,7 @@ Run stack, app & db container:
 docker-compose -f .\app\v1.yml up -d
 ```
 
-> Browse to http://localhost:8020
+> Browse to http://win2016-02:8020
 
 Check db.
 
@@ -82,7 +82,15 @@ Run the homepage:
 docker container run -d -p 8040:80 --name home dwwx/homepage
 ```
 
-> Browse to http://localhost:8040
+> Browse to http://win2016-02:8040
+
+_Build the reverse proxy image:_
+
+```
+docker image build `
+  -t dwwx/reverse-proxy `
+  -f .\docker\frontend-reverse-proxy\reverse-proxy\Dockerfile .
+```
 
 Run the app with the new homepage & proxy:
 
@@ -90,7 +98,7 @@ Run the app with the new homepage & proxy:
 docker-compose -f .\app\v2.yml up -d
 ```
 
-> Browse to http://localhost:8020
+> Browse to http://win2016-02:8020
 
 Check db.
 
@@ -114,7 +122,7 @@ docker container run `
   dwwx/reference-data-api
 ```
 
-> Browse to http://localhost:8060/api/countries
+> Browse to http://win2016-02:8060/api/countries
 
 Check logs.
 
@@ -124,7 +132,7 @@ Run the app with the API:
 docker-compose -f .\app\v3.yml up -d
 ```
 
-> Browse to http://localhost:8020
+> Browse to http://win2016-02:8020
 
 Check db & API container logs.
 
@@ -147,6 +155,6 @@ docker-compose -f .\app\v4.yml up -d
 
 Check handler container logs.
 
-> Browse to http://localhost:8020
+> Browse to http://win2016-02:8020
 
 Check db & handler container logs.
