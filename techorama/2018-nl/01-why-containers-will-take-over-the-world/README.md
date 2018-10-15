@@ -17,6 +17,10 @@ Open:
 - 1x Postman with Nuclio collection
 - 1x Firefox
 
+### YAML files at
+
+C:\scm\github\sixeyed\presentations\techorama\2018-nl\01-why-containers-will-take-over-the-world\apps
+
 ## Demo 1 - Cloud Migration
 
 Deploy `vote-stack.yml`.

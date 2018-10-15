@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+
+  my-sql:
+    image: mysql:5.7.22
+    environment: 
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_USER=gordon
+      - MYSQL_PASSWORD=DockerCon!!!
+    networks:
+      - java
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux    
+
+  java-web:
+    image: sixeyed/dcsf-java:v3
+    environment:
+      - LOGGING_PROPERTIES_PATH=/logging.properties
+      - WEB_XML_PATH=/web.xml
+      - CONTEXT_XML_PATH=/context.xml
+      - DEPENDENCY_CHECK_ENABLED=1
+    configs:
+      - source: java-logging
+        target: /logging.properties
+        mode: 0440
+      - source: java-web
+        target: /web.xml
+        mode: 0440
+    secrets:
+     - source: java-context
+       target: /context.xml
+       mode: 0440
+    networks:
+      - java
+    ports:
+    - mode: ingress
+      published: 8070
+      target: 8080
+    deploy:
+      placement:
+        constraints:
+        - node.platform.os == linux
+
+networks:
+  java:
+
+configs:
+  java-logging:
+    external: true
+  java-web:
+    external: true
+
+secrets:
+  java-context:
+    external: true
