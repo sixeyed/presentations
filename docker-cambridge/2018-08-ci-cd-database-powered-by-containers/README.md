@@ -99,7 +99,7 @@ docker container run -d -p 1433:1433 `
  dockersamples/assets-db:v2
 ```
 
-
+h
 ## Demo 4 - CI/CD for the database
 
 ```

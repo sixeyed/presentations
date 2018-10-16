@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+-- check databases
+/*
+select name, physical_name from sys.master_files
+*/
+
+>>>>>>> d8c53b9404d18b8c94bd9792563928db1b2c6ef5
 --insert sample assets
 
 INSERT INTO Assets (AssetTypeId, LocationId, PurchaseDate, PurchasePrice, AssetTag, AssetDescription)
