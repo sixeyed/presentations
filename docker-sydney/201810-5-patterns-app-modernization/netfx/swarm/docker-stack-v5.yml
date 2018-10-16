@@ -54,7 +54,6 @@ services:
     - published: 9080
       target: 9090
     deploy:
-      endpoint_mode: dnsrr
       placement:
         constraints:
         - node.platform.os == linux
