@@ -3,8 +3,8 @@
 
 Either:
 
-- WIndows 10 with [Docker Desktop]() *or*
-- Windows Server 2016 with [Docker Enterprise]()
+- Windows 10 with [Docker Desktop](https://www.docker.com/products/docker-desktop) *or*
+- Windows Server 2016 with [Docker Enterprise](https://store.docker.com/editions/enterprise/docker-ee-server-windows)
 
 ## Setup
 
@@ -66,7 +66,7 @@ docker container exec app_signup-db_1 `
   "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUp"
 ```
 
-> If time, run the end-to-end tests
+Run the end-to-end tests:
 
 ```
 docker container run dwwx/e2e-tests
@@ -99,12 +99,6 @@ Check in SQL Server:
 docker container exec app_signup-db_1 `
   powershell `
   "Invoke-SqlCmd -Query 'SELECT * FROM Prospects' -Database SignUp"
-```
-
-> If time, run the end-to-end tests
-
-```
-docker container run dwwx/e2e-tests
 ```
 
 ## Demo 3 - use pub-sub message handler for analytics
@@ -181,7 +175,7 @@ docker container exec app_signup-db_1 `
 
 Refresh Kibana (same IP).
 
-## Demo 6 - switch to RabbitMQ
+## Demo 5 - switch to RabbitMQ
 
 Start Rabbit first:
 
@@ -239,7 +233,7 @@ docker container exec app_signup-db_1 `
 
 Refresh Kibana.
 
-## Demo 7 - CI
+## Demo 6 - CI
 
 CI process:
 
