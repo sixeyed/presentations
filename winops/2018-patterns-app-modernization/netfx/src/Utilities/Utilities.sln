@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyChecker", "DependencyChecker\DependencyChecker.csproj", "{D5FA23AD-B9EB-40E9-B4A6-FC4053386875}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthChecker", "HealthChecker\HealthChecker.csproj", "{9C14C542-7101-46E9-8E7B-047F0139A939}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5FA23AD-B9EB-40E9-B4A6-FC4053386875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FA23AD-B9EB-40E9-B4A6-FC4053386875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FA23AD-B9EB-40E9-B4A6-FC4053386875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FA23AD-B9EB-40E9-B4A6-FC4053386875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C14C542-7101-46E9-8E7B-047F0139A939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C14C542-7101-46E9-8E7B-047F0139A939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C14C542-7101-46E9-8E7B-047F0139A939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C14C542-7101-46E9-8E7B-047F0139A939}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C17E61C8-C12F-46AB-A175-04D6002F74C8}
+	EndGlobalSection
+EndGlobal
