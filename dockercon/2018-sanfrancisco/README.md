@@ -48,7 +48,7 @@ docker stack deploy -c ./java/swarm/docker-stack-v1.yml java
 
 ## Demo 1 - Logging (.NET)
 
-- browse to [Windows node](http://win2016-01:8080)
+- browse to [Windows node](http://wlb.sixeyed.com:8080)
 - click _Write Logs_
 - check service/container logs
 - nothing
@@ -65,7 +65,7 @@ docker stack deploy \
 
 ## Demo 2 - Config (Java)
 
-- browse to [Linux node](http://ub1604-01:8070)
+- browse to [Linux node](http://llb.sixeyed.com:8070)
 - check service/container logs
 - click _Write Logs_
 - nothing
@@ -124,5 +124,5 @@ docker stack deploy \
  netfx  #5
 ```
 
-- browse to [Prometheus website](http://ub1604-01:9080)
+- browse to [Prometheus website](http://llb.sixeyed.com:9080)
 - query `w3svc_w3wp_requests_per_sec`

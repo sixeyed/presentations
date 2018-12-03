@@ -44,7 +44,7 @@ docker stack deploy `
  -c ./netfx/swarm/docker-stack-v2.yml netfx
 ```
 
-- check swarm `Web.xml` and `logging.properties`
+- check swarm configs
 
 ```
 docker config inspect netfx-appsettings --pretty

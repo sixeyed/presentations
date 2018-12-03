@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+
+  netfx-web:
+    image: sixeyed/dcsf-netfx:v0
+    networks:
+      - netfx
+    ports:
+    - mode: host
+      published: 8082
+      target: 80
+    deploy:
+      endpoint_mode: dnsrr
+      placement:
+        constraints:
+        - node.platform.os == windows
+
+networks:
+  netfx:

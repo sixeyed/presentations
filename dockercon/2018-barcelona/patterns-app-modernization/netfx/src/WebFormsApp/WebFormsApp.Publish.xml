@@ -1,0 +1,30 @@
+<publishData>
+  <publishTarget publishUrl="c:\dcsf\netfx\WebFormsApp\">
+    <file relUrl="bin/log4net.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/log4net.xml" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="appSettings.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="log4net.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/WebFormsApp.pdb" publishTime="06/06/2018 09:15:57" />
+    <file relUrl="Web.config" publishTime="06/04/2018 18:35:32" />
+    <file relUrl="Default.aspx" publishTime="06/06/2018 09:16:24" />
+    <file relUrl="connectionStrings.config" publishTime="06/04/2018 18:37:57" />
+    <file relUrl="bin/appSettings.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/connectionStrings.config" publishTime="06/04/2018 18:37:57" />
+    <file relUrl="bin/WebFormsApp.dll" publishTime="06/06/2018 09:15:57" />
+    <file relUrl="bin/log4net.dll" publishTime="06/04/2018 16:27:28" />
+  </publishTarget>
+  <publishTarget publishUrl="C:\dcsf\netfx\">
+    <file relUrl="bin/log4net.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/log4net.xml" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="appSettings.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="log4net.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/WebFormsApp.pdb" publishTime="06/06/2018 09:15:57" />
+    <file relUrl="Web.config" publishTime="06/04/2018 18:35:32" />
+    <file relUrl="Default.aspx" publishTime="06/06/2018 09:16:24" />
+    <file relUrl="connectionStrings.config" publishTime="06/04/2018 18:37:57" />
+    <file relUrl="bin/appSettings.config" publishTime="06/04/2018 16:27:28" />
+    <file relUrl="bin/connectionStrings.config" publishTime="06/04/2018 18:37:57" />
+    <file relUrl="bin/WebFormsApp.dll" publishTime="06/06/2018 09:15:57" />
+    <file relUrl="bin/log4net.dll" publishTime="06/04/2018 16:27:28" />
+  </publishTarget>
+</publishData>

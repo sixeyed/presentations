@@ -8,7 +8,7 @@ services:
       - netfx
     ports:
     - mode: host
-      published: 8080
+      published: 8085
       target: 80
     deploy:
       endpoint_mode: dnsrr
