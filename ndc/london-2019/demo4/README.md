@@ -40,7 +40,7 @@ kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=gr
 
 > Adapted from [Istio's Logging with Fluentd](https://istio.io/docs/tasks/telemetry/fluentd/)
 
-Deploy FLuentd, ElasticSearch & Kibana:
+Deploy Fluentd, ElasticSearch & Kibana:
 
 ```
 kubectl apply -f 01_logging-stack.yaml

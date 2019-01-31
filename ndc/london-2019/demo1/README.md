@@ -31,7 +31,7 @@ kubectl label namespace default istio-injection=enabled
 Deploy Bookinfo:
 
 ```
-kubectl -f 03_bookinfo.yaml
+kubectl apply -f 03_bookinfo.yaml
 ```
 
 Deploy ingress gateway:

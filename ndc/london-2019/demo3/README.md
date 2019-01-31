@@ -12,6 +12,12 @@ Check default mesh policy is MTLS:
 kubectl describe meshpolicy default
 ```
 
+Check Istio rules:
+
+```
+istioctl authn tls-check details.default.svc.cluster.local
+```
+
 Now find a running Istio container:
 
 ```
@@ -42,11 +48,7 @@ Check name:
 docker container exec $id cat /etc/certs/cert-chain.pem | openssl x509 -text -noout  | grep 'Subject Alternative Name' -A 1
 ```
 
-Check Istio rules:
 
-```
-istioctl authn tls-check details.default.svc.cluster.local
-```
 
 Try and connect with http:
 
