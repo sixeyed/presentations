@@ -38,7 +38,6 @@ Deploy ingress gateway:
 
 ```
 kubectl apply -f 04_bookinfo-gateway.yaml
-
 ```
 
 Check:

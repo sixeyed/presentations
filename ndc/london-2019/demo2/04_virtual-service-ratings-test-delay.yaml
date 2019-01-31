@@ -13,7 +13,7 @@ spec:
     fault:
       delay:
         percent: 100
-        fixedDelay: 5s
+        fixedDelay: 1s
     route:
     - destination:
         host: reviews
