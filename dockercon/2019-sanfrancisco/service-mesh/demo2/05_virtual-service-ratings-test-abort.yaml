@@ -11,9 +11,9 @@ spec:
         end-user:
           exact: jason
     fault:
-      delay:
-        percent: 100
-        fixedDelay: 10s
+      abort:
+        percent: 50
+        httpStatus: 500
     route:
     - destination:
         host: reviews
