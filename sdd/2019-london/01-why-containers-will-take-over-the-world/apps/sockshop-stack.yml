@@ -5,7 +5,7 @@ services:
   front-end:
     image: weaveworksdemos/front-end:0.3.12
     ports:
-      - '8080:8079'
+      - '8020:8079'
     deploy:
       placement:
         constraints:

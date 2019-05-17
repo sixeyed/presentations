@@ -1,16 +1,15 @@
-version: '3.2'
+# v2 adds the reverse proxy and new homepage
+version: '3.7'
 
 services:
-
+  
   signup-db:
-    image: microsoft/mssql-server-windows-express:2016-sp1
-    environment: 
-      - ACCEPT_EULA=Y
+    image: dwwx/sql-server:2017
+    environment:
       - sa_password=DockerCon!!!
     networks:
       - app-net
     deploy:
-      endpoint_mode: dnsrr
       placement:
         constraints:
         - node.platform.os == windows
@@ -19,10 +18,15 @@ services:
     image: dwwx/signup-web:v2
     environment: 
       - ConnectionStrings:SignUpDb=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
+    depends_on:
+      - signup-db
     networks:
       - app-net
     deploy:
-      endpoint_mode: dnsrr
+      labels:
+        - "traefik.frontend.rule=PathPrefix:/app"
+        - "traefik.frontend.priority=10"        
+        - "traefik.port=80"
       placement:
         constraints:
         - node.platform.os == windows
@@ -32,26 +36,33 @@ services:
     networks:
       - app-net
     deploy:
-      endpoint_mode: dnsrr
+      labels:
+        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.frontend.priority=1"
+        - "traefik.port=80"
       placement:
         constraints:
         - node.platform.os == windows
 
   proxy:
-    image: dwwx/reverse-proxy
+    image: traefik:v1.7.11-alpine
+    command:
+      - "--entrypoints=Name:http Address::80 Compress:true"
+      - "--docker"
+      - "--docker.swarmMode"
+      - "--docker.watch"      
+      - "--api"
     ports:
-    - mode: host
-      published: 8085
-      target: 80
+      - "8080:80"
+      - "8090:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   
     networks:
       - app-net
     deploy:
-      replicas: 2
-      endpoint_mode: dnsrr
       placement:
-        constraints:
-        - node.platform.os == windows
-
+        constraints: 
+        - node.role == manager
 
 networks:
   app-net:

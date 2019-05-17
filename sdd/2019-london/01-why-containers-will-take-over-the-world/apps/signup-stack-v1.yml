@@ -1,16 +1,15 @@
+# v1 is the original monolith with SQL Server
 version: '3.2'
 
 services:
 
   signup-db:
-    image: microsoft/mssql-server-windows-express:2016-sp1
+    image: dwwx/sql-server:2017
     environment: 
-      - ACCEPT_EULA=Y
       - sa_password=DockerCon!!!
     networks:
       - app-net
     deploy:
-      endpoint_mode: dnsrr
       placement:
         constraints:
         - node.platform.os == windows
@@ -18,16 +17,13 @@ services:
   signup-web:
     image: dwwx/signup-web:v2
     ports:
-    - mode: host
-      published: 8085
-      target: 80
+    - "8085:80"
     environment: 
       - ConnectionStrings:SignUpDb=Server=signup-db;Database=SignUp;User Id=sa;Password=DockerCon!!!
     networks:
       - app-net
     deploy:
-      replicas: 2
-      endpoint_mode: dnsrr      
+      replicas: 2      
       placement:
         constraints:
         - node.platform.os == windows

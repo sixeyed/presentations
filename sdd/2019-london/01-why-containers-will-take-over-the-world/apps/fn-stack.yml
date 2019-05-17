@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+
+  fn-server:
+    image: fnproject/fnserver:0.3.703
+    environment:    
+      - FN_LOG_LEVEL=DEBUG
+      - FN_IOFS_DOCKER_PATH=/var/lib/docker/volumes/fn_fn-iofs/_data
+      - FN_IOFS_PATH=/iofs
+    ports:
+      - 8070:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - fn-iofs:/iofs
+      - fn-data:/app/data
+    networks:
+      - fn-net
+    privileged: true
+    deploy:
+      placement:
+        constraints: 
+        - node.role == manager
+
+networks:
+  fn-net:
+
+volumes:
+  fn-data:
+  fn-iofs:
