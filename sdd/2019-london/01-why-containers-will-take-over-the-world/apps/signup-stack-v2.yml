@@ -24,7 +24,7 @@ services:
       - app-net
     deploy:
       labels:
-        - "traefik.frontend.rule=PathPrefix:/app"
+        - "traefik.frontend.rule=Host:signup.sixeyed.com;PathPrefix:/app"
         - "traefik.frontend.priority=10"        
         - "traefik.port=80"
       placement:
@@ -37,7 +37,7 @@ services:
       - app-net
     deploy:
       labels:
-        - "traefik.frontend.rule=PathPrefix:/"
+        - "traefik.frontend.rule=Host:signup.sixeyed.com;PathPrefix:/"
         - "traefik.frontend.priority=1"
         - "traefik.port=80"
       placement:
@@ -45,7 +45,7 @@ services:
         - node.platform.os == windows
 
   proxy:
-    image: traefik:v1.7.11-alpine
+    image: traefik:v1.7.11
     command:
       - "--entrypoints=Name:http Address::80 Compress:true"
       - "--docker"

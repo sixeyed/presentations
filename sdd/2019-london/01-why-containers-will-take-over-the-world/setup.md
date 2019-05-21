@@ -4,9 +4,9 @@
 ```
 fn create context `
  --provider default `
- --api-url http://ucpapp-sdd19-fk5p.westeurope.cloudapp.azure.com:8070 `
- --registry dtrapp-sdd19-zpap.westeurope.cloudapp.azure.com/functions `
- sdd19
+ --api-url http://sdd193-lin.westeurope.cloudapp.azure.com:8070 `
+ --registry dtrapp-sdd193-x1zd.westeurope.cloudapp.azure.com/functions `
+ sdd193
 
- fn use context sdd19
+ fn use context sdd193
 ```
