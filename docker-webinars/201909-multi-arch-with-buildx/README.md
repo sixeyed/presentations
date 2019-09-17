@@ -96,7 +96,7 @@ docker buildx use default
 docker buildx build -t sixeyed/todo-webinar:arm64 --platform linux/arm64 .
 ```
 
-Create a build farm:
+_Create a build farm if you don't have one:_
 
 ```
 docker context ls
@@ -113,6 +113,19 @@ docker buildx ls
 Build & push using the farm:
 
 ```
-docker buildx build -t sixeyed/todo-webinar:buildx --platform linux/arm,linux/arm64/linux/amd64 .
+docker buildx use default
+
+docker buildx build -t sixeyed/todo-webinar:buildx --platform linux/arm,linux/arm64,linux/amd64 .
 ```
 
+Check:
+
+```
+docker manifest inspect sixeyed/todo-webinar:buildx
+```
+
+Run (on any Linux):
+
+```
+docker container run -d -p 8060:80 sixeyed/todo-webinar:buildx
+```
