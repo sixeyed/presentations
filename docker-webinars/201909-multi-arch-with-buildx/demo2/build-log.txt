@@ -1,0 +1,387 @@
+Started by upstream project "diamol/golang" build number 49
+originally caused by:
+ Started by timer
+Running as SYSTEM
+Building in workspace /data/jobs/diamol/jobs/ch04-image-gallery/workspace
+using credential gogs-jenkins
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url http://git.athome.ga/sixeyed/diamol.git # timeout=10
+Fetching upstream changes from http://git.athome.ga/sixeyed/diamol.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials gogs-jenkins
+ > git fetch --tags --force --progress http://git.athome.ga/sixeyed/diamol.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b7f03156836d67457787aef5d16510a3d4be9c90 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b7f03156836d67457787aef5d16510a3d4be9c90
+Commit message: "Remove unused async"
+ > git rev-list --no-walk 094b4c1a4ca0adc62bae02331ea5dbfd4dd0e4b5 # timeout=10
+[workspace] $ /bin/sh -xe /tmp/jenkins4005205042879207055.sh
++ cd ./ch04/exercises/image-gallery
++ nslookup linux.arm.workers.swarm.sixeyed
++ tail -n1
++ grep Address
+nslookup: can't resolve '(null)': Name does not resolve
++ awk '{printf ($3" ")}'
++ tr -d ' '
++ armIp=192.168.2.130
++ nslookup linux.arm64.workers.swarm.sixeyed
++ tail -n1
++ grep Address
+nslookup: can't resolve '(null)': Name does not resolve
++ awk '{printf ($3" ")}'
++ tr -d ' '
++ arm64Ip=192.168.2.246
++ nslookup linux.amd64.workers.swarm.sixeyed
++ tail -n1
++ grep Address
++ nslookup: can't resolve '(null)': Name does not resolve
+tr -d ' '
++ awk '{printf ($3" ")}'
++ amd64Ip=192.168.2.120
++ nslookup windows.amd64.workers.swarm.sixeyed
++ tail -n1
++ grep Address
++ tr -d ' '
+nslookup: can't resolve '(null)': Name does not resolve
++ awk '{printf ($3" ")}'
++ winIp=192.168.2.122
++ build 192.168.2.130 linux arm
++ ip=192.168.2.130
++ os=linux
++ arch=arm
++ docker --host tcp://192.168.2.130:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image build --pull -t diamol/ch04-image-gallery:linux-arm .
+Sending build context to Docker daemon   5.12kB
+
+Step 1/10 : FROM diamol/golang AS builder
+latest: Pulling from diamol/golang
+Digest: sha256:ac7f5bec7065a5f0297216abc97d0b551a819939e3c3b6ca677a68da2cb44a6d
+Status: Image is up to date for diamol/golang:latest
+ ---> 1babb6708927
+Step 2/10 : COPY main.go .
+ ---> Using cache
+ ---> d9b827a56c58
+Step 3/10 : RUN go build -o /server
+ ---> Using cache
+ ---> 0637db8b8f90
+Step 4/10 : FROM diamol/base
+latest: Pulling from diamol/base
+Digest: sha256:b3fbe473569250798ed0da8a5a185ebcf49c0e134f5a23200db85fb9d5efcc54
+Status: Image is up to date for diamol/base:latest
+ ---> ea2ccc7da15e
+Step 5/10 : ENV IMAGE_API_URL="http://iotd/image"     ACCESS_API_URL="http://accesslog/access-log"
+ ---> Using cache
+ ---> d1990962a24c
+Step 6/10 : CMD ["/web/server"]
+ ---> Using cache
+ ---> 17ccd0e31fb5
+Step 7/10 : WORKDIR web
+ ---> Using cache
+ ---> f4adb9f1d16b
+Step 8/10 : COPY index.html .
+ ---> Using cache
+ ---> 5b4e1d3d0505
+Step 9/10 : COPY --from=builder /server .
+ ---> Using cache
+ ---> fbef69969cb5
+Step 10/10 : RUN chmod +x server
+ ---> Using cache
+ ---> ec64734bab27
+Successfully built ec64734bab27
+Successfully tagged diamol/ch04-image-gallery:linux-arm
++ build 192.168.2.246 linux arm64
++ ip=192.168.2.246
++ os=linux
++ arch=arm64
++ docker --host tcp://192.168.2.246:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image build --pull -t diamol/ch04-image-gallery:linux-arm64 .
+Sending build context to Docker daemon   5.12kB
+
+Step 1/10 : FROM diamol/golang AS builder
+latest: Pulling from diamol/golang
+Digest: sha256:ac7f5bec7065a5f0297216abc97d0b551a819939e3c3b6ca677a68da2cb44a6d
+Status: Image is up to date for diamol/golang:latest
+ ---> 504b78eda51e
+Step 2/10 : COPY main.go .
+ ---> 0d14701dd367
+Step 3/10 : RUN go build -o /server
+ ---> Running in a0f131d8c647
+Removing intermediate container a0f131d8c647
+ ---> 6cf8cffee083
+Step 4/10 : FROM diamol/base
+latest: Pulling from diamol/base
+Digest: sha256:b3fbe473569250798ed0da8a5a185ebcf49c0e134f5a23200db85fb9d5efcc54
+Status: Image is up to date for diamol/base:latest
+ ---> ce544de9ee2c
+Step 5/10 : ENV IMAGE_API_URL="http://iotd/image"     ACCESS_API_URL="http://accesslog/access-log"
+ ---> Using cache
+ ---> 6d45b4fef7e8
+Step 6/10 : CMD ["/web/server"]
+ ---> Using cache
+ ---> 7ef860d2123d
+Step 7/10 : WORKDIR web
+ ---> Using cache
+ ---> 7e5b9a3f6d02
+Step 8/10 : COPY index.html .
+ ---> Using cache
+ ---> 36632ee4fb7d
+Step 9/10 : COPY --from=builder /server .
+ ---> Using cache
+ ---> 4d1e39a0f9ec
+Step 10/10 : RUN chmod +x server
+ ---> Using cache
+ ---> 8b0d7c4b7b84
+Successfully built 8b0d7c4b7b84
+Successfully tagged diamol/ch04-image-gallery:linux-arm64
++ build 192.168.2.120 linux amd64
++ ip=192.168.2.120
++ os=linux
++ arch=amd64
++ docker --host tcp://192.168.2.120:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image build --pull -t diamol/ch04-image-gallery:linux-amd64 .
+Sending build context to Docker daemon   5.12kB
+
+Step 1/10 : FROM diamol/golang AS builder
+latest: Pulling from diamol/golang
+Digest: sha256:ac7f5bec7065a5f0297216abc97d0b551a819939e3c3b6ca677a68da2cb44a6d
+Status: Image is up to date for diamol/golang:latest
+ ---> 3dd1b3d72f1f
+Step 2/10 : COPY main.go .
+ ---> Using cache
+ ---> 3404f3eaeb5a
+Step 3/10 : RUN go build -o /server
+ ---> Using cache
+ ---> dd3f80a91324
+Step 4/10 : FROM diamol/base
+latest: Pulling from diamol/base
+Digest: sha256:b3fbe473569250798ed0da8a5a185ebcf49c0e134f5a23200db85fb9d5efcc54
+Status: Image is up to date for diamol/base:latest
+ ---> 055936d39205
+Step 5/10 : ENV IMAGE_API_URL="http://iotd/image"     ACCESS_API_URL="http://accesslog/access-log"
+ ---> Using cache
+ ---> 6a83ed5677d0
+Step 6/10 : CMD ["/web/server"]
+ ---> Using cache
+ ---> 6ace3fb8a88e
+Step 7/10 : WORKDIR web
+ ---> Using cache
+ ---> 46c2bfe20998
+Step 8/10 : COPY index.html .
+ ---> Using cache
+ ---> 5fccd529cbf1
+Step 9/10 : COPY --from=builder /server .
+ ---> Using cache
+ ---> 0144a8f1eca4
+Step 10/10 : RUN chmod +x server
+ ---> Using cache
+ ---> f8739835e20a
+Successfully built f8739835e20a
+Successfully tagged diamol/ch04-image-gallery:linux-amd64
++ build 192.168.2.122 windows amd64
++ ip=192.168.2.122
++ os=windows
++ arch=amd64
++ docker --host tcp://192.168.2.122:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image build --pull -t diamol/ch04-image-gallery:windows-amd64 .
+Sending build context to Docker daemon   5.12kB
+
+Step 1/10 : FROM diamol/golang AS builder
+latest: Pulling from diamol/golang
+Digest: sha256:ac7f5bec7065a5f0297216abc97d0b551a819939e3c3b6ca677a68da2cb44a6d
+Status: Image is up to date for diamol/golang:latest
+ ---> a3e19948f79c
+Step 2/10 : COPY main.go .
+ ---> Using cache
+ ---> 8982be726aed
+Step 3/10 : RUN go build -o /server
+ ---> Using cache
+ ---> 4252771b992f
+Step 4/10 : FROM diamol/base
+latest: Pulling from diamol/base
+Digest: sha256:b3fbe473569250798ed0da8a5a185ebcf49c0e134f5a23200db85fb9d5efcc54
+Status: Image is up to date for diamol/base:latest
+ ---> 375beb984629
+Step 5/10 : ENV IMAGE_API_URL="http://iotd/image"     ACCESS_API_URL="http://accesslog/access-log"
+ ---> Using cache
+ ---> a96bea9e3fc0
+Step 6/10 : CMD ["/web/server"]
+ ---> Using cache
+ ---> 51894ab50c94
+Step 7/10 : WORKDIR web
+ ---> Using cache
+ ---> d11ceb5f001d
+Step 8/10 : COPY index.html .
+ ---> Using cache
+ ---> 35a976f1f063
+Step 9/10 : COPY --from=builder /server .
+ ---> Using cache
+ ---> 456e094e84a7
+Step 10/10 : RUN chmod +x server
+ ---> Using cache
+ ---> cce343875e43
+Successfully built cce343875e43
+Successfully tagged diamol/ch04-image-gallery:windows-amd64
++ push 192.168.2.130 linux arm
++ ip=192.168.2.130
++ os=linux
++ arch=arm
++ docker --host tcp://192.168.2.130:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** login -u **** -p 'faB'"''"'LRU7Nv~'
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker --host tcp://192.168.2.130:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image push diamol/ch04-image-gallery:linux-arm
+The push refers to repository [docker.io/diamol/ch04-image-gallery]
+ce6485ffede1: Preparing
+ce6485ffede1: Preparing
+95687ff870c1: Preparing
+19cc699a436d: Preparing
+7d5b9c167a1f: Preparing
+95687ff870c1: Layer already exists
+7d5b9c167a1f: Layer already exists
+19cc699a436d: Layer already exists
+ce6485ffede1: Layer already exists
+linux-arm: digest: sha256:691deeb4e52df23a7553e29ffa476d2de264971e833ecdd78971fdef49679e7a size: 1364
++ push 192.168.2.246 linux arm64
++ ip=192.168.2.246
++ os=linux
++ arch=arm64
++ docker --host tcp://192.168.2.246:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** login -u **** -p 'faB'"''"'LRU7Nv~'
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker --host tcp://192.168.2.246:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image push diamol/ch04-image-gallery:linux-arm64
+The push refers to repository [docker.io/diamol/ch04-image-gallery]
+8834fda387a4: Preparing
+8834fda387a4: Preparing
+5e02df456864: Preparing
+35c1bcdfb8ac: Preparing
+6d626da635fc: Preparing
+6d626da635fc: Layer already exists
+8834fda387a4: Layer already exists
+5e02df456864: Layer already exists
+35c1bcdfb8ac: Layer already exists
+linux-arm64: digest: sha256:8377575feb355b7bfb8ede8ea3da92f684d20cd1bc54bda2dfa9100e6d5f34b5 size: 1364
++ push 192.168.2.120 linux amd64
++ ip=192.168.2.120
++ os=linux
++ arch=amd64
++ docker --host tcp://192.168.2.120:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** login -u **** -p 'faB'"''"'LRU7Nv~'
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker --host tcp://192.168.2.120:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image push diamol/ch04-image-gallery:linux-amd64
+The push refers to repository [docker.io/diamol/ch04-image-gallery]
+ba7cad34fe4d: Preparing
+ba7cad34fe4d: Preparing
+6487265bdb72: Preparing
+bb96d970454e: Preparing
+f1b5933fe4b5: Preparing
+6487265bdb72: Layer already exists
+f1b5933fe4b5: Layer already exists
+ba7cad34fe4d: Layer already exists
+bb96d970454e: Layer already exists
+linux-amd64: digest: sha256:cfbd2649ea30aa617528f3fb19db733da276d353210fcb699135bc0bed232d56 size: 1364
++ push 192.168.2.122 windows amd64
++ ip=192.168.2.122
++ os=windows
++ arch=amd64
++ docker --host tcp://192.168.2.122:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** login -u **** -p 'faB'"''"'LRU7Nv~'
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker --host tcp://192.168.2.122:2376 --tlsverify --tlscacert **** --tlscert **** --tlskey **** image push diamol/ch04-image-gallery:windows-amd64
+The push refers to repository [docker.io/diamol/ch04-image-gallery]
+971687ec5f19: Preparing
+4e15dccfcd9e: Preparing
+a76b706fbbcc: Preparing
+a90ed6b84a99: Preparing
+c4505eb242db: Preparing
+66eda51272f9: Preparing
+f8a2950093b4: Preparing
+fadaacba1fe1: Preparing
+0cb688184c57: Preparing
+f8a2950093b4: Waiting
+fadaacba1fe1: Waiting
+0cb688184c57: Waiting
+66eda51272f9: Waiting
+4e15dccfcd9e: Layer already exists
+a76b706fbbcc: Layer already exists
+a90ed6b84a99: Layer already exists
+971687ec5f19: Layer already exists
+0cb688184c57: Skipped foreign layer
+c4505eb242db: Layer already exists
+f8a2950093b4: Layer already exists
+66eda51272f9: Layer already exists
+fadaacba1fe1: Layer already exists
+windows-amd64: digest: sha256:144f0c45c73ec8ba2adae201851b11d1b2442cd24085ddda55022e3c609c8c61 size: 2296
+[workspace] $ /bin/sh -xe /tmp/jenkins4678655043537888127.sh
++ rm -r -f /root/.docker/manifests/docker.io_diamol_ch04-image-gallery-latest
++ docker manifest create diamol/ch04-image-gallery diamol/ch04-image-gallery:windows-amd64 diamol/ch04-image-gallery:linux-amd64 diamol/ch04-image-gallery:linux-arm64 diamol/ch04-image-gallery:linux-arm
+Created manifest list docker.io/diamol/ch04-image-gallery:latest
++ docker manifest inspect diamol/ch04-image-gallery
+{
+   "schemaVersion": 2,
+   "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+   "manifests": [
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 1364,
+         "digest": "sha256:cfbd2649ea30aa617528f3fb19db733da276d353210fcb699135bc0bed232d56",
+         "platform": {
+            "architecture": "amd64",
+            "os": "linux"
+         }
+      },
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 1364,
+         "digest": "sha256:691deeb4e52df23a7553e29ffa476d2de264971e833ecdd78971fdef49679e7a",
+         "platform": {
+            "architecture": "arm",
+            "os": "linux"
+         }
+      },
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 1364,
+         "digest": "sha256:8377575feb355b7bfb8ede8ea3da92f684d20cd1bc54bda2dfa9100e6d5f34b5",
+         "platform": {
+            "architecture": "arm64",
+            "os": "linux"
+         }
+      },
+      {
+         "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+         "size": 2296,
+         "digest": "sha256:144f0c45c73ec8ba2adae201851b11d1b2442cd24085ddda55022e3c609c8c61",
+         "platform": {
+            "architecture": "amd64",
+            "os": "windows",
+            "os.version": "10.0.17763.737"
+         }
+      }
+   ]
+}
++ docker login 
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
++ docker manifest push diamol/ch04-image-gallery
+sha256:c8f462be412a23d76843b72255c35dfa9f7dcb6ff9bb588c9b31faee7cda3878
++ echo https://cloud.docker.com/u/diamol/repository/registry-1.docker.io/diamol/ch04-image-gallery/tags
+https://cloud.docker.com/u/diamol/repository/registry-1.docker.io/diamol/ch04-image-gallery/tags
+Finished: SUCCESS
