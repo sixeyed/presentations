@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-list-web
+spec:
+  ports:
+    - port: 8081
+      targetPort: 80
+      name: todo-list-web
+  selector:
+    app: todo-list-web
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-web
+spec:
+  selector:
+    matchLabels:
+      app: todo-list-web
+  template:
+    metadata:
+      labels:
+        app: todo-list-web
+    spec:
+      containers:
+      - image: dotnetconf/todo-list:3.0       
+        imagePullPolicy: Always
+        name: todo-list-web
+        ports:
+        - containerPort: 80
+          name: todo-list-web
+        volumeMounts:
+          - name: todo-list-config
+            mountPath: "/app/config"
+            readOnly: true
+      volumes:
+      - name: todo-list-config
+        secret:
+          secretName: todo-list-config
+      nodeSelector:
+        beta.kubernetes.io/os: linux
