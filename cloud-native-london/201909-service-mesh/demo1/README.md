@@ -7,7 +7,11 @@
 Running objects:
 
 ```
+kubectl get all
+
 kubectl get all -n istio-system
+
+docker info
 ```
 
 Label:

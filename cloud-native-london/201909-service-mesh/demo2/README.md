@@ -15,17 +15,9 @@ Deploy v3 for test team:
 kubectl apply -f 02_bookinfo-v3.yaml
 ```
 
-Test error handling - slow response:
+03 - Test error handling - slow response
 
-```
-kubectl apply -f 03_delay-test.yaml
-```
-
-Test error handling - server failure:
-
-```
-kubectl apply -f 04_fault-test.yaml
-```
+04 - Test error handling - server failure:
 
 Canary rollout - 80/20:
 
