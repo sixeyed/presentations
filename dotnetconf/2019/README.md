@@ -22,9 +22,29 @@ To run the apps in AKS:
 - VS Code with Nerd Dinner source [sixeyed/docker-on-windows](https://github.com/sixeyed/docker-on-windows)
 - Firefox
 
-## Demo 1 - .NET Core 3.0 app
+## Demo 1 - .NET Core 3.0 running locally
 
 > Walkthrough [Dockerfile](https://github.com/sixeyed/todo-list-dotnet/blob/master/Dockerfile)
+
+```
+docker image build -t dotnetconf/todo-list .
+```
+
+```
+docker image ls dotnetconf/*
+```
+
+> Walkthrough [TodoList.proj]()
+
+Run locally with Sqlite:
+
+```
+docker container run -d -p 8098:80 dotnetconf/todo-list
+```
+
+> Browse to http://localhost:8098
+
+## Demo 2 - .NET Core 3.0 app in AKS
 
 > Walkthrough [Kube manifest for To-Do List](./apps/todo-list/todo-list-web.yml)
 
