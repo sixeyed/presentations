@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-list-web
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+  selector:
+    app: todo-list-web
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-web
+spec:
+  selector:
+    matchLabels:
+      app: todo-list-web
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: todo-list-web
+    spec:
+      containers:
+        - image: diamol/ch06-todo-list
+          name: todo-list-web
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: Database__Provider
+              value: "Postgres"
+          volumeMounts:
+            - name: todo-list-config
+              mountPath: "/app/config"
+              readOnly: true
+      volumes:
+        - name: todo-list-config
+          secret:
+            secretName: todo-list-config
+      nodeSelector:
+        beta.kubernetes.io/os: linux
