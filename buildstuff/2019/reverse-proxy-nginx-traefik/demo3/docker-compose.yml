@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: sixeyed/nginx:1911
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ./blog-local.crt
+        target: /etc/ssl/blog-local.crt
+      - type: bind
+        source: ./blog-local.key
+        target: /etc/ssl/blog-local.key
+    depends_on:
+      - pi
+      - todo
+      - ghost
+    networks:
+      - app-net
+
+  pi:
+    image: sixeyed/pi-web:1911
+    networks:
+      - app-net
+
+  todo:
+    image: diamol/ch06-todo-list
+    networks:
+      - app-net
+
+  ghost:
+    image: ghost:3.0.2-alpine
+    networks:
+      - app-net
+
+networks:
+  app-net:
