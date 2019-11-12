@@ -8,8 +8,8 @@ spec:
     component: web
   ports:
     - name: http
-      port: 80
-      targetPort: 80
+      port: 2368
+      targetPort: 2368
   type: ClusterIP
 ---
 apiVersion: apps/v1
@@ -31,7 +31,7 @@ spec:
         - image: ghost:3.0.2-alpine
           name: blog
           ports:
-            - containerPort: 80
+            - containerPort: 2368
               name: http
       nodeSelector:
         beta.kubernetes.io/os: linux

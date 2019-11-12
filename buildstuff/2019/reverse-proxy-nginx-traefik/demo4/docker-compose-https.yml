@@ -34,6 +34,11 @@ services:
       labels:
         - "traefik.http.routers.pi.rule=Host(`pi.local`)"
         - "traefik.http.routers.pi.entrypoints=web"
+        - "traefik.http.routers.pi.middlewares=pi-redirect@docker"
+        - "traefik.http.middlewares.pi-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.pi-secure.rule=Host(`pi.local`)"
+        - "traefik.http.routers.pi-secure.entrypoints=web-secure"
+        - "traefik.http.routers.pi-secure.tls=true"
         - "traefik.http.services.pi-service.loadbalancer.server.port=80"
 
   todo:
@@ -44,6 +49,11 @@ services:
       labels:
         - "traefik.http.routers.todo.rule=Host(`todo.local`)"
         - "traefik.http.routers.todo.entrypoints=web"
+        - "traefik.http.routers.todo.middlewares=todo-redirect@docker"
+        - "traefik.http.middlewares.todo-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.todo-secure.rule=Host(`todo.local`)"
+        - "traefik.http.routers.todo-secure.entrypoints=web-secure"
+        - "traefik.http.routers.todo-secure.tls=true"
         - "traefik.http.services.todo-service.loadbalancer.server.port=80"
 
   ghost:
@@ -54,6 +64,11 @@ services:
       labels:
         - "traefik.http.routers.ghost.rule=Host(`blog.local`)"
         - "traefik.http.routers.ghost.entrypoints=web"
+        - "traefik.http.routers.ghost.middlewares=todo-redirect@docker"
+        - "traefik.http.middlewares.ghost-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.ghost-secure.rule=Host(`blog.local`)"
+        - "traefik.http.routers.ghost-secure.entrypoints=web-secure"
+        - "traefik.http.routers.ghost-secure.tls=true"
         - "traefik.http.services.ghost-service.loadbalancer.server.port=2368"
 
 networks:

@@ -17,6 +17,7 @@ kind: Deployment
 metadata:
   name: pi
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: pi

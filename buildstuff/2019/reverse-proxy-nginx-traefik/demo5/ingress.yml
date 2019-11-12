@@ -1,24 +1,27 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: signup
+  name: apps
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.frontend.rule.type: PathPrefix
 spec:
   rules:
-    - host: localhost
+    - host: pi.local
       http:
         paths:
-          - host: pi.local
-            backend:
+          - backend:
               serviceName: pi
               servicePort: http
-          - host: todo.local
-            backend:
+    - host: todo.local
+      http:
+        paths:
+          - backend:
               serviceName: todo
               servicePort: http
-          - host: blog.local
-            backend:
+    - host: blog.local
+      http:
+        paths:
+          - backend:
               serviceName: blog
               servicePort: http
