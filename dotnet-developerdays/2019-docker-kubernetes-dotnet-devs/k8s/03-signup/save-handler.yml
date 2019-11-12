@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: save-handler
+spec:
+  selector:
+    matchLabels:
+      app: signup
+      component: save-handler
+  template:
+    metadata:
+      labels:
+        app: signup
+        component: save-handler
+    spec:
+      containers:
+        - image: dak4dotnet/signup-save-handler-core:linux
+          name: save-handler
+          volumeMounts:
+            - name: secrets
+              mountPath: "/save-prospect-handler/secrets"
+              readOnly: true
+      volumes:
+        - name: secrets
+          secret:
+            secretName: save-handler-config
+      nodeSelector:
+        beta.kubernetes.io/os: linux

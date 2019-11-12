@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: signup-web
+spec:
+  selector:
+    app: signup
+    component: web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signup-web
+spec:
+  selector:
+    matchLabels:
+      app: signup
+      component: web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: signup
+        component: web
+    spec:
+      containers:
+        - image: dak4dotnet/signup-web:v2
+          imagePullPolicy: Always
+          name: signup-web
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: secrets
+              mountPath: "/web-app/config"
+              readOnly: true
+      volumes:
+        - name: secrets
+          secret:
+            secretName: signup-web-config
+      nodeSelector:
+        beta.kubernetes.io/os: windows

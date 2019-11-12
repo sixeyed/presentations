@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: homepage
+spec:
+  selector:
+    app: signup
+    component: homepage
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage
+spec:
+  selector:
+    matchLabels:
+      app: signup
+      component: homepage
+  template:
+    metadata:
+      labels:
+        app: signup
+        component: homepage
+    spec:
+      containers:
+        - image: dak4dotnet/homepage-nginx:linux
+          name: homepage
+          ports:
+            - containerPort: 80
+              name: http
+      nodeSelector:
+        beta.kubernetes.io/os: linux

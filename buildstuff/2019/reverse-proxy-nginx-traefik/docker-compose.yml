@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: sixeyed/nginx:1911
+    build:
+      context: nginx
+
+  pi:
+    image: sixeyed/pi-web:1911
+    build:
+      context: pi

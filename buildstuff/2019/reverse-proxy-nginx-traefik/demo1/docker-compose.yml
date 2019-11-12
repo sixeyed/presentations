@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: sixeyed/nginx:1911
+    ports:
+      - "80:80"
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - pi
+    networks:
+      - app-net
+
+  pi:
+    image: sixeyed/pi-web:1911
+    networks:
+      - app-net
+
+networks:
+  app-net:
