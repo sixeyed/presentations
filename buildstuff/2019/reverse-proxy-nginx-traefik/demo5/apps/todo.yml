@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo
+spec:
+  selector:
+    app: todo
+    component: web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo
+spec:
+  selector:
+    matchLabels:
+      app: todo
+      component: web
+  template:
+    metadata:
+      labels:
+        app: todo
+        component: web
+    spec:
+      containers:
+        - image: diamol/ch06-todo-list
+          name: todo
+          ports:
+            - containerPort: 80
+              name: http
+      nodeSelector:
+        beta.kubernetes.io/os: linux

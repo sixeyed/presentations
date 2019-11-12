@@ -13,17 +13,17 @@ docker container run -d -p 80:80 --name pi sixeyed/pi-web:1911
 - no caching
 - no gzip
 
-```
-docker container rm -f pi
-```
-
 Pi app with Nginx
 
+- Walk through [Nginx configuration](demo1/nginx.conf) and [Compose file](demo1/docker-compose.yml)
+
 ```
+docker container rm -f pi
+
 docker-compose -f ./demo1/docker-compose.yml up -d
 ```
 
-> Repeat http://localhost and http://localhost?dp=1000 with dev tools
+> Repeat http://localhost and http://localhost?dp=1000 with network view (Ctrl-Shift-E)
 
 - response caching
 - header rewrite
@@ -31,7 +31,7 @@ docker-compose -f ./demo1/docker-compose.yml up -d
 Kill app container:
 
 ```
-docker rm -f demo1_pi_1
+docker container rm -f demo1_pi_1
 ```
 
 > http://localhost and http://localhost?dp=1000
@@ -49,7 +49,7 @@ docker-compose -f ./demo1/docker-compose.yml up -d --scale pi=3
 Todo app direct
 
 ```
-docker rm -f $(docker ps -aq)
+docker container rm -f $(docker container ls -aq)
 
 docker container run -d -p 80:80 --name todo diamol/ch06-todo-list
 ```
@@ -60,7 +60,11 @@ docker container run -d -p 80:80 --name todo diamol/ch06-todo-list
 
 Pi app + todo app
 
+- Walk through [Nginx configuration](demo2/nginx.conf) and [Compose file](demo2/docker-compose.yml)
+
 ```
+cat C:\Windows\System32\drivers\etc\hosts
+
 docker container rm -f todo
 
 docker-compose -f ./demo2/docker-compose.yml up -d
@@ -72,16 +76,49 @@ docker-compose -f ./demo2/docker-compose.yml up -d
 
 ## Demo 3 - Nginx headers & SSL
 
-Blog + Pi app + todo app
+Blog direct
 
 ```
-docker rm -f $(docker ps -aq)
+docker container rm -f $(docker container ls -aq)
+
+docker container run -d -p 2368:2368 --name blog ghost:3.0.2-alpine
+```
+
+> Browse to http://localhost:2368
+
+- plain http
+- ghost endpoint available
+
+Blog + Pi app + todo app
+
+- Walk through [Nginx configuration](demo3/nginx.conf) and [Compose file](demo3/docker-compose.yml)
+
+```
+docker container rm -f blog
 
 docker-compose -f ./demo3/docker-compose.yml up -d
 ```
 
-> Browse to http://blog.local, http://pi.local and http://todo.local
+> Browse to http://pi.local, http://todo.local and http://blog.local
 
 ## Demo 4 - Traefik with Docker
 
+```
+docker swarm init
+
+docker stack deploy -c ./demo4/docker-compose.yml apps
+```
+
 ## Demo 5 - Traefik as Kubernetes ingress
+
+```
+docker container rm -f $(docker container ls -aq)
+
+docker swarm leave -f
+
+kubectl apply -f ./demo5/apps
+
+kubectl apply -f ./demo5/traefik.yml
+
+kubectl apply -f ./demo5/ingress.yml
+```

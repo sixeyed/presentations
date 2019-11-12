@@ -1,0 +1,46 @@
+version: "3.7"
+
+services:
+  traefik:
+    image: traefik:1.7.18-alpine
+    command: --api --docker --docker.watch --docker.swarmMode
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - app-net
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+
+  pi:
+    image: sixeyed/pi-web:1911
+    networks:
+      - app-net
+    deploy:
+      replicas: 3
+      labels:
+        traefik.frontend.rule: Host:pi.local
+
+  todo:
+    image: diamol/ch06-todo-list
+    networks:
+      - app-net
+    deploy:
+      labels:
+        traefik.frontend.rule: Host:todo.local
+
+  ghost:
+    image: ghost:3.0.2-alpine
+    networks:
+      - app-net
+    deploy:
+      labels:
+        traefik.frontend.rule: Host:blog.local
+
+networks:
+  app-net:
