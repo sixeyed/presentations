@@ -1,3 +1,8 @@
+# Just what is a Service Mesh - and if I get one will it make everything OK?
+
+Slides on SlideShare:
+
+> [BuildStuff 2019 Appetizer: Just what is a Service Mesh?](https://is.gd/J2WIOl)
 
 ## Pre-reqs
 
