@@ -1,6 +1,8 @@
 # Docker 101 & Workshop
 
-[Slides here](https://www.slideshare.net/sixeyed/docker-101-workshop).
+These demo docs at https://is.gd/bekaxe
+
+Session slides at https://is.gd/fuwasi.
 
 ## Demo 1 - Nextcloud
 
