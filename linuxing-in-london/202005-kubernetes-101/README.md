@@ -1,4 +1,4 @@
-# Docker 101 & Workshop
+# Kubernetes 101 & Workshop
 
 These demo docs at https://is.gd/sinivi.
 
