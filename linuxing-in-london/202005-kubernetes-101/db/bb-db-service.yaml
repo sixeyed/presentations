@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bb-db
+  labels:
+    app: bb-db
+spec:
+  ports:
+    - port: 1433
+      targetPort: 1433
+  selector:
+    app: bb-db
+  type: ClusterIP

@@ -1,8 +1,10 @@
 # Docker 101 & Workshop
 
-These demo docs at https://is.gd/bekaxe
+These demo docs at https://is.gd/bekaxe.
 
 Session slides at https://is.gd/fuwasi.
+
+Video at https://youtu.be/smLgvYWr9iQ.
 
 ## Demo 1 - Nextcloud
 
@@ -14,6 +16,8 @@ Browse to https://nextcloud.com
 
 ```
 docker run -d -p 8080:80 nextcloud
+
+docker container ls
 ```
 
 > Open http://localhost:8080
