@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: bb-web
   labels:
-    app: bb-web
+    demo: kube101
 spec:
   ports:
     - port: 8080

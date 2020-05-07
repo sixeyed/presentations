@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: bb-db
   labels:
-    app: bb-db
+    demo: kube101
 spec:
   selector:
     matchLabels:

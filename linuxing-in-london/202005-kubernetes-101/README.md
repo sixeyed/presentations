@@ -60,8 +60,6 @@ Deploy all:
 kubectl apply -f web/
 
 kubectl get svc
-
-kubectl get all -l app=bb-web
 ```
 
 Check status:
@@ -93,7 +91,9 @@ kubectl apply -f db/
 
 kubectl get svc
 
-kubectl get all -l app=bb-db
+kubectl get pods -l app=bb-db
+
+kubectl logs -l app=bb-db
 ```
 
 Check app status:
@@ -112,4 +112,26 @@ Scale up:
 
 ```
 kubectl scale deploy/bb-web --replicas=3
+
+kubectl get pods -l app=bb-web
+
+kubectl get endpoints bb-web
+```
+
+> Browse and refresh lots
+
+Check load balancing:
+
+```
+kubectl logs -l app=bb-web --tail 1
+```
+
+## Teardown
+
+All the objects are labelled with `demo=kube101`, so we can delete them all using a label selector.
+
+```
+kubectl get all -l demo=kube101
+
+kubectl delete all -l demo=kube101
 ```

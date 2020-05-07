@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: bb-db
   labels:
-    app: bb-db
+    demo: kube101
 spec:
   ports:
     - port: 1433
