@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-api
+  labels:
+    demo: dc20
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pi-api
+  template:
+    metadata:
+      labels:
+        app: pi-api
+    spec:
+      containers:
+        - image: sixeyed/pi:api-2002
+          name: web
+          resources:
+            limits:
+              cpu: 250m
+              memory: 500Mi
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: ConfigController__Enabled
+              value: "true"
+          volumeMounts:
+            - name: config
+              mountPath: "/app/config"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: pi-api-config
+      nodeSelector:
+        beta.kubernetes.io/os: linux

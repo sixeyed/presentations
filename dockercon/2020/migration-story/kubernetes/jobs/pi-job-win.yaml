@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-win-100000
+  labels:
+    demo: dc20
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          imagePullPolicy: Always
+          image: sixeyed/pi:win-dc20
+          command: ["/app/Pi.Runtime.NetFx", "-dp", "100000"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2Gi"
+      restartPolicy: Never
+      nodeSelector:
+        beta.kubernetes.io/os: windows

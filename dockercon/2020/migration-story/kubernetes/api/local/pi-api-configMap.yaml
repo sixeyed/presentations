@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pi-api-config
+  labels:
+    demo: dc20
+data:
+  config.json: |-
+    {
+      "Pi": {
+        "Processor": "KubernetesProcessor",
+        "Docker": {
+          "Image": "sixeyed/pi:stub-dc20",
+          "OSPlatform": "Linux"
+        },
+        "Processors": {
+          "Kubernetes": {
+            "Configuration": "InCluster",
+            "UseAci": false
+          }
+        }
+      }
+    }

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-stub-5000
+  labels:
+    demo: dc20
+spec:
+  template:
+    spec:
+      containers:
+        - name: pi
+          image: sixeyed/pi:stub-dc20
+          command: ["/app/Pi.Runtime.NetFx", "-dp", "5000"]
+      restartPolicy: Never
+      nodeSelector:
+        beta.kubernetes.io/os: linux

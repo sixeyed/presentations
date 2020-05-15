@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  pi-win:
+    image: sixeyed/pi:win-dc20
+    build:
+      context: ./docker/win
+
+  pi-stub:
+    image: sixeyed/pi:stub-dc20
+    build:
+      context: ./docker/stub
