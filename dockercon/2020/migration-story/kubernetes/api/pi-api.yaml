@@ -14,6 +14,7 @@ spec:
       labels:
         app: pi-api
     spec:
+      serviceAccountName: pi-api-sa
       containers:
         - image: sixeyed/pi:api-2002
           name: web
