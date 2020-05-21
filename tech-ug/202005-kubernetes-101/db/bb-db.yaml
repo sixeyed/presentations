@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bb-db
+  labels:
+    demo: kube101
+spec:
+  selector:
+    matchLabels:
+      app: bb-db
+  template:
+    metadata:
+      labels:
+        app: bb-db
+    spec:
+      containers:
+        - name: db
+          image: sixeyed/bulletin-board-db:v2    
+          env:
+          - name: MSSQL_SA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: MSSQL_SA_PASSWORD
+                name: bb-db-secret

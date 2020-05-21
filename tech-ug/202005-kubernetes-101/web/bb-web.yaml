@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bb-web
+  labels:
+    demo: kube101
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bb-web
+  template:
+    metadata:
+      labels:
+        app: bb-web
+    spec:
+      containers:
+        - name: web
+          image: sixeyed/bulletin-board-app:v2
