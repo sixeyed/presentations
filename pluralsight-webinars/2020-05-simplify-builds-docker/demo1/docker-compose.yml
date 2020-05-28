@@ -3,14 +3,19 @@ version: '3.7'
 services:
 
   pi-web:
-    image: sixeyed/pi-web:psod-2005
+    image: sixeyed/pi:20.05
+    environment: 
+      - Computation:Metrics:Enabled=false
+    command: -m web
     networks:
       - pi-net
 
   pi-proxy:
-    image: sixeyed/pi-proxy:psod-2005
+    image: sixeyed/pi:proxy-20.05
     ports:
       - "8314:80"
+    depends_on: 
+      - pi-web
     networks:
       - pi-net
 
