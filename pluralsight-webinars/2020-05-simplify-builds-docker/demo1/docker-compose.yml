@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+
+  pi-web:
+    image: sixeyed/pi-web:psod-2005
+    networks:
+      - pi-net
+
+  pi-proxy:
+    image: sixeyed/pi-proxy:psod-2005
+    ports:
+      - "8314:80"
+    networks:
+      - pi-net
+
+networks:
+  pi-net:

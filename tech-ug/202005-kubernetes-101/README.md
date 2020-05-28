@@ -1,8 +1,10 @@
 # Kubernetes 101 
 
-These demo docs at https://is.gd/sinivi.
+These demo docs at https://is.gd/apagut.
 
-Session slides at https://is.gd/uquzut.
+Session slides at https://is.gd/veciti.
+
+Source code for the bulletin board app at [dockersamples/node-bulletin-board](https://github.com/dockersamples/node-bulletin-board).
 
 ## Setup
 
