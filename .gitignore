@@ -40,3 +40,4 @@ artifacts/
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
 .DS_Store
+dotnetconf/2020/microservices/products-service/update/connection-string.yaml

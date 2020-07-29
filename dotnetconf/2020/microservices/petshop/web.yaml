@@ -31,14 +31,21 @@ spec:
       automountServiceAccountToken: false
       containers:
         - image: sixeyed/petshop-web:1809
+          imagePullPolicy: Always
           name: app
           ports:
             - containerPort: 80
               name: http
           volumeMounts:
-            - name: connection-string
+            - name: config
               mountPath: "/petshop-web/config"
               readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 20
+            initialDelaySeconds: 15
           resources:
             requests:
               cpu: 250m
@@ -47,9 +54,13 @@ spec:
               cpu: 500m
               memory: 500Mi              
       volumes:
-        - name: connection-string
-          secret:
-            secretName: petshop-connection-string
+        - name: config
+          projected:
+            sources:             
+              - configMap:
+                  name: petshop-app-settings
+              - secret:
+                  name: petshop-connection-string
       nodeSelector:
         kubernetes.io/os: windows 
       affinity:

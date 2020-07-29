@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: petshop-web
   namespace: petshop
+  labels:
+    app: petshop
+    component: web
   annotations:
     nginx.ingress.kubernetes.io/affinity: cookie
 spec:
@@ -20,6 +23,9 @@ kind: Ingress
 metadata:
   name: petshop-web-static
   namespace: petshop
+  labels:
+    app: petshop
+    component: web
   annotations:
     nginx.ingress.kubernetes.io/proxy-buffering: "on" 
     nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -38,19 +44,4 @@ spec:
       - path: /Comm_Images/
         backend:
           serviceName: petshop-web
-          servicePort: 80
----
-apiVersion: networking.k8s.io/v1beta1 
-kind: Ingress
-metadata:
-  name: petshop-webservice
-  namespace: petshop
-spec:
-  rules:
-  - host: ws.petshop.sixeyed.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: petshop-webservice
           servicePort: 80

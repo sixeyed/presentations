@@ -9,11 +9,7 @@ data:
       <!-- Pet Shop DAL configuration settings. Possible values: PetShop.SQLServerDAL for SqlServer, PetShop.OracleServerDALfor Oracle. -->
       <add key="WebDAL" value="PetShop.SQLServerDAL"/>
       <add key="OrdersDAL" value="PetShop.SQLServerDAL"/>
-      <add key="ProfileDAL" value="PetShop.SQLProfileDAL"/>      
-      <!-- v4.1 - Service DALs -->
-      <add key="ServiceDAL" value="PetShop.ServiceDAL"/>
-      <!-- v4.1 - Services -->
-      <add key="Services.ProductServiceUrl" value="http://localhost:8080"/>
+      <add key="ProfileDAL" value="PetShop.SQLProfileDAL"/>
       <!-- Enable data caching -->
       <add key="EnableCaching" value="false"/>
       <!-- Cache duration (in hours-whole number only) -->

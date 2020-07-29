@@ -31,6 +31,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - image: sixeyed/petshop-webservice:1809
+          imagePullPolicy: Always
           name: app
           ports:
             - containerPort: 80
@@ -39,6 +40,12 @@ spec:
             - name: connection-string
               mountPath: "/petshop-webservice/config"
               readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /ProductService.svc
+              port: 80
+            periodSeconds: 20
+            initialDelaySeconds: 15
           resources:
             requests:
               cpu: 250m

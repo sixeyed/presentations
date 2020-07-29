@@ -3,11 +3,14 @@ kind: Ingress
 metadata:
   name: petshop-products-service
   namespace: petshop
+  labels:
+    app: petshop
+    component: products-service
   annotations:
     nginx.ingress.kubernetes.io/proxy-buffering: "on" 
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_cache static-cache;
-      proxy_cache_valid 10m;
+      proxy_cache_valid 2m;
       add_header X-Cache $upstream_cache_status;
 spec:
   rules:
