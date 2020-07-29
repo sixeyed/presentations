@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1beta1 
+kind: Ingress
+metadata:
+  name: petshop-products-service
+  namespace: petshop
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffering: "on" 
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_cache static-cache;
+      proxy_cache_valid 10m;
+      add_header X-Cache $upstream_cache_status;
+spec:
+  rules:
+  - host: api.petshop.sixeyed.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: petshop-products-service
+          servicePort: 80

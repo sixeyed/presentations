@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petshop-web
+  namespace: petshop
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: petshop
+      component: web
+  template:
+    metadata:
+      labels:
+        app: petshop
+        component: web
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: sixeyed/petshop-web:v4.1-1809
+          name: app
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: "/petshop-web/config"
+              readOnly: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 200Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi              
+      volumes:
+        - name: config
+          projected:
+            sources:             
+              - configMap:
+                  name: petshop-app-settings
+              - secret:
+                  name: petshop-connection-string
+      nodeSelector:
+        kubernetes.io/os: windows 
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm: 
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                      - petshop
+                    - key: component
+                      operator: In
+                      values:
+                      - web
+                topologyKey: "topology.kubernetes.io/zone"
