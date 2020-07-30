@@ -22,7 +22,7 @@ kubectl get node aksakswin000000 --show-labels
 
 ## Demo 1 - PetShop v4
 
-Deploy the [ingress controller](ingress-controller/nginx-ingress-controller.yaml):
+Deploy the ingress controller:
 
 ```
 kubectl apply -f ingress-controller/
