@@ -1,7 +1,7 @@
 
 ## Setup
 
-Create an [AKS cluster with Windows nodes](aks.md).
+Create an [AKS cluster with Windows nodes](azure.md).
 
 Check cluster:
 
@@ -40,8 +40,8 @@ kubectl apply -f petshop/
 
 Walk through: 
 
-- Connection string Secret in [connection-string.yaml](./petshop/connection-string.yaml)
-- Ingress with sticky sessions & cache in [ingress.yaml](./petshop/ingress.yaml)
+- Connection string Secret in [connection-string.yaml](./petshop/web-connection-string.yaml)
+- Ingress with sticky sessions & cache in [ingress.yaml](./petshop/web-ingress.yaml)
 - Deployment - with resources, secrets, nodeSelector - in [web.yaml](./petshop/web.yaml)
 
 Verify:
@@ -122,6 +122,14 @@ kubectl apply -f products-service/update/
 Walkthrough changes:
 
 - Environment variables in [web.yaml](./products-service/update/web.yaml)
-- Dockerfile for web app v4.1 from [sixeyed/petshopvnext]()
+- Dockerfile for  product service from [sixeyed/petshopvnext]()
 
 > Edit items in Cosmos & refresh API & web
+
+## Teardown
+
+Remove apps & ingress controller:
+
+```
+kubectl delete ns -l dotnetconf=2020
+```
