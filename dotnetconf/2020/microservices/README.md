@@ -2,7 +2,7 @@
 
 The demo app for the session is the .NET 3.5 PetShop from 2008...
 
-> Source code for the app is in [sixeyed/petshopvnext](https://github.com/sixeyed/petshopvnext)
+> Source code for the app is in [sixeyed/petshopvnext](https://github.com/sixeyed/petshopvnext/tree/dotnetconf2020)
 
 - Demo 1 runs the app as-is in Kubernetes
 - Demo 2 adds a new REST API in .NET 5
