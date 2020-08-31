@@ -1,5 +1,7 @@
 # Evolving .NET Framework Monoliths with .NET 5 and Kubernetes
 
+Watch the session on YouTube: https://youtu.be/Wbjh4T-cdv8
+
 The demo app for the session is the .NET 3.5 PetShop from 2008...
 
 > Source code for the app is in [sixeyed/petshopvnext](https://github.com/sixeyed/petshopvnext/tree/dotnetconf2020)
