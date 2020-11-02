@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petshop-products-service
+  namespace: petshop
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    app: petshop
+    component: products-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petshop-products-service
+  namespace: petshop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: petshop
+      component: products-service
+  template:
+    metadata:
+      labels:
+        app: petshop
+        component: products-service
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: sixeyed/petshop-products-service:2007
+          imagePullPolicy: Always
+          name: app
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: connection-string
+              mountPath: "/app/config"
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 80
+            periodSeconds: 10
+            initialDelaySeconds: 5
+          resources:
+            requests:
+              cpu: 125m
+              memory: 150Mi
+            limits:
+              cpu: 250m
+              memory: 250Mi              
+      volumes:
+        - name: connection-string
+          secret:
+            secretName: petshop-services-connection-string
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                  - linux
+                  - windows
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm: 
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                      - petshop
+                    - key: component
+                      operator: In
+                      values:
+                      - products-service
+                topologyKey: "topology.kubernetes.io/zone"
