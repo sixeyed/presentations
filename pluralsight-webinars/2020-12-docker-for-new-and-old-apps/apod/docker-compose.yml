@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+
+  image-gallery:
+    image: psdockerprod/image-gallery:m2
+    ports:
+      - "8010:80"
+    environment:
+      IG_METRICS.ENABLED: "FALSE"
+    depends_on:
+      - accesslog
+      - iotd
+    networks:
+      - iotd-net
+
+  accesslog:
+    image: psdockerprod/access-log:m2
+    ports:
+      - "8030:80"
+    environment:
+      NODE_CONFIG: '{"metrics": {"enabled":"false"}}'
+    networks:
+      - iotd-net
+
+  iotd:
+    image: psdockerprod/image-of-the-day:m2
+    ports:
+      - "8020:80"
+    networks:
+      - iotd-net
+
+networks:
+  iotd-net:
