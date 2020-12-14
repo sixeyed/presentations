@@ -1,10 +1,10 @@
+# Running New and Old Apps in Containers
 
-
-## Demo 1
+## Demo 1 - Docker
 
 > Windows container mode
 
-* [Petshop web Dockerfile](petshop/docker/web/Dockerfile)
+* [Petshop web Dockerfile](petshop/web/Dockerfile)
 
 ```
 docker run -p 8080:80 sixeyed/petshop-web:1809
@@ -23,7 +23,7 @@ docker run -d -p 8030:80 psdockerprod/access-log:m2
 Browse to http://localhost:8030/stats
 
 
-* [Access Log API Dockerfile](apod/access-log/Dockerfile)
+* [Image API Dockerfile](apod/image-of-the-day/Dockerfile)
 
 ```
 docker run -d --name api -p 8010:80 psdockerprod/image-of-the-day:m2
@@ -38,25 +38,102 @@ docker logs api
 ```
 
 
-## Demo 2
+## Demo 2 - Docker Compose
 
 > Windows container mode
 
-* [Petshop Docker Compose file](petshop/docker/docker-compose.yml)
+* [Petshop Docker Compose file](petshop/docker-compose.yml)
 
 ```
-docker-compose -f ./petshop/docker/docker-compose.yml up -d
+docker rm -f $(docker ps -aq)
+
+docker-compose -f ./petshop/docker-compose.yml up -d
+
+docker ps
 ```
+
+Browse to http://localhost:8080 and http://localhost:8085/ProductService.svc?wsdl
 
 > Linux container mode
 
 * [APOD Docker Compose file](apod/docker-compose.yml)
 
 ```
-docker-compose -f ./petshop/docker/docker-compose.yml up -d
+docker rm -f $(docker ps -aq)
+
+docker-compose -f ./apod/docker-compose.yml up -d
+
+docker ps
 ```
 
+Browse to http://localhost:8020/image and http://localhost:8010
 
-## Demo 3
+## Demo 3 - Kubernetes
 
-TODO - Kubernetes 
+Deploying new and old apps in the cloud - using the setup instructions in [AKS](aks.md).
+
+_Check the current status:_
+
+```
+kubectl get nodes
+
+kubectl get namespace
+```
+
+_Deploy the ingress controller:_
+
+```
+kubectl apply -f ./kubernetes/ingress-controller
+
+kubectl get namespace
+
+kubectl get pods -n ingress-nginx
+
+kubectl get svc -n ingress-nginx
+```
+
+This is a routing component for making multiple apps available on the cluster. We'll run the APOD app - here's how the image API looks in Kubernetes: [apod-api.yaml](kubernetes/apod/apod-api.yaml).
+
+_Deploy the new Linux app:_
+
+```
+kubectl apply -f ./kubernetes/apod
+
+kubectl get pods -n apod
+
+dig apod.sixeyed.com
+```
+
+Browse to:
+
+* http://apod.sixeyed.com - web
+* http://api.apod.sixeyed.com/image - API
+
+_And the old Windows app:_
+
+```
+kubectl apply -f ./kubernetes/petshop
+
+kubectl get pods -n petshop
+
+dig petshop.sixeyed.com
+```
+
+Browse to:
+
+* http://petshop.sixeyed.com - app
+* http://ws.petshop.sixeyed.com/ProductService.svc?wsdl - SOAP service
+
+## Teardown
+
+Remove all the custom Kubernetes namespaces:
+
+```
+kubectl delete ns -l pswebinar=20.12
+```
+
+Or just delete the whole RG:
+
+```
+az group delete -n ps2012
+```
