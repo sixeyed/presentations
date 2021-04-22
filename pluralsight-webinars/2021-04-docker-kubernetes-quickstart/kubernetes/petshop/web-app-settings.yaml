@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petshop-app-settings
+  namespace: petshop
+data:
+  appSettings.config: |-
+    <appSettings>
+      <!-- Pet Shop DAL configuration settings. Possible values: PetShop.SQLServerDAL for SqlServer, PetShop.OracleServerDALfor Oracle. -->
+      <add key="WebDAL" value="PetShop.SQLServerDAL"/>
+      <add key="OrdersDAL" value="PetShop.SQLServerDAL"/>
+      <add key="ProfileDAL" value="PetShop.SQLProfileDAL"/>
+      <!-- Enable data caching -->
+      <add key="EnableCaching" value="false"/>
+      <!-- Cache duration (in hours-whole number only) -->
+      <add key="CategoryCacheDuration" value="12"/>
+      <add key="ProductCacheDuration" value="12"/>
+      <add key="ItemCacheDuration" value="12"/>
+      <!-- Cache dependency options. Possible values: PetShop.TableCacheDependency for SQL Server and keep empty for ORACLE -->
+      <add key="CacheDependencyAssembly" value="PetShop.TableCacheDependency"/>
+      <!-- CacheDatabaseName should match the name under caching section, when using TableCacheDependency -->
+      <add key="CacheDatabaseName" value="MSPetShop4"/>
+      <!-- *TableDependency lists table dependency for each instance separated by comma -->
+      <add key="CategoryTableDependency" value="Category"/>
+      <add key="ProductTableDependency" value="Product,Category"/>
+      <add key="ItemTableDependency" value="Product,Category,Item"/>
+      <!-- Order processing options (Asynch/Synch) -->
+      <add key="OrderStrategyAssembly" value="PetShop.BLL"/>
+      <add key="OrderStrategyClass" value="PetShop.BLL.OrderSynchronousWithoutTransactions"/>    
+      <!-- Asynchronous Order options -->
+      <add key="OrderMessaging" value="PetShop.MSMQMessaging"/>
+      <add key="OrderQueuePath" value="FormatName:DIRECT=OS:MachineName\Private$\PSOrders"/>
+      <!-- Application Error Log -->
+      <add key="Event Log Source" value=".NET Pet Shop 4.0"/>
+    </appSettings>

@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petshop-web
+  namespace: petshop
+  labels:
+    app: petshop
+    component: web
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: cookie
+spec:
+  rules:
+  - host: petshop.sixeyed.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: petshop-web
+            port: 
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petshop-web-static
+  namespace: petshop
+  labels:
+    app: petshop
+    component: web
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffering: "on" 
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_cache static-cache;
+      proxy_cache_valid 60m;
+      add_header X-Cache $upstream_cache_status;
+spec:  
+  rules:
+  - host: petshop.sixeyed.com
+    http:
+      paths:
+      - path: /Prod_Images/
+        pathType: Prefix
+        backend:
+          service:
+            name: petshop-web
+            port: 
+              number: 80
+      - path: /Comm_Images/
+        pathType: Prefix
+        backend:
+          service:
+            name: petshop-web
+            port: 
+              number: 80

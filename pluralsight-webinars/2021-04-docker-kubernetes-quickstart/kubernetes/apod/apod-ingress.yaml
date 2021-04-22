@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apod-api
+  namespace: apod
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rpm: "2"
+spec:
+  rules:
+  - host: api.apod.sixeyed.com
+    http:
+      paths:
+      - pathType: Exact
+        path: /image
+        backend:
+          service:
+            name: apod-api
+            port: 
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apod-web
+  namespace: apod
+  annotations:
+    nginx.ingress.kubernetes.io/limit-rpm: "10"
+spec:
+  rules:
+  - host: apod.sixeyed.com
+    http:
+      paths:
+      - pathType: Exact
+        path: /
+        backend:
+          service:
+            name: apod-web
+            port: 
+              number: 80

@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: petshop-db
+  namespace: petshop
+spec:
+  type: ClusterIP
+  ports:
+    - port: 1433
+      targetPort: mssql
+  selector:
+    app: petshop
+    component: db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petshop-db
+  namespace: petshop
+spec:
+  selector:
+    matchLabels:
+      app: petshop
+      component: db
+  template:
+    metadata:
+      labels:
+        app: petshop
+        component: db
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - image: sixeyed/petshop-db:1809
+          name: db
+          ports:
+            - containerPort: 1433
+              name: mssql
+          env:
+            - name: sa_password
+              valueFrom:
+                secretKeyRef:
+                  key: sa_password
+                  name: petshop-db-password
+          resources:
+            requests:
+              cpu: 500m
+              memory: 400Mi
+            limits:
+              cpu: 1000m
+              memory: 750Mi 
+      nodeSelector:
+        kubernetes.io/os: windows

@@ -1,0 +1,13 @@
+release = "19.12"
+environment = "UNKNOWN"
+
+[metrics]
+enabled = true
+
+[apis]
+
+ [apis.image]
+ url = "http://iotd/image"
+
+ [apis.access]
+ url = "http://accesslog/access-log"

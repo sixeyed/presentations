@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: petshop-webservice
+  namespace: petshop
+  labels:
+    app: petshop
+    component: webservice
+spec:
+  rules:
+  - host: ws.petshop.sixeyed.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: petshop-webservice
+            port: 
+              number: 80

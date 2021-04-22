@@ -1,0 +1,7 @@
+{
+  "release": "19.12",
+  "environment": "UNKNOWN",
+  "metrics": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apod-log
+  namespace: apod
+spec:
+  ports:
+    - port: 80
+      targetPort: api
+  selector:
+    app: apod-log
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apod-log-config
+  namespace: apod
+data:
+  default.json: |-
+    {
+      "release": "20.11",
+      "environment": "M5",
+      "metrics": {
+        "enabled": false
+      },
+      "fail": {
+        "enabled": false
+      }
+    }
+  logConfig.js: |-
+    const { format, transports } = require('winston');
+    var logConfig = module.exports = {};
+
+    logConfig.options = {
+        format: format.combine(
+            format.splat(),
+            format.simple()
+        ),
+        transports: [
+            new transports.Console({
+                level: 'debug'
+            })
+        ]
+    };
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apod-log
+  namespace: apod
+spec:
+  selector:
+    matchLabels:
+      app: apod-log
+  template:
+    metadata:
+      labels:
+        app: apod-log
+    spec:
+      containers:
+        - name: api
+          image: psdockerprod/access-log:m4-v2
+          ports:
+            - containerPort: 80
+              name: api
+          volumeMounts:
+            - name: config
+              mountPath: "/app/config/"
+              readOnly: true
+          livenessProbe:
+            exec:
+                command: ["node", "/app/healthcheck.js"]
+            periodSeconds: 30
+            initialDelaySeconds: 10
+            failureThreshold: 2
+      volumes:
+        - name: config
+          configMap:
+            name: apod-log-config
+      nodeSelector:
+        kubernetes.io/os: linux
+
+
