@@ -8,9 +8,3 @@ RUN Install-WindowsFeature NET-HTTP-Activation; `
 
 COPY ./zips/petshop-web.zip .
 RUN Expand-Archive -Path petshop-web.zip -DestinationPath C:\
-
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8
-    
-COPY MyApp.msi /
-
-RUN msiexec /i MyApp.msi /qn
