@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-db
+spec:
+  ports:
+    - port: 5432
+      targetPort: postgres
+  selector:
+    app: widgetario
+    component: products-db
+  type: ClusterIP
