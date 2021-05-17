@@ -30,8 +30,6 @@ Deployments are first-class objects, you work with them in Kubectl in the usual 
 
 ```
 kubectl get deployments
-
-kubectl describe deploy whoami
 ```
 
 The new Pod has the same labels, so the Service still works:
@@ -40,35 +38,11 @@ The new Pod has the same labels, so the Service still works:
 curl http://localhost:8080
 ```
 
-## Scaling Deployments
-
-The Deployment knows how to create Pods from the template in the spec. You can create as many replicas - different Pods created from the same Pod spec - as your cluster can handle.
-
-You can scale **imperatively** with Kubectl:
-
-```
-kubectl scale deploy whoami --replicas 3
-
-kubectl get pods -l app=whoami -o wide
-```
-
-All the Pods match the label selector for the Service, so all their IPs are registered as endpoints:
-
-```
-kubectl describe svc whoami-lb
-```
-
-Repeat the curl command, and the request is load-balanced between Pods:
-
-```
-curl http://localhost:8080 # x3
-```
-
 ## Updating the application
 
 Application updates usually mean a change to the Pod spec - a new container image, or a configuraion change. You can't change the spec of a running Pod, but you can change the Pod spec in a Deployment. It makes the change by starting up new Pods and terminating the old ones.
 
-- [whoami-v2.yaml](deployments/whoami-v2.yaml) changes a configuration setting for the app and sets a replica count
+- [whoami-v2.yaml](deployments/whoami-v2.yaml) changes a configuration setting for the app and runs multiple replicas
 
 ```
 # open a new terminal to monitor the Pods:
@@ -82,8 +56,6 @@ When the rollout completes:
 
 ```
 kubectl get po -l app=whoami -o wide
-
-kubectl describe svc whoami-lb
 ```
 
 The new version of the app returns a more concise response:
