@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: config-reader-role-binding
+  namespace: rbac-demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: config-reader-role
+subjects:
+  - kind: ServiceAccount
+    name: kubectl-sa
+    namespace: rbac-demo

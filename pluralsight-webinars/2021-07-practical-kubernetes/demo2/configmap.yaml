@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: rbac-demo
+  name: config-settings
+data:
+  App__Release: 24.01.2
+  App__Environment: uat
