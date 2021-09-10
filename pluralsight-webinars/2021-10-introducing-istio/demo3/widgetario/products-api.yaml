@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: widgetario-products
+  namespace: widgetario
+  labels:
+    account: products
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-api-v1
+  namespace: widgetario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-api
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: products-api
+        version: v1
+    spec:
+      serviceAccountName: widgetario-products
+      containers:
+        - name: api
+          image: widgetario/products-api:dotnet
+          ports:
+            - containerPort: 80
+              name: api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-api-v2
+  namespace: widgetario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-api    
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: products-api       
+        version: v2
+    spec:
+      serviceAccountName: widgetario-products
+      containers:
+        - name: api
+          image: widgetario/products-api:dotnet
+          ports:
+            - containerPort: 80
+              name: api
+          env:
+             - name: Price__Factor
+               value: "1.75"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: products-api
+  namespace: widgetario
+spec:
+  hosts:
+    - products-api.widgetario.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: products-api.widgetario.svc.cluster.local
+        subset: v2
+      weight: 100

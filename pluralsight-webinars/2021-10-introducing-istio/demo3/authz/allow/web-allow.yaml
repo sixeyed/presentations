@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: web-allow
+  namespace: widgetario
+spec:
+  selector:
+    matchLabels:
+      app: web
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        methods: ["GET"]

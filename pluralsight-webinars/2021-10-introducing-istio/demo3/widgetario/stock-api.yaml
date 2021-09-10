@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: widgetario-stock
+  namespace: widgetario
+  labels:
+    account: products
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-api
+  namespace: widgetario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-api
+  template:
+    metadata:
+      labels:
+        app: stock-api
+    spec:
+      serviceAccountName: widgetario-stock
+      containers:
+        - name: api
+          image: widgetario/stock-api:dotnet
+          ports:
+            - containerPort: 80
+              name: api
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: stock-api
+  namespace: widgetario
+spec:
+  hosts:
+    - stock-api.widgetario.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: stock-api.widgetario.svc.cluster.local
+        subset: v1

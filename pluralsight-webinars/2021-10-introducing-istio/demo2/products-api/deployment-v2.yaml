@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-api-v2
+  namespace: widgetario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products-api    
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: products-api       
+        version: v2
+    spec:
+      containers:
+        - name: api
+          image: widgetario/products-api:dotnet
+          ports:
+            - containerPort: 80
+              name: api
+          env:
+             - name: Price__Factor
+               value: "1.75"

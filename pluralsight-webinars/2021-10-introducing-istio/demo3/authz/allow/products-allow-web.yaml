@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: products-allow-web
+  namespace: widgetario
+spec:
+  selector:
+    matchLabels:
+      app: products-api
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/widgetario/sa/widgetario-web"]
+    to:
+    - operation:
+        methods: ["GET"]

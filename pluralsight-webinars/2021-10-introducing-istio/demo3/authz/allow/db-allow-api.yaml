@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: db-allow-api
+  namespace: widgetario
+spec:
+  selector:
+    matchLabels:
+      app: products-db
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: 
+          - cluster.local/ns/widgetario/sa/widgetario-stock
+          - cluster.local/ns/widgetario/sa/widgetario-products
+    to:
+    - operation:
+        ports: ["5432"]

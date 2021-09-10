@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: products-api
+  namespace: widgetario
+spec:
+  hosts:
+    - products-api.widgetario.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: products-api.widgetario.svc.cluster.local
+        subset: v1

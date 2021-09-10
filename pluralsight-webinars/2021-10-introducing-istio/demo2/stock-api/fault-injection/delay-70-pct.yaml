@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: stock-api
+  namespace: widgetario
+spec:
+  hosts:
+    - stock-api.widgetario.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: stock-api.widgetario.svc.cluster.local
+        subset: v1
+    fault:
+      delay:
+        percentage: 
+          value: 70.1
+        fixedDelay: 1.5s
