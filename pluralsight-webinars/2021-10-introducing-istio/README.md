@@ -67,7 +67,7 @@ istioctl dashboard kiali
 
 _Deploy the Widgetario app_
 
-The demo app will run in its own namespace - [01-namespace.yaml](demo2/widgetario/01-namespace.yaml) includes the Istio auto-injection label.
+The demo app will run in its own namespace - [01-namespace.yaml](demo1/widgetario/01-namespace.yaml) includes the Istio auto-injection label.
 
 ```
 kubectl apply -f demo1/widgetario/01-namespace.yaml
@@ -85,7 +85,7 @@ kubectl get pods -n widgetario
 kubectl describe pod -l app=stock-api -n widgetario
 ```
 
-> There are two containers in the Pod - the spec in [stock-api.yaml](demo2/widgetario/stock-api.yaml) only defines one
+> There are two containers in the Pod - the spec in [stock-api.yaml](demo1/widgetario/stock-api.yaml) only defines one
 
 _Check in Kiali:_
 
@@ -111,11 +111,11 @@ Traffic management is specced with two Istio resource types: the [DestinationRul
 
 We'll do a canary deployment for a new version of the products API, starting with:
 
-- [deployment-v2.yaml](demo2\products-api\deployment-v2.yaml) - the new v2 Deployment
+- [deployment-v2.yaml](demo2/products-api/deployment-v2.yaml) - the new v2 Deployment
 
-- [destination-rule.yaml](demo2\products-api\destination-rule.yaml) - the DestinationRule which defines the target subsets
+- [destination-rule.yaml](demo2/products-api/destination-rule.yaml) - the DestinationRule which defines the target subsets
 
-- [virtual-service.yaml](demo2\products-api\virtual-service.yaml) - the VirtualService which specs the traffic rules
+- [virtual-service.yaml](demo2/products-api/virtual-service.yaml) - the VirtualService which specs the traffic rules
 
 ```
 kubectl apply -f demo2/products-api/
@@ -148,9 +148,9 @@ Istio can also apply fault injection - useful for testing your apps fail gracefu
 
 The stock-api folder adds new Istio resources:
 
-- [destination-rule.yaml](demo2\stock-api\destination-rule.yaml) - the DestinationRule which defines the target subsets
+- [destination-rule.yaml](demo2/stock-api/destination-rule.yaml) - the DestinationRule which defines the target subsets
 
-- [virtual-service.yaml](demo2\stock-api\virtual-service.yaml) - the VirtualService which specs the traffic rules
+- [virtual-service.yaml](demo2/stock-api/virtual-service.yaml) - the VirtualService which specs the traffic rules
 
 - [abort-20-pct.yaml](demo2/stock-api/fault-injection/abort-20-pct.yaml) - failure injection
 
