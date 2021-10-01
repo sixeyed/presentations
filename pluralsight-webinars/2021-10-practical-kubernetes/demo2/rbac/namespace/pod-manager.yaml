@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-manager
+  namespace: default # this is the scope where the role applies
+  labels:  
+    pswebinar: '21.10'
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kube-explorer-pod-manager
+  namespace: default # needs to match the ns in the role
+  labels:  
+    pswebinar: '21.10'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-manager
+subjects:
+- kind: ServiceAccount
+  name: kube-explorer
+  namespace: default # the subject can be in a different ns
