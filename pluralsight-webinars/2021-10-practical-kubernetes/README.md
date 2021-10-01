@@ -132,7 +132,13 @@ _Deploy:_
 kubectl apply -f demo2/
 ```
 
-> Try the app at http://localhost:30012 - 403 error. Authorization needs to be explicitly granted, new SAs start with no access
+> Try the app at http://localhost:30012 - 403 error. Authorization needs to be explicitly granted, new SAs start with no access.
+
+_But the app is authenticated, from the SA token which Kubernetes mounts:_
+
+```
+kubectl exec deploy/kube-explorer -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
+```
 
 Namespaced RBAC:
 
