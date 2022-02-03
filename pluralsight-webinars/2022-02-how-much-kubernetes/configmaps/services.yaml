@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: configurable-lb
+spec:
+  selector:
+    app: configurable
+  ports:
+    - name: http
+      port: 8010
+      targetPort: 80
+  type: LoadBalancer

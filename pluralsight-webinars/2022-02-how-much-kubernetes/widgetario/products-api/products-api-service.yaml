@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-api
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    app: widgetario
+    component: products-api
+  type: ClusterIP
