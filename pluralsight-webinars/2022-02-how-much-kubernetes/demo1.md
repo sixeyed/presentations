@@ -15,7 +15,7 @@ kubectl apply -f pods/whoami-pod.yaml
 Or the path to the YAML file can be a web address:
 
 ```
-kubectl apply -f https://k8sfun.courselabs.co/labs/pods/specs/whoami-pod.yaml
+kubectl apply -f https://kubernetes.courselabs.co/labs/pods/specs/whoami-pod.yaml
 ```
 
 > The output shows you that nothing has changed. Kubernetes works on **desired state** deployment
@@ -36,13 +36,7 @@ Print the container logs:
 kubectl logs whoami
 ```
 
-Connect to the container inside the Pod:
-
-```
-kubectl exec -it whoami -- sh
-```
-
-> This container image doesn't have a shell installed!
+> Not much to see here...
 
 Deploy another app:
 
@@ -61,7 +55,7 @@ kubectl exec -it sleep -- sh
 
 hostname
 
-whoami
+ps
 
 exit
 ```

@@ -6,7 +6,7 @@ There are two ways to store configuration settings in ConfigMaps - either as key
 
 The Pod spec is where you apply configuration:
 
-- [deployment.yaml](specs/configurable/deployment.yaml) adds a config setting with an environment variable in the template Pod spec.
+- [deployment.yaml](configmaps/deployment.yaml) adds a config setting with an environment variable in the template Pod spec.
 
 ```
 kubectl apply -f configmaps/
