@@ -10,15 +10,34 @@
 			"path": "../../../../../../Documents/data/prices-paid"
 		}
 	],
+	"extensions": {
+		// VS Code offers to install these when the workspace opens
+		"recommendations": [
+			"stateful.runme"
+		]
+	},
 	"settings": {
+		// Presentation look — applies only while this workspace is open
+		"workbench.colorTheme": "Light Modern",
+		"workbench.statusBar.visible": false,
 		// Open Markdown in the rendered preview; "Reopen Editor With… → Text Editor" for source
 		"workbench.editorAssociations": {
 			"*.md": "vscode.markdown.preview.editor"
 		},
+		// Notebooks (Runme) without the editing chrome: no bar under each cell
+		// (Add Name, Configure, Copy, CLI, Fork), no "+ Code / + Markdown" between
+		// cells and no toolbar across the top
+		"notebook.showCellStatusBar": "hidden",
+		"notebook.insertToolbarLocation": "hidden",
+		"notebook.globalToolbar": false,
+		// Every file opens in its own tab — opening a link never replaces the tab you came from
+		"workbench.editor.enablePreview": false,
 		// Links between .md files stay in the preview
 		"markdown.preview.openMarkdownLinks": "inPreview",
 		// Back/forward arrows in the title bar (keyboard: ⌃- and ⌃⇧-)
 		"window.commandCenter": true,
-		"workbench.navigationControl.enabled": true
+		"workbench.navigationControl.enabled": true,
+		// Terminal tabs show the title a shell sets, e.g. "delivery team: issue-5-3f9a"
+		"terminal.integrated.tabs.title": "${process}${separator}${sequence}"
 	}
 }

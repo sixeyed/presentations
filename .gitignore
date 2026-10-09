@@ -41,3 +41,5 @@ artifacts/
 !**/packages/build/
 .DS_Store
 dotnetconf/2020/microservices/products-service/update/connection-string.yaml
+linkedin-live/261005-claude-work-and-scale/slides/
+**/.DS_Store

@@ -1,4 +1,4 @@
-# Demo 4: Claude Desktop
+# Demo: Claude Desktop
 
 
 Open Claude Desktop
@@ -28,7 +28,7 @@ Opens the in-app browser window and navigates. This is interactive - you could l
 
 ## Local files and cloud storage
 
-Open `UK Price Paid` project- open Context:
+Open `UK Price Paid` project - open Context:
 
 - 1 linked folder, data on a local machine
 

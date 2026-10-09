@@ -1,6 +1,6 @@
-# Demo 4: Claude Code
+# Demo: Claude Code
 
-Start Claude Code sessions in differnt terminals:
+Start Claude Code sessions in different terminals:
 
 ```
 claude --permission-mode auto
@@ -11,7 +11,7 @@ claude --permission-mode auto
 Check on the team:
 
 ```
-we have the delivery team working in a new branch feature/issue-5. how are they getting on?
+we have the delivery team working on issue 5, in the latest worktree. how are they getting on?
 ```
 
 ```
