@@ -1,16 +1,22 @@
 # Demo 4: Claude Code
 
-## Check on issue 005
+Start Claude Code sessions in differnt terminals:
 
 ```
-claude
+claude --permission-mode auto
 ```
+
+## Check on issue 005
 
 Check on the team:
 
-> we have the delivery team working in a new branch feature/issue-5. how are they getting on?
+```
+we have the delivery team working in a new branch feature/issue-5. how are they getting on?
+```
 
-> keep monitoring. post an update here every 5m, or when anything interesting happens.
+```
+keep monitoring. post an update here every 5m, or when anything interesting happens.
+```
 
 A previous team produced this implementation:
 
@@ -20,25 +26,19 @@ A previous team produced this implementation:
 ## Plan a new feature
 
 ```
-claude
+start of the new sprint. we have 10 days to build a feature that demos well, there will be execs at this sprint review. ideas?
 ```
-
-> start of the new sprint. we have 10 days to build a feature that demos well, there will be execs at this sprint review. ideas?
 
 - go on to [/issue-writer](../../../../../manning/caw-project/.claude/skills/issue-writer/SKILL.md)
 
 ## Routine maintenance
 
 ```
-claude
+we haven't updated any packages for a while. update to the latest stable versions for all libraries, fix any breaking changes in our client code.
 ```
-
-> we haven't updated any packages for a while. update to the latest stable versions for all libraries, fix any breaking changes in our client code.
 
 ## Debugging
 
 ```
-claude
+there's an issue with local deployment. when i open two private browsers and sign in to different accounts, the second sign-in changes the user on the first window, so now both show the same user.
 ```
-
-> there's an issue with local deployment. when i open two private browsers and sign in to different accounts, the second sign-in changes the user on the first window, so now both show the same user.

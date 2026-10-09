@@ -5,7 +5,20 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../../../../Documents/data/prices-paid"
 		}
 	],
-	"settings": {}
+	"settings": {
+		// Open Markdown in the rendered preview; "Reopen Editor With… → Text Editor" for source
+		"workbench.editorAssociations": {
+			"*.md": "vscode.markdown.preview.editor"
+		},
+		// Links between .md files stay in the preview
+		"markdown.preview.openMarkdownLinks": "inPreview",
+		// Back/forward arrows in the title bar (keyboard: ⌃- and ⌃⇧-)
+		"window.commandCenter": true,
+		"workbench.navigationControl.enabled": true
+	}
 }

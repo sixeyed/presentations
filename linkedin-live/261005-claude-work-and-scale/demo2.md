@@ -5,17 +5,23 @@
 
 - https://claude.ai/new
 
-> what's new
+```
+what's new
+```
 
 And retry a few times. Answers vary from "not much - what would you like to know" to a general round'up of UK news. Claude is not deterministic, and vague questions get vage responses.
 
-> i've been away for a week with no internet access. what's new in uk news, f1, open weight AI models and jazz-adjacent electronic music. summarise each with links to key resources.
+```
+i've been away for a week with no internet access. what's new in uk news, f1, open weight AI models and jazz-adjacent electronic music. summarise each with links to key resources.
+```
 
 Expand thinking - tool use, web search.
 
 Follow up in the same chat:
 
-> uk news all looks bad. any good news items?
+```
+uk news all looks bad. any good news items?
+```
 
 _Context_ is the full conversation - request and response - which gets sent along with your latest prompt. It could be routed to any Claude instance, but there is caching so if you hit the same instance the response is faster.
 
@@ -27,7 +33,9 @@ Grab a screenshot of the architecture diagram from chapter 1:
 
 - https://github.com/sixeyed/claude-at-work/tree/main/chapters/ch01
 
-> what do you make of this?
+```
+what do you make of this?
+```
 
 Interpreted as a software architecture diagram, and identified the components and flow. Responses varied from key design decisions to focus on, to Claude wanting more information.
 
