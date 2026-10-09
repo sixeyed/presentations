@@ -27,7 +27,11 @@ _Context_ is the full conversation - request and response - which gets sent alon
 
 ## Images
 
-Claude is not good at generating images, but it can interpret them.
+Claude is not good at generating images. This is a very early chat about [Jonathan Trotman's style](https://jonathantrotman.co.uk/archive-paintings/):
+
+- [Who is Jonathan Trotman?](https://claude.ai/chat/f6f986bc-b7e7-4560-a164-f10d11825f88)
+
+But it can interpret them.
 
 Grab a screenshot of the architecture diagram from chapter 1:
 
